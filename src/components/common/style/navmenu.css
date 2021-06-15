@@ -1,0 +1,13 @@
+.menu {
+    font-family: "NYT Franklin Semibold,Helvetica,Arial,sans-serif";
+    letter-spacing: ".15px";
+    font-size: "15px";
+    font-style: "normal";
+    font-stretch: "normal";
+    line-height: "1.88";
+    text-align: "center";
+    color: "#333";
+    display: "block";
+    text-decoration: "none";
+    white-space: "nowrap"
+  };

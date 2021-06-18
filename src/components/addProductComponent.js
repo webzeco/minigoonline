@@ -4,10 +4,11 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Variants from './Variant';
 import * as Yup from 'yup';
-import "./utils/style/addProductComponent.css";
+import { variantsData } from './Variant';
+import { productData } from './data'
+//import "./utils/style/addProductComponent.css";
 const AddProduct = () => {
     const [description, setDescription] = useState('');
-    console.log(description);
     const formik = useFormik({
         initialValues: {
             title: '',
@@ -38,8 +39,9 @@ const AddProduct = () => {
         ,
         onSubmit: values => {
             values.description = description;
-            alert(JSON.stringify(values, null, 2));
-
+            values.variants = variantsData;
+            productData.push(values);
+            console.log(JSON.stringify(productData));
         }
     })
 
@@ -58,7 +60,7 @@ const AddProduct = () => {
                     formik.touched.title && formik.errors.title ?
                         (<div>{formik.errors.title}</div>) : null
                 }
-               
+
                 {/* .............................................. */}
                 <label className="title pb-2" htmlFor="title">Discription</label>
                 <CKEditor
@@ -70,10 +72,10 @@ const AddProduct = () => {
                         setDescription(data);
                     }}
                 />
-              
+
                 {/* .............................................. */}
                 <div className="h4">Pricing</div>
-                <label className="title pb-2"  htmlFor="price">Price</label>
+                <label className="title pb-2" htmlFor="price">Price</label>
                 <input className="form-control mb-1 w-50"
                     id='price'
                     name='price'
@@ -85,8 +87,8 @@ const AddProduct = () => {
                         (<div>{formik.errors.price}</div>) : null
                 }
                 {/* .............................................. */}
-               
-                <label className="title pb-2"  htmlFor="compareAtPrice">Compare at price</label>
+
+                <label className="title pb-2" htmlFor="compareAtPrice">Compare at price</label>
                 <input className="form-control mb-1 w-50"
                     id='compareAtPrice'
                     name='compareAtPrice'
@@ -97,9 +99,9 @@ const AddProduct = () => {
                     formik.touched.compareAtPrice && formik.errors.compareAtPrice ?
                         (<div>{formik.errors.compareAtPrice}</div>) : null
                 }
-              
+
                 {/* .............................................. */}
-                <label className="title pb-2"  htmlFor="costPerItem">Cost per item</label>
+                <label className="title pb-2" htmlFor="costPerItem">Cost per item</label>
                 <input className="form-control mb-1 w-50"
                     id='costPerItem'
                     name='costPerItem'
@@ -110,8 +112,8 @@ const AddProduct = () => {
                     formik.touched.costPerItem && formik.errors.costPerItem ?
                         (<div>{formik.errors.costPerItem}</div>) : null
                 }
-             
-                <label className="title pb-2 px-2"  htmlFor="chargeTax">Charge Tax</label>
+
+                <label className="title pb-2 px-2" htmlFor="chargeTax">Charge Tax</label>
                 <input className="form-check-input mb-1"
                     id='chargeTax'
                     name='chargeTax'
@@ -122,11 +124,11 @@ const AddProduct = () => {
                     formik.touched.chargeTax && formik.errors.chargeTax ?
                         (<div>{formik.errors.chargeTax}</div>) : null
                 }
-             
+
 
                 {/* .............................................. */}
                 <div className="h4">Inventory</div>
-                <label className="title pb-2"  htmlFor="stockKeepingUnit">Stock Keeping Unit(SKU)</label>
+                <label className="title pb-2" htmlFor="stockKeepingUnit">Stock Keeping Unit(SKU)</label>
                 <input className="form-control mb-1 w-50"
                     id='stockKeepingUnit'
                     name='stockKeepingUnit'
@@ -137,9 +139,9 @@ const AddProduct = () => {
                     formik.touched.stockKeepingUnit && formik.errors.stockKeepingUnit ?
                         (<div>{formik.errors.stockKeepingUnit}</div>) : null
                 }
-              
 
-                <label className="title pb-2"  htmlFor="barcode">Barcode</label>
+
+                <label className="title pb-2" htmlFor="barcode">Barcode</label>
                 <input className="form-control mb-1 w-50"
                     id='barcode'
                     name='barcode'
@@ -150,10 +152,10 @@ const AddProduct = () => {
                     formik.touched.barcode && formik.errors.barcode ?
                         (<div>{formik.errors.barcode}</div>) : null
                 }
-               
-               <br />
+
+                <br />
                 {/* .............................................. */}
-                <label className="title pb-2 px-2"  htmlFor="trackQuantity">Track Quantity</label>
+                <label className="title pb-2 px-2" htmlFor="trackQuantity">Track Quantity</label>
                 <input className="form-check-input mb-1"
                     id='trackQuantity'
                     name='trackQuantity'
@@ -164,10 +166,10 @@ const AddProduct = () => {
                     formik.touched.trackQuantity && formik.errors.trackQuantity ?
                         (<div>{formik.errors.trackQuantity}</div>) : null
                 }
-                 <br />
+                <br />
                 {/* .............................................. */}
 
-                <label className="title p-2"  htmlFor="sellOutofStock">Sell Out of Stock</label>
+                <label className="title p-2" htmlFor="sellOutofStock">Sell Out of Stock</label>
                 <input cclassName="form-check-input mb-1"
                     id='sellOutofStock'
                     name='sellOutofStock'
@@ -178,9 +180,9 @@ const AddProduct = () => {
                     formik.touched.sellOutofStock && formik.errors.sellOutofStock ?
                         (<div>{formik.errors.sellOutofStock}</div>) : null
                 }
-               <br />
+                <br />
                 {/* .............................................. */}
-                <label className="title pb-2"  htmlFor="availableQuantity">Available Quantity</label>
+                <label className="title pb-2" htmlFor="availableQuantity">Available Quantity</label>
                 <input className="form-control mb-1 w-50"
                     id='availableQuantity'
                     name='availableQuantity'
@@ -191,10 +193,10 @@ const AddProduct = () => {
                     formik.touched.availableQuantity && formik.errors.availableQuantity ?
                         (<div>{formik.errors.availableQuantity}</div>) : null
                 }
-               
-               <div className="h4">Shipping</div>
-               
-                <label className="title p-2"  htmlFor="physicalProduct">Physical Product</label>
+
+                <div className="h4">Shipping</div>
+
+                <label className="title p-2" htmlFor="physicalProduct">Physical Product</label>
                 <input cclassName="form-check-input mb-1"
                     id='physicalProduct'
                     name='physicalProduct'
@@ -205,10 +207,10 @@ const AddProduct = () => {
                     formik.touched.physicalProduct && formik.errors.physicalProduct ?
                         (<div>{formik.errors.physicalProduct}</div>) : null
                 }
-                
-<br />
+
+                <br />
                 {/* .............................................. */}
-                <label className="title pb-2"  htmlFor="weight">Weight</label>
+                <label className="title pb-2" htmlFor="weight">Weight</label>
                 <input className="form-control w-50"
                     id='weight'
                     name='weight'
@@ -219,9 +221,9 @@ const AddProduct = () => {
                     formik.touched.weight && formik.errors.weight ?
                         (<div>{formik.errors.weight}</div>) : null
                 }
-               
 
-                <label className="title pb-2"  htmlFor="country">Country</label>
+
+                <label className="title pb-2" htmlFor="country">Country</label>
                 <input className="form-control mb-4 w-50"
                     id='country'
                     name='country'
@@ -233,12 +235,12 @@ const AddProduct = () => {
                         (<div>{formik.errors.country}</div>) : null
                 }
                 {/* .............................................. */}
-             
+                <Variants />
                 <button className="btn btn-primary mb-3" type='submit'>Submit</button>
 
             </form>
-            <Variants />
             <Media />
+
 
         </div>
     )

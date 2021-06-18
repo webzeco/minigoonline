@@ -22,28 +22,27 @@ export default class Tags extends Component {
     handleDelete(i) {
         this.setState({
             tags: this.state.tags.filter((tag, index) => index !== i)
-        });
+        },
+            () => { this.props.sendTags(this.state.tags) });
     }
 
     handleAddition(tag) {
         let { tags } = this.state;
-        this.setState({ tags: [...tags, { id: tags.length + 1, text: tag }] });
-
+        this.setState({ tags: [...tags, { id: tags.length + 1, text: tag }] },
+            () => { this.props.sendTags(this.state.tags) }
+        );
     }
 
     handleDrag(tag, currPos, newPos) {
         const tags = [...this.state.tags];
         tags.splice(currPos, 1);
         tags.splice(newPos, 0, tag);
-        this.setState({ tags });
-
+        this.setState({ tags },
+            () => { this.props.sendTags(this.state.tags) });
     }
 
     render() {
         const { tags } = this.state;
-        this.props.setTag(tags)
-
-
         return (
             <div>
                 <ReactTags

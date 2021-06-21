@@ -33,8 +33,8 @@ function Footer() {
             <div className="row">
               <div className="col-lg-2 col-md-4 col-sm-4 footer-contact">
                 <a href="index.html">
-                {console.log("SUPERMAN",process.env.REACT_APP_URL)}
-                  <img src='https://lh3.googleusercontent.com/proxy/2eEVb9QCZk0QxMkdDF1PiyWQrmo21nZ1NbsAUJcGlUFraW4NjmNC787arWByVI_L5sKugH5Glym4mPnNSU3-wZjhzSGl0J6gkGKo1oS6KXIEaWf00pvO9owOZIugwiPJV3t8d4KS' width='120px' height='120px' alt="MiniGo" />
+                
+                  <img src='https://namibwear.com/wp-content/plugins/minigo/inc/admin/img/logo.png' width='120px' height='120px' alt="MiniGo" />
                 </a>
               </div>
 

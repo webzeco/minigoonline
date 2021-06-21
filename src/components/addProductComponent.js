@@ -46,7 +46,7 @@ const AddProduct = () => {
     })
 
     return (
-        <div className="container">
+        <div className="container" style={{marginTop:'20vh'}}>
             <div className="h2">Add Product</div>
             <form onSubmit={formik.handleSubmit}>
                 <label className="title pb-2" htmlFor="title">Title</label>

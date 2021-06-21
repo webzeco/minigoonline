@@ -4,7 +4,7 @@ import parse from 'html-react-parser'
 export default class ShowProduct extends Component {
     render() {
         return (
-            <div>
+            <div style={{marginTop:'20vh'}}>
                 <h2>Show Product</h2>
                 {
                     productData.map(

@@ -70,7 +70,37 @@ a:hover {
   }
   
   /*Banner end */
-  
+  /* category cards */
+  .branded-colth_box {
+    background-color: palegoldenrod;
+    height: 350px;
+  }
+  .books_box {
+    background-color: skyblue;
+    height: 350px;
+  }
+  .drinkware_box {
+    background-color: antiquewhite;
+    height: 350px;
+  }
+  .crossword_box {
+    background-color: cyan;
+    height: 350px;
+  }
+  .category_box_h4 {
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-size: 32px;
+    text-decoration: none;
+    color: #000000;
+  }
+  .category_box_h7 {
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: underline;
+    color: #000000;
+  }
+  /* end of category ends */
 /*gift subscription  */
 .gift_sub_heading {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;

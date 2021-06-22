@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-
+import {  Collection } from "../contexts/Collection";
 import {
   faSearch,
   faUser,
@@ -11,6 +11,7 @@ import NavMenu from "./NavMenu";
 import "./style/navmenu.css";
 
 export default function Header() {
+  const Coll = useContext(Collection)
   const [collection, setCollection] = useState(null);
   const showMenu = (collection) => {
     setCollection(collection);
@@ -18,6 +19,11 @@ export default function Header() {
   const hideMenu = () => {
     setCollection(null);
   };
+
+  console.log({coll:Coll});
+  // Coll.setCollectionHandler("Ali Ahmad");
+  console.log({coll:Coll});
+
   return (
     <>
       <div className="row bg-white fixed-top">
@@ -59,14 +65,14 @@ export default function Header() {
         </div>
               {/* navbar starts */}
         <div className="d-flex justify-content-center" >
-          <Link exact className='p-2' onMouseEnter={hideMenu} activeclassName="active" to="/">Best Sellers
+          <Link style={{textDecoration:'none',color:'black'}} exact className='p-2 active' onMouseEnter={hideMenu}  to="/">Best Sellers
           </Link>
-          <Link className='p-2 link' onMouseEnter={() => showMenu("Personalized")} activeclassName="active" to="/">Personalized</Link>
-          <Link className='p-2' onMouseEnter={() => showMenu("Times Goods")} activeclassName="active" to="/">Times Goods</Link>
-          <Link className='p-2' onMouseEnter={() => showMenu("Wall Art")} activeclassName="active" to="/">Wall Art</Link>
-          <Link className='p-2' onMouseEnter={() => showMenu("Books")} activeclassName="active" to="/">Books  </Link>
-          <Link className='p-2' onMouseEnter={hideMenu} activeclassName="active" to="/">Special Sections</Link>
-          <Link className='p-2' onMouseEnter={hideMenu} activeclassName="active" to="/">Sale</Link>
+          <Link style={{textDecoration:'none',color:'black'}} className='p-2 link' onMouseEnter={() => showMenu("Personalized")}  to="/">Personalized</Link>
+          <Link style={{textDecoration:'none',color:'black'}} className='p-2' onMouseEnter={() => showMenu("Times Goods")}  to="/">Times Goods</Link>
+          <Link style={{textDecoration:'none',color:'black'}} className='p-2' onMouseEnter={() => showMenu("Wall Art")}  to="/">Wall Art</Link>
+          <Link style={{textDecoration:'none',color:'black'}} className='p-2' onMouseEnter={() => showMenu("Books")}  to="/">Books  </Link>
+          <Link style={{textDecoration:'none',color:'black'}} className='p-2' onMouseEnter={hideMenu}  to="/">Special Sections</Link>
+          <Link style={{textDecoration:'none',color:'black'}} className='p-2' onMouseEnter={hideMenu}  to="/">Sale</Link>
         </div>
         {console.log(collection)}
         <NavMenu onMouseEnter={hideMenu} hideMenu={hideMenu} collection={collection} />

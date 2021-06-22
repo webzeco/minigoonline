@@ -1,5 +1,7 @@
 import React from "react";
 import "./style/footer.css";
+import { Link } from 'react-router-dom';
+
 function Footer() {
   return (
     <div>
@@ -41,7 +43,7 @@ function Footer() {
               <div className="col-lg-2 col-md-4 col-sm-4 footer-links">
                 <ul className="no-design">
                   <li>
-                    <a href="#">Time Wine Club</a>
+                    <Link to="#">Time Wine Club</Link>
                   </li>
                   <li>
                     <a href="#">Times Journeys</a>

@@ -245,8 +245,6 @@ const AddProduct = () => {
         </div>
     )
 };
-
-
 function Media() {
     return (
         <div>

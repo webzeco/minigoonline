@@ -3,7 +3,10 @@ import './style/navmenu.css';
 import { Link } from 'react-router-dom';
 
 export default function NavMenu({collection,hideMenu}) {
-  
+  const onClickHandlers=(category)=>{
+    // alert(category);
+  }
+
 const navMenuData=[
   {
   collection:'Personalized',
@@ -157,13 +160,13 @@ menu:[
 const data=navMenuData.filter(coll=>coll.collection===collection);
   return <div onMouseLeave={hideMenu} >
     {collection &&data[0] && (
-      <div  class="bg-light" >
+      <div  className="bg-light" >
       <ul  className="parent d-flex justify-content-center  p-4 w-100 menu">
         {data[0].menu.map(list=>(
           <ul  className="child   text-bold list-unstyled p-3">
-          <li  className="fw-bold text-info  list-group list-group-flush">{list.title}</li>
+          <Link style={{textDecoration: 'none'}}  className="fw-bold text-info  list-group list-group-flush">{list.title}</Link>
             {list.items.map((e,index)=>{
-              return <li><Link className="text-dark fw-light">{e}</Link></li>
+              return <li ><Link onClick={()=>onClickHandlers(e)} to={`showProduct/${e}`} style={{textDecoration: 'none'}} className="text-dark fw-light">{e}</Link></li>
             })}
         </ul>)
         )}

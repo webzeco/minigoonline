@@ -1,17 +1,24 @@
-import React, { Component } from 'react'
-import { productData } from './data.js'
 import parse from 'html-react-parser'
-export default class ShowProduct extends Component {
-    render() {
+const ShowProduct = props => {
         return (
-            <div style={{marginTop:'20vh'}}>
+            <div>
                 <h2>Show Product</h2>
+                {console.log(props.productData)}
+
                 {
-                    productData.map(
+                    props.productData.map(
                         (product) => {
                             return (
                                 <div>
                                     <h2>Product Title: {product.title}</h2>
+                                    <h2>Images</h2>
+                                    {product.images !== null ?
+                                        product.images.map(
+                                            (img) => {
+                                                return <img src={img} width='100px' height='100px' alt='img' />
+                                            }
+                                        )
+                                        : null}
                                     <h2>Product description:</h2>
                                     {parse(product.description)}
                                     <h3>Product price: {product.price}</h3>
@@ -27,7 +34,11 @@ export default class ShowProduct extends Component {
                                                         {
                                                             option.tags.map(
                                                                 (tag) => {
-                                                                    return <button>{tag.text}</button>
+                                                                    if (option.selectedOption === 'Color') {
+                                                                        return <button style={{ backgroundColor: tag.text }}>{tag.text}</button>
+                                                                    } else {
+                                                                        return <button>{tag.text}</button>
+                                                                    }
                                                                 }
                                                             )
                                                         }
@@ -44,5 +55,5 @@ export default class ShowProduct extends Component {
                 }
             </div>
         )
-    }
 }
+export default ShowProduct;

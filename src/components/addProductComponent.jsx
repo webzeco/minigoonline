@@ -5,10 +5,14 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Variants from './Variant';
 import * as Yup from 'yup';
 import { variantsData } from './Variant';
+import Media from './MediaComponent';
 import { productData } from './data'
 //import "./utils/style/addProductComponent.css";
+
 const AddProduct = () => {
     const [description, setDescription] = useState('');
+    const [imgList, setImgList] = useState([]);
+    const [images, setImages] = useState();
     const formik = useFormik({
         initialValues: {
             title: '',
@@ -40,13 +44,14 @@ const AddProduct = () => {
         onSubmit: values => {
             values.description = description;
             values.variants = variantsData;
-            productData.push(values);
-            console.log(JSON.stringify(productData));
+            values.imgNames = imgList;
+            values.images = images
+            productData.push(values)
         }
     })
 
     return (
-        <div className="container" style={{marginTop:'20vh'}}>
+        <div className="container">
             <div className="h2">Add Product</div>
             <form onSubmit={formik.handleSubmit}>
                 <label className="title pb-2" htmlFor="title">Title</label>
@@ -63,16 +68,14 @@ const AddProduct = () => {
 
                 {/* .............................................. */}
                 <label className="title pb-2" htmlFor="title">Discription</label>
-                <CKEditor
-                    editor={ClassicEditor}
+                <CKEditor editor={ClassicEditor}
                     data={description}
 
                     onChange={(event, editor) => {
                         const data = editor.getData();
                         setDescription(data);
-                    }}
-                />
-
+                    }} />
+                <Media setImagesList={(imgList) => setImgList(imgList)} setImages={(images) => setImages(images)} />
                 {/* .............................................. */}
                 <div className="h4">Pricing</div>
                 <label className="title pb-2" htmlFor="price">Price</label>
@@ -170,7 +173,7 @@ const AddProduct = () => {
                 {/* .............................................. */}
 
                 <label className="title p-2" htmlFor="sellOutofStock">Sell Out of Stock</label>
-                <input cclassName="form-check-input mb-1"
+                <input className="form-check-input mb-1"
                     id='sellOutofStock'
                     name='sellOutofStock'
                     type='checkbox'
@@ -197,7 +200,7 @@ const AddProduct = () => {
                 <div className="h4">Shipping</div>
 
                 <label className="title p-2" htmlFor="physicalProduct">Physical Product</label>
-                <input cclassName="form-check-input mb-1"
+                <input className="form-check-input mb-1"
                     id='physicalProduct'
                     name='physicalProduct'
                     type='checkbox'
@@ -239,21 +242,12 @@ const AddProduct = () => {
                 <button className="btn btn-primary mb-3" type='submit'>Submit</button>
 
             </form>
-            <Media />
 
 
-        </div>
-    )
-};
-function Media() {
-    return (
-        <div>
 
         </div>
     )
 };
-
-
 
 
 export default AddProduct;

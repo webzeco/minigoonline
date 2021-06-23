@@ -5,7 +5,7 @@ export default function ProductsCollection({category}) {
         <div>
             <h1>
                 {category}
-            </h1>
+        </h1>
         </div>
     )
 }

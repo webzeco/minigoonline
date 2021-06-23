@@ -11,7 +11,7 @@ export default function HomeCategory({title,col}) {
          <p    className="category_box_h4 link-style">
           <div className="container d-flex branded-colth_box">
             <div className="col-lg-6 col-md-5 col-sm-8 text-center">
-        <img src="http://www.pngall.com/wp-content/uploads/6/Sweater-PNG-Image.png" height="300px" alt='img' className="img-fluid pt-5" />
+        <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" height="300px" alt='img' className="img-fluid pt-5" />
        </div>
         <div className="col-lg-6 col-md-6  pt-5 mt-5 justify-content-center no-under px-1">
         <p className="category_box_h4">BRANDED CLOTHES</p>
@@ -25,7 +25,7 @@ export default function HomeCategory({title,col}) {
          <Link to="#">
           <div className="container books_box">
             <div className="col-12 text-center ">
-        <img src="http://www.pngall.com/wp-content/uploads/8/E-Book-Cover-PNG.png" height="300px" alt='img' className="img-fluid text-center" />
+        <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" height="300px" alt='img' className="img-fluid text-center" />
        </div>
         <div className="col-12">
         <p className="category_box_h7">BOOKS</p>
@@ -38,7 +38,7 @@ export default function HomeCategory({title,col}) {
          <p >
           <div className="container  drinkware_box">
             <div className="col-12 text-center">
-        <img src="http://www.pngall.com/wp-content/uploads/2/Mug-PNG-Image-HD.png" height="300px" alt='img' className="img-fluid text-center" />
+        <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" height="300px" alt='img' className="img-fluid text-center" />
        </div>
         <div className="col-12">
         <Link> <p className="category_box_h7 ">DRINKWARE</p></Link>

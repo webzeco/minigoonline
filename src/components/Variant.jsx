@@ -1,5 +1,5 @@
 import React, { useState, Component } from 'react'
-//import { DataProvider, VariantsDataContext } from './VariantsDataContext';
+import { SketchPicker } from 'react-color';
 import Tags from './TagComponent';
 export default function Variants() {
     const [hasVariant, sethasVariant] = useState(false);
@@ -70,28 +70,32 @@ class OptionComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            selectedOption: this.props.selectedOption,
             tags: [],
         }
     }
+    onChangeHandler = (e) => {
+        this.setState({ selectedOption: e.target.value })
+    }
+
     saveData = (tags) => {
         this.setState({ tags: tags },
             () => {
                 const data = {};
                 data.id = this.props.id;
-                data.selectedOption = document.getElementById('option' + this.props.id) !== null ? document.getElementById('option' + this.props.id).value : null;
+                data.selectedOption = this.state.selectedOption;
                 data.tags = this.state.tags;
                 let indexitem;
-                let fazool = variantsData.map(
+                variantsData.map(
                     (item, index) => {
                         if (item.id === this.props.id) {
                             indexitem = index
                         }
-                        return 0
                     }
                 );
                 variantsData[indexitem] = data;
                 console.log(JSON.stringify(variantsData));
-                fazool = {};
+
             }
 
         )
@@ -100,18 +104,78 @@ class OptionComponent extends Component {
     render() {
         return (
             <div>
-                <label htmlFor={`option` + this.props.id}>Option {this.props.id}</label>
-                <select name='options' id={'option' + this.props.id} >
+                <label htmlFor={`option` + this.props.id} >Option {this.props.id}</label>
+                <select name='options' id={'option' + this.props.id} onChange={(e) => this.onChangeHandler(e)}>
                     <option value='Title'>Title</option>
                     <option value='Color'>Color</option>
                     <option value='Style'>Style</option>
                     <option value='Material'>Material</option>
                     <option value='Size'>Size</option>
                 </select>
-                <Tags sendTags={(tags) => this.saveData(tags)} />
+                {this.state.selectedOption === 'Color' ? <ColorPickerInput sendTags={(tags => this.saveData(tags))} /> :
+                    <Tags sendTags={(tags) => this.saveData(tags)} />}
+
             </div>
         )
     }
+}
 
+const ColorPickerInput = props => {
+    const [tags, setTags] = useState([{ id: 1, text: '' }])
 
+    const sendTag = (tag) => {
+        let targetIndex;
+        tags.map(
+            (item, index) => {
+                if (item.id === tag.id) {
+                    targetIndex = index;
+                }
+            }
+        );
+        tags[targetIndex].text = tag.text;
+        props.sendTags(tags)
+    }
+    const addColor = (e) => {
+        const temp = {};
+        temp.id = (tags.length + 1);
+        temp.text = ''
+        setTags([...tags, temp])
+        e.preventDefault();
+    }
+    return (
+        <>
+            {
+                tags.map(
+                    (picker) => <ColorPicker id={picker.id} setText={(tag) => sendTag(tag)} />
+                )
+            }
+            <button onClick={addColor}>Add more Color</button>
+        </>
+    )
+}
+
+const ColorPicker = props => {
+    const [color, setColor] = useState('#fff');
+    const onChangeCompleteHandler = (newColor) => {
+        if (color !== newColor) {
+            setColor(newColor)
+        }
+    }
+    React.useEffect(
+        () => {
+            const tag = {}
+            tag.id = props.id;
+            tag.text = color.hex
+            props.setText(tag)
+        },
+        [color]
+    )
+    return (
+        <div>
+            <SketchPicker
+                color={color}
+                onChange={(color) => onChangeCompleteHandler(color)}
+            />
+        </div>
+    )
 }

@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
-import Red from '../img/Red.png'
-import Blue from '../img/Blue.png'
-import Green from '../img/Green.png'
-const ProductList = props => {
+
+const ProductList = ({productData}) => {
     return (
         <>
             <h3 className='text-center pb-4'>Shop Best Sellers</h3>
             <div className='row'>
-                {props.productData.map(
+                {productData.map(
                     (product) => {
                         const temp = {};
                         temp.title = product.title;
                         temp.price = product.price;
-                        temp.images = [Blue, Green]
+                        temp.images = product.images
                         temp.colors = ''
                         return ProductCard(temp)
                     }
@@ -23,6 +21,7 @@ const ProductList = props => {
 };
 
 const ProductCard = ({ images, title, price, colors }) => {
+    console.log({images});
     const [image, setImage] = useState(images[0]);
     const changeImgEnter = () => {
         if (images.length > 1) {
@@ -40,7 +39,8 @@ const ProductCard = ({ images, title, price, colors }) => {
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                     <img
                     alt=''
-                        src="https://www.freeiconspng.com/uploads/women-bag-png-32.png"
+                        src={image}
+                        onMouseEnter={() => changeImgEnter()} onMouseLeave={() => { changeImgLeave() }}
                         class="img-fluid"
                     />
                     <a href="#!">

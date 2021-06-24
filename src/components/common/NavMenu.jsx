@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import './style/navmenu.css';
 import { Link } from 'react-router-dom';
-
+import { Collection } from "../contexts/Collection";
 export default function NavMenu({collection,hideMenu}) {
-  const onClickHandlers=(category)=>{
-    // alert(category);
+const {coll,setCollectionHandler}= useContext(Collection);
+  const onClickHandlers=(coll)=>{
+setCollectionHandler(coll);
+    hideMenu();
   }
-
 const navMenuData=[
   {
   collection:'Personalized',
@@ -170,7 +171,6 @@ const data=navMenuData.filter(coll=>coll.collection===collection);
             })}
         </ul>)
         )}
-
         {/* <ul className="child">
           <li className="title">item1</li>
           <li>item1</li>

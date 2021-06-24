@@ -3,7 +3,6 @@ const ShowProduct = props => {
         return (
             <div>
                 <h2>Show Product</h2>
-                {console.log(props.productData)}
 
                 {
                     props.productData.map(

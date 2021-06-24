@@ -11,7 +11,6 @@ import NavMenu from "./NavMenu";
 import "./style/navmenu.css";
 
 export default function Header() {
-  const Coll = useContext(Collection)
   const [collection, setCollection] = useState(null);
   const showMenu = (collection) => {
     setCollection(collection);
@@ -19,10 +18,7 @@ export default function Header() {
   const hideMenu = () => {
     setCollection(null);
   };
-
-  console.log({coll:Coll});
   // Coll.setCollectionHandler("Ali Ahmad");
-  console.log({coll:Coll});
 
   return (
     <>
@@ -74,7 +70,6 @@ export default function Header() {
           <Link style={{textDecoration:'none',color:'black'}} className='p-2' onMouseEnter={hideMenu}  to="/">Special Sections</Link>
           <Link style={{textDecoration:'none',color:'black'}} className='p-2' onMouseEnter={hideMenu}  to="/">Sale</Link>
         </div>
-        {console.log(collection)}
         <NavMenu onMouseEnter={hideMenu} hideMenu={hideMenu} collection={collection} />
       </div>
     </>

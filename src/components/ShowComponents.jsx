@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./style/showComponent.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import { productData } from "./data";
 import ProductList from './showProductList';
+import { Collection } from "./contexts/Collection";
 
-export default function ShowComponents({ category }) {
+
+export default function ShowComponents({ category,productData }) {
+const {coll,setCollectionHandler}= useContext(Collection);
   const [price, setPrice] = useState("Price");
   const [sort, setSort] = useState("Sort");
   const handlePriceSelect = (e) => {
-    console.log(e);
     setPrice(e);
   };
   const handleSortSelect = (e) => {
-    console.log(e);
     setSort(e);
   };
   
@@ -26,13 +26,13 @@ export default function ShowComponents({ category }) {
             <a href="/">Home</a>
           </li>
           <li className="breadcrumb-item look">
-            <a href="/">Books</a>
+            <a href="/">{coll}</a>
           </li>
         </ol>
         <div className="row justify-content-center">
           <div className="col-auto w-50">
             <div className="info text-center">
-              <span className="h2 bann_title text-center">Times Accessories</span>
+              <span className="h2 bann_title text-center">{coll}</span>
               <br></br>
               <span className="h7 bann_discription justify-content-center ">
                 Take The Times wherever you go. Stand out in a crowd and look.
@@ -92,11 +92,11 @@ export default function ShowComponents({ category }) {
 
       <div className="container pt-5">
         <div className="row ">
+
         <ProductList productData={productData} />
   </div>
       </div>
       {/* <!-- ======= product display in cards ends ======= -->  */}
-
       {/* <!-- ======= pagination ======= -->  */}
 
       <ul className="pagination justify-content-center p-4">

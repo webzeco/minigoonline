@@ -1,6 +1,4 @@
-import Red from '../img/Red.png'
-import Blue from '../img/Blue.png'
-import Green from '../img/Green.png'
+
 export const productData =
     [
         {
@@ -15,7 +13,7 @@ export const productData =
         sellOutofStock: true,
         availableQuantity: 50,
         physicalProduct: true,
-            images: [Red, Blue],
+            images: ['http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c245.png', 'http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c247.png'],
         weight: "0.30",
         country: "Pakistan",
             variants: [
@@ -46,7 +44,7 @@ export const productData =
             compareAtPrice: 23,
             costPerItem: 60,
             chargeTax: false,
-            images: [Blue, Green],
+            images: ['http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c245.png', 'http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c247.png'],
             stockKeepingUnit: "no number",
             barcode: "ISUN0945",
             trackQuantity: false,
@@ -86,7 +84,7 @@ export const productData =
             compareAtPrice: 23,
             costPerItem: 60,
             chargeTax: false,
-            images: [Blue, Green],
+            images: ['http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c245.png', 'http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c247.png'],
             stockKeepingUnit: "no number",
             barcode: "ISUN0945",
             trackQuantity: false,
@@ -126,7 +124,7 @@ export const productData =
             compareAtPrice: 23,
             costPerItem: 60,
             chargeTax: false,
-            images: [Blue, Green],
+            images: ['http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c245.png', 'http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c247.png'],
             stockKeepingUnit: "no number",
             barcode: "ISUN0945",
             trackQuantity: false,

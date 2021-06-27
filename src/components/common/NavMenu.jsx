@@ -167,7 +167,7 @@ const data=navMenuData.filter(coll=>coll.collection===collection);
           <ul  className="child   text-bold list-unstyled p-3">
           <Link style={{textDecoration: 'none'}}  className="fw-bold text-info  list-group list-group-flush">{list.title}</Link>
             {list.items.map((e,index)=>{
-              return <li ><Link onClick={()=>onClickHandlers(e)} to={`showProduct/${e}`} style={{textDecoration: 'none'}} className="text-dark fw-light">{e}</Link></li>
+              return <li ><Link onClick={()=>onClickHandlers(e)} to={`showProduct`} style={{textDecoration: 'none'}} className="text-dark fw-light">{e}</Link></li>
             })}
         </ul>)
         )}

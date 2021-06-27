@@ -1,0 +1,7 @@
+.round-button {
+    display:block;
+    width:17px;
+    height:17px;
+    border: 0px solid white;
+    border-radius: 50%;
+}

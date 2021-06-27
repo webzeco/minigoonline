@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Footer from "./common/Footer";
 import Header from "./common/Header";
 import NotFound from "./common/NotFound";
-import AddProduct from "./addProductComponent";
-import ShowProductComponent from "./showProductComponent";
 import Home from "./Home";
-import ProductsCollection from "./ProductsCollection";
 import { Collection } from "./contexts/Collection";
 import './style/global.css'
-import ShowComponents from "./ShowComponents";
+import ShowComponents from "./ShowCardsComponents";
 import { productData } from "./data";
 const Main = () => {
   const [collection,setColl] = useState('');
+  const [items,setItems] = useState([]);
+  
+  useEffect(() => {
+  setItems(productData);
+}, []);
+
   const setCollectionHandler=(coll)=>{
       setColl(coll);
   };
@@ -24,15 +27,13 @@ const Main = () => {
       <hr />
       <Switch>
         <Route exact={true} path="/" component={Home} />
-        <Route path="/addProduct" component={AddProduct} />
-        <Route path="/productCollection" component={ProductsCollection} />
         {/* <Route path="/showProduct"   component={ ShowComponents} /> */}
         <Route
             path="/showProduct"
             render={(props) => (
               <ShowComponents
-              productData={productData}
-                {...props}
+                productData={productData}
+                  {...props}
               />
             )}
           />

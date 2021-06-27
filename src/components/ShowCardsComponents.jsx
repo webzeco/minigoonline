@@ -1,24 +1,53 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style/showComponent.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import ProductList from './showProductList';
+import ProductList from './common/showProductList';
 import { Collection } from "./contexts/Collection";
-
-
-export default function ShowComponents({ category,productData }) {
-const {coll,setCollectionHandler}= useContext(Collection);
+import Pagination from "./common/Pagination";
+import {  paginate } from "../utils/paginate";
+import { filterByPrice } from "../utils/filter";
+import { sortBy } from "../utils/sort";
+export default function ShowComponents({ productData }) {
+  const {coll,setCollectionHandler}= useContext(Collection);
+  const [page,setPage] = useState({currentPage:1,itemsCount:productData.length,pageSize:2});
   const [price, setPrice] = useState("Price");
   const [sort, setSort] = useState("Sort");
+  const [data, setData] = useState();
+  const [totalPageItems, setTotalPageItems] = useState(productData.length);
+
+useEffect(() => {
+ let pageDataList= filterByPrice(productData,price);
+ pageDataList=sortBy(pageDataList,sort);
+ setTotalPageItems(pageDataList.length);
+     pageDataList=paginate(pageDataList,page.currentPage,page.pageSize);
+  setData(pageDataList);
+  return () => {
+    console.log("clean up");
+  }
+}, [page,price,sort]);
+
+const changePageHandler=(c_page)=>{
+  const newPage={...page};
+  newPage.currentPage=c_page;
+  page.currentPage=newPage;
+setPage(newPage);
+}
   const handlePriceSelect = (e) => {
+    const newPage={...page};
+    newPage.currentPage=1;
+    page.currentPage=newPage;
+  setPage(newPage);
     setPrice(e);
   };
   const handleSortSelect = (e) => {
     setSort(e);
   };
   
+  
   return (
     <div>
+      {/* {console.log({to:page})} */}
       {/* <!-- ======= bann area ======= --> */}
       <div className="container-fluid bann pt-5 mt-5">
         <ol className="breadcrumb pt-2 m-3 px-5">
@@ -66,7 +95,7 @@ const {coll,setCollectionHandler}= useContext(Collection);
           </div>
 
           <div className="col-6 d-flex justify-content-center">
-            <span className=" pt-2  count mx-3 ">48 items</span>
+            <span className=" pt-2  count mx-3 ">{totalPageItems} items</span>
             <div className="dropdown">
               <DropdownButton
                 variant='light'
@@ -92,15 +121,18 @@ const {coll,setCollectionHandler}= useContext(Collection);
 
       <div className="container pt-5">
         <div className="row ">
-
-        <ProductList productData={productData} />
+        <ProductList pageDataList={data} />
   </div>
       </div>
       {/* <!-- ======= product display in cards ends ======= -->  */}
       {/* <!-- ======= pagination ======= -->  */}
+ 
 
       <ul className="pagination justify-content-center p-4">
-        <li className="page-item">
+      {/* {console.log({dd:totalPageItems})} */}
+
+      <Pagination  itemsCount={totalPageItems} pageSize={page.pageSize} currentPage={page.currentPage} onPageChange={changePageHandler} />
+        {/* <li className="page-item">
           <a className="page-link" href="/" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
@@ -124,10 +156,14 @@ const {coll,setCollectionHandler}= useContext(Collection);
           <a className="page-link" href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
-        </li>
+        </li> */}
       </ul>
 
       {/* <!-- ======= pagination ends ======= -->  */}
     </div>
   );
 }
+
+// const newPage={...page};
+// newPage.itemsCount=pageDataList.length;
+// setPage(newPage);

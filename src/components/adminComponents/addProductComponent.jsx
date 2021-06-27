@@ -6,7 +6,7 @@ import Variants from './Variant';
 import * as Yup from 'yup';
 import { variantsData } from './Variant';
 import Media from './MediaComponent';
-import { productData } from './data'
+import { productData } from '../data'
 //import "./utils/style/addProductComponent.css";
 
 const AddProduct = () => {

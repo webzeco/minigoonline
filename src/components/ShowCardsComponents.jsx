@@ -3,13 +3,13 @@ import "./style/showComponent.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import ProductList from './common/showProductList';
-import { Collection } from "./contexts/Collection";
+import { CollectionContext } from "./contexts/CollectionContext";
 import Pagination from "./common/Pagination";
 import {  paginate } from "../utils/paginate";
 import { filterByPrice } from "../utils/filter";
 import { sortBy } from "../utils/sort";
 export default function ShowComponents({ productData }) {
-  const {coll,setCollectionHandler}= useContext(Collection);
+  const {coll,setCollectionHandler}= useContext(CollectionContext);
   const [page,setPage] = useState({currentPage:1,itemsCount:productData.length,pageSize:2});
   const [price, setPrice] = useState("Price");
   const [sort, setSort] = useState("Sort");

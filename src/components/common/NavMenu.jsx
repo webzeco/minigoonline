@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import './style/navmenu.css';
 import { Link } from 'react-router-dom';
-import { Collection } from "../contexts/Collection";
+import { CollectionContext } from "../contexts/CollectionContext";
 export default function NavMenu({collection,hideMenu}) {
-const {coll,setCollectionHandler}= useContext(Collection);
+const {coll,setCollectionHandler}= useContext(CollectionContext);
   const onClickHandlers=(coll)=>{
 setCollectionHandler(coll);
     hideMenu();

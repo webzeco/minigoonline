@@ -3,12 +3,12 @@ import HomeCategory from './common/HomeCategory';
 import HomeContent from './common/HomeContent';
 import HomeGift from './common/HomeGift';
 import ControlledCarousel from './common/Carousel';
-const Home = () => (
+const Home = ({bestSells}) => (
    <div>
  <HomeContent/>
       <HomeCategory/>
       <HomeGift/> 
-      <ControlledCarousel/>
+      <ControlledCarousel productData={bestSells} title={'Shop Best Sellers'} />
    </div>
 
 );

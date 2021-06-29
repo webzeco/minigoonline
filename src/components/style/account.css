@@ -1,0 +1,33 @@
+/*Banner*/
+
+.ho {
+    border-bottom: 1px solid #363636;
+  }
+  
+  .pro_title_h5 {
+    font-size: 30px !important;
+    font-weight: bold !important;
+    color: #363636;
+  }
+  
+  .re_look {
+    color: #363636;
+    text-decoration: underline;
+    font-size: 14px;
+  }
+  
+  .ov_look {
+    color: #363636 !important;
+    font-size: 22px;
+  }
+  
+  .pro_spec {
+    background-color: #fff;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
+  .about {
+    color: #333333;
+    font-size: 13px;
+  }
+  
+  /*my account end */

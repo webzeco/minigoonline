@@ -4,10 +4,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/scss/bootstrap.scss';
 import 'bootstrap/dist/css/bootstrap.css';
-// import 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css';
-// import 'bootstrap/dist/js/bootstrap.js';
-import $ from 'jquery';
-import Popper from 'popper.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

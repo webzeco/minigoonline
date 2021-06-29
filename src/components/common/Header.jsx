@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import {  Collection } from "../contexts/Collection";
+import {  UserContext } from "../contexts/UserContext";
 import {
   faSearch,
   faUser,
@@ -11,6 +11,7 @@ import NavMenu from "./NavMenu";
 import "./style/navmenu.css";
 
 export default function Header() {
+  const   {user  }=useContext(UserContext);
   const [collection, setCollection] = useState(null);
   const showMenu = (collection) => {
     setCollection(collection);
@@ -44,11 +45,18 @@ export default function Header() {
         <div className="col-4  pt-3 ">
           <div className="row justify-content-end">
             <div className="col-5">
-              {/* <i className="fa fa-user pt-1  mx-2 "></i> */}
+            {!user&& (<Link to='/login'>
               <FontAwesomeIcon className="mt-2" icon={faUser} />
               <span style={{ fontSize: "small", paddingLeft: "2px" }}>
                 Sign in
               </span>
+              </Link>)}
+              {user&& (<Link to='/account'>
+              <FontAwesomeIcon className="mt-2" icon={faUser} />
+              <span style={{ fontSize: "small", paddingLeft: "2px" }}>
+              {user.username}
+              </span>
+              </Link>)}
             </div>
             <div className="col-6">
               {/* <i className="fa fa-cart-plus pt-1 mx-2"></i> */}

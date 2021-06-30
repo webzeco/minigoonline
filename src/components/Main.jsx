@@ -7,6 +7,7 @@ import Home from "./Home";
 import { CollectionContext } from "./contexts/CollectionContext";
 import {UserContext} from './contexts/UserContext';
 import "./style/global.css";
+import ShowProductDetail from "./ShowProductDetail";
 import ShowComponents from "./ShowCardsComponents";
 import Signup from "./Signup";
 import { productData } from "./data";
@@ -55,6 +56,12 @@ const Main = () => {
               path="/showProduct"
               render={(props) => (
                 <ShowComponents productData={productData} {...props} />
+              )}
+            />
+            <Route
+              path="/showProductDetail"
+              render={(props) => (
+                <ShowProductDetail product={productData[0]} {...props} />
               )}
             />
              <Route

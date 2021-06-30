@@ -22,7 +22,7 @@ const ProductCard = ({ images, title, price, colorImg }) => {
         setImage(e.target.value)
     }
     return (
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-3 pb-3">
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-3 pb-3 bg-gray-200">
             <div class="card">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                     <img

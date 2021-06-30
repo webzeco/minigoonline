@@ -11,7 +11,6 @@ export default function Account() {
               <div class="col-10">
                 <div class="h5 text-uppercase pro_title_h5">My Account</div>
               </div>
-
               <div class="col-2 justify-content-center">
                 <a href="#">
                   <p class="re_look text-center  pt-2">Logout</p>

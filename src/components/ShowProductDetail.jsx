@@ -9,9 +9,13 @@ export default class ShowProductDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedVariants: []
+            selectedVariants: [],
+            customWriting: '',
+            customDate: null
         }
-        this.handleSelected = this.handleSelected.bind(this)
+        this.handleSelected = this.handleSelected.bind(this);
+        this.handleAddToCart = this.handleAddToCart.bind(this);
+        this.setCustomizationOptions = this.setCustomizationOptions.bind(this)
     }
     componentDidMount() {
         const temparray = [];
@@ -33,13 +37,31 @@ export default class ShowProductDetail extends Component {
         })
     }
     handleSelected(selected) {
-        this.setState({ selectedVariants: selected },
-            () => { console.log(this.state.selectedVariants) }
+        this.setState({ selectedVariants: selected }
         )
     }
     calculateDiscountPrice(price, discount) {
         let discountedPrice = ((price * discount) / 100)
         return discountedPrice
+    }
+    handleAddToCart(e) {
+        e.preventDefault();
+        const product = this.props.product;
+        const temp = {};
+        temp.price = product.price;
+        temp.title = product.title;
+        temp.estimatedProcessingTime = product.estimatedProcessingTime;
+        temp.selectedVariants = this.state.selectedVariants;
+        temp.customWriting = this.state.customWriting;
+        temp.date = this.state.customDate;
+
+        console.log(temp)
+    }
+    setCustomizationOptions(writing, date) {
+        this.setState({
+            customWriting: writing,
+            customeDate: date
+        })
     }
     render() {
         const product = this.props.product;
@@ -106,13 +128,13 @@ export default class ShowProductDetail extends Component {
                                     {/* Variants Start */}
                                     <Variants selectedVariants={this.state.selectedVariants} setSelected={(selected) => this.handleSelected(selected)} variants={product.variants} />
                                     {/* Variants End */}
-                                    <Customization deliveryTime={product.deliveryTime} customWriting={product.customWriting} />
+                                    <Customization setCustomizationOptions={this.setCustomizationOptions} customDate={product.customDate} customWriting={product.customWriting} />
                                     {
                                         !product.sellOutofStock && product.availableQuantity < 10 ? <div className="fst-italic few_dis pt-5">Only few left</div> : null
                                     }
 
                                     <div className="cart mt-4 align-items-center">
-                                        <button className="btn text-uppercase w-50 add_cart_btn ">Add to cart</button></div>
+                                        <button onClick={this.handleAddToCart} className="btn text-uppercase w-50 add_cart_btn ">Add to cart</button></div>
                                     <Overview product={product} />
                                     <div className="code_dis pt-2 pb-3">SKU: {product.stockKeepingUnit}</div>
                                 </div>
@@ -172,18 +194,24 @@ export default class ShowProductDetail extends Component {
     }
 }
 const Customization = props => {
-    const [deliveryDate, setDeliveryDate] = useState(new Date());
+    const [customDate, setcustomDate] = useState(new Date());
+    const [customWriting, setCustomWriting] = useState('');
+    React.useEffect(
+        () => {
+            props.setCustomizationOptions(customWriting, customDate)
+        }, [customWriting, customDate]
+    )
     return (
         <>
-            {console.log("will it rerender after date is set" + deliveryDate)}
             {props.customWriting && <div class="mb-4 mt-3">
                 <label for="name" class="color_size_h6">{props.customWriting}*</label>
-                <input type="name" class="form-control" maxlength="30" />
+                <input type="name" onChange={(e) => setCustomWriting(e.target.value)}
+                    value={customWriting} class="form-control" maxlength="30" />
             </div>}
 
-            {props.deliveryTime ? <div class="mb-4 mt-3">
+            {props.customDate ? <div class="mb-4 mt-3">
                 <label for="name" class="color_size_h6">Date</label>
-                <DatePicker selected={deliveryDate} onChange={(date) => setDeliveryDate(date)} />
+                <DatePicker selected={customDate} onChange={(date) => setcustomDate(date)} />
             </div> : null}
 
         </>
@@ -356,7 +384,7 @@ class ShowNonColorVariant extends Component {
                 <div className="d-flex">
                     <h6 className="color_size_h6">{this.props.variant.selectedOption}</h6>
                     <h6 className="color_Demo_h6 px-2 ">{this.state.choosedVariantType}</h6>
-                    <a href="#"><p className="px-5 mx-5 size-guid_look ">Size Guid</p></a>
+                    {this.props.variant.selectedOption === 'Size' ? <a href="#"><p className="px-5 mx-5 size-guid_look ">Size Guid</p></a> : null}
                 </div>
                 {
                     this.props.variant.tags.map(

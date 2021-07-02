@@ -9,6 +9,7 @@ import {UserContext} from './contexts/UserContext';
 import "./style/global.css";
 import ShowProductDetail from "./ShowProductDetail";
 import ShowComponents from "./ShowCardsComponents";
+import Cart from "./Cart"
 import Signup from "./Signup";
 import { productData } from "./data";
 import Login from "./Login";
@@ -18,6 +19,7 @@ const Main = () => {
   const [user,setUser]=useState();
   const [collection, setColl] = useState("");
   const [items, setItems] = useState([]);
+  const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
     setItems(productData);
@@ -61,7 +63,7 @@ const Main = () => {
             <Route
               path="/showProductDetail"
               render={(props) => (
-                <ShowProductDetail product={productData[0]} {...props} />
+                <ShowProductDetail setCartData={(data) => setCartData(data)} product={productData[0]} {...props} />
               )}
             />
              <Route
@@ -88,6 +90,12 @@ const Main = () => {
                 <Account onForgot={forgotHandler} {...props} />
               )}
             />
+              <Route
+                path="/cart"
+                render={(props) => (
+                  <Cart cartData={cartData} {...props} />
+                )}
+              />
             
 
             <Route  component={NotFound} />

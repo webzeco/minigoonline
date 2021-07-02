@@ -1,28 +1,33 @@
-import { useEffect, useState } from "react";
-import './style/productCard.css';
-const ProductCard = ({ images, title, price, colorImg }) => {
-    const [image, setImage] = useState(images[0]);
-    useEffect(() => {
-        console.log(image);
-        // setImage(images[0])
-    },[image]);
+import { useContext, useEffect, useState } from "react";
+import { ProductDetailContext } from "../contexts/ProductDetailContext";
+import "./style/productCard.css";
+const ProductCard = ({ images, title, price, colorImg, product }) => {
+  const { productDetailHandler } = useContext(ProductDetailContext);
+  const [image, setImage] = useState(images[0]);
+  useEffect(() => {
+    console.log(image);
+  }, [image]);
 
-    const changeImgEnter = () => {
-        if (images.length > 1) {
-            setImage(images[1])
-        }
-    };
-    const changeImgLeave = () => {
-        if (images.length > 1) {
-            setImage(images[0])
-        }
-    };
-    const onradioBtnChange = (e) => {
-        console.log(e.target.value)
-        setImage(e.target.value)
+  const changeImgEnter = () => {
+    if (images.length > 1) {
+      setImage(images[1]);
     }
+  };
+  const changeImgLeave = () => {
+    if (images.length > 1) {
+      setImage(images[0]);
+    }
+  };
+  const onradioBtnChange = (e) => {
+    console.log(e.target.value);
+    setImage(e.target.value);
+  };
+  const onClicked = (prod) => {
+    productDetailHandler(prod);
+  };
+
     return (
-        <div class="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3">
+        <div class="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3" onClick={()=>onClicked(product)}>
             <div class="card hid_border">
               
                     <img
@@ -59,5 +64,5 @@ const ProductCard = ({ images, title, price, colorImg }) => {
                    
                 )
 
-}
+};
 export default ProductCard;

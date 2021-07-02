@@ -8,6 +8,7 @@ import "./style/showProductDetail.css";
 import { Carousel } from "react-responsive-carousel";
 import TryCarauosel from "./common/TryCarauosel";
 export default class ShowProductDetail extends Component {
+<<<<<<< HEAD
   constructor(props) {
     super(props);
     this.state = {
@@ -135,6 +136,179 @@ export default class ShowProductDetail extends Component {
                   <div className="code_dis pt-2 pb-3">
                     SKU: {product.stockKeepingUnit}
                   </div>
+=======
+    constructor(props) {
+        super(props)
+        this.state = {
+            selectedVariants: [],
+            customWriting: '',
+            customDate: null
+        }
+        this.handleSelected = this.handleSelected.bind(this);
+        this.handleAddToCart = this.handleAddToCart.bind(this);
+        this.setCustomizationOptions = this.setCustomizationOptions.bind(this)
+    }
+    componentDidMount() {
+        const temparray = [];
+        this.props.product.variants.map(
+            (variant) => {
+                const temp = {}
+                temp.variantType = variant.selectedOption
+                if (temp.variantType === 'Color') {
+                    temp.selectedVariant = ntcjs.name(variant.tags[0].text)[1]
+                } else {
+                    temp.selectedVariant = variant.tags[0].text;
+                }
+                temparray.push(temp)
+                return null;
+            }
+        )
+        this.setState({
+            selectedVariants: temparray
+        })
+    }
+    handleSelected(selected) {
+        this.setState({ selectedVariants: selected }
+        )
+    }
+    calculateDiscountPrice(price, discount) {
+        let discountedPrice = ((price * discount) / 100)
+        return discountedPrice
+    }
+    handleAddToCart(e) {
+        e.preventDefault();
+        const product = this.props.product;
+        const temp = {};
+        temp.price = product.price;
+        temp.title = product.title;
+        temp.estimatedProcessingTime = product.estimatedProcessingTime;
+        temp.selectedVariants = this.state.selectedVariants;
+        temp.customWriting = this.state.customWriting;
+        temp.date = this.state.customDate;
+
+        console.log(temp)
+    }
+    setCustomizationOptions(writing, date) {
+        this.setState({
+            customWriting: writing,
+            customeDate: date
+        })
+    }
+    render() {
+        const product = this.props.product;
+        return (
+            <div>
+
+                {/* <!--Save code area--> */}
+                {/* <!--Navbar--> */}
+                <div className="container ">
+                    <div className="row bg-white fixed-top ">
+                        <div className="col-3 d-flex justify-content-end mt-2">
+                            <i className="fa fa-search pt-3 px-1"></i>
+
+                            <input type="search" className="form-control w-50 mb-5 no-border mr-sm-2" placeholder="Search" />
+                        </div>
+
+                        <div className="col-5 text-center pt-3 not-show">
+                            <img src="assets/images/logo.png" height="60px" />
+                        </div>
+
+                        <div className="col-4  pt-3 ">
+                            <div className="row justify-content-end">
+                                <div className="col-5">
+                                    <i className="fa fa-user pt-1  mx-2 "></i><span>Sign in</span>
+                                </div>
+                                <div className="col-6">
+                                    <i className="fa fa-cart-plus pt-1 mx-2"></i><span>Cart</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                {/* <!-- =======Product display in Banner area ======= --> */}
+                <div className="container-fluid banner pt-5 mt-5 ">
+                    <nav >
+                        <ol className="breadcrumb  px-5">
+                            <li className="breadcrumb-item look"><a href="#">Home</a></li>
+                            <li className="breadcrumb-item look"><a href="#">{product.title}</a></li>
+                        </ol>
+                    </nav>
+
+                    <div className="row justify-content-center ">
+                        <div className="col-md-6 w-50">
+
+                        </div>
+                        <div className="col-md-6 back px-5">
+                            <div className="product pt-4">
+                                <div className=" align-items-center w-75">
+
+                                    <div className="h5 text-uppercase pro_title_h5">{product.title}</div>
+                                    <div className="h5 text-uppercase pro_price_h5">{
+                                        product.discount === 0 ? product.price : <>{product.price} is discounted for {this.calculateDiscountPrice(product.price, product.discount)}</>
+                                    }</div>
+
+
+                                    <div className="d-flex align-items-center">
+                                        {/* Reviews Component */}
+                                        <Reviews reviews={product.reviews} />
+                                    </div>
+
+                                    <div className="ho mt-2 "></div>
+                                    {/* Variants Start */}
+                                    <Variants selectedVariants={this.state.selectedVariants} setSelected={(selected) => this.handleSelected(selected)} variants={product.variants} />
+                                    {/* Variants End */}
+                                    <Customization setCustomizationOptions={this.setCustomizationOptions} customDate={product.customDate} customWriting={product.customWriting} />
+                                    {
+                                        !product.sellOutofStock && product.availableQuantity < 10 ? <div className="fst-italic few_dis pt-5">Only few left</div> : null
+                                    }
+
+                                    <div className="cart mt-4 align-items-center">
+                                        <button onClick={this.handleAddToCart} className="btn text-uppercase w-50 add_cart_btn ">Add to cart</button></div>
+                                    <Overview product={product} />
+                                    <div className="code_dis pt-2 pb-3">SKU: {product.stockKeepingUnit}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <!-- ======= Banner area end ======= -->  */}
+                {/* <!-- ======= Product specificatio start======= --> */}
+                <div className="container-fluid pro_spec pt-5 pb-3  ">
+                    <div className="row justify-content-center ">
+                        <div className="col-md-6 w-50">
+                        </div>
+                        <div className="col-md-6 back px-5">
+                            <div className="product">
+                                <div className=" align-items-center w-75">
+                                    <span className="fw-bold ov_look">SPECIFICATIONS </span>
+                                    <p className="about pt-2 ">Made in the U.S.A. </p>
+
+                                    {
+                                        this.state.selectedVariants.map(
+                                            (variant) => {
+                                                return (
+                                                    <p className="about ">
+                                                        {variant.variantType}:{variant.selectedVariant}
+                                                    </p>
+
+                                                )
+                                            }
+                                        )
+                                    }
+
+                                    <p className="about">Material: 100% pre-shrunk cotton  </p>
+
+                                    <div className="ho pt-2 mb-3 w-100"></div>
+                                    <span className="fw-bold ov_look">DELIVERY </span>
+                                    <p className="about pt-2">Shop from a wide range of t-shirt from orianz. Pefect for your everyday use, you could pair it with a stylish pair of jeans or trousers complete the look.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> f6f25a6153553cc4e24c7610545b06871fe7a02d
                 </div>
               </div>
             </div>
@@ -169,6 +343,7 @@ export default class ShowProductDetail extends Component {
                     jeans or trousers complete the look.
                   </p>
                 </div>
+<<<<<<< HEAD
               </div>
             </div>
           </div>
@@ -189,6 +364,39 @@ export default class ShowProductDetail extends Component {
       </div>
     );
   }
+=======
+
+                {/* <!-- =======  customer Review ======= --> */}
+                <AddReview reviews={product.reviews} />
+                {/* <!-- =======  Customer Review ====== --> */}
+            </div >
+        )
+    }
+}
+const Customization = props => {
+    const [customDate, setcustomDate] = useState(new Date());
+    const [customWriting, setCustomWriting] = useState('');
+    React.useEffect(
+        () => {
+            props.setCustomizationOptions(customWriting, customDate)
+        }, [customWriting, customDate]
+    )
+    return (
+        <>
+            {props.customWriting && <div class="mb-4 mt-3">
+                <label for="name" class="color_size_h6">{props.customWriting}*</label>
+                <input type="name" onChange={(e) => setCustomWriting(e.target.value)}
+                    value={customWriting} class="form-control" maxlength="30" />
+            </div>}
+
+            {props.customDate ? <div class="mb-4 mt-3">
+                <label for="name" class="color_size_h6">Date</label>
+                <DatePicker selected={customDate} onChange={(date) => setcustomDate(date)} />
+            </div> : null}
+
+        </>
+    )
+>>>>>>> f6f25a6153553cc4e24c7610545b06871fe7a02d
 }
 const Customization = (props) => {
   const [deliveryDate, setDeliveryDate] = useState(new Date());
@@ -435,6 +643,7 @@ const Overview = (props) => {
         if (text.indexOf(part) > text.length / 3) {
           return part;
         }
+<<<<<<< HEAD
       })}
       <p className="about">{}</p>
       <a
@@ -452,6 +661,61 @@ const Overview = (props) => {
           {text.map((part) => {
             if (text.indexOf(part) <= text.length / 3) {
               return part;
+=======
+        this.onClickHandler = this.onClickHandler.bind(this)
+    }
+    onClickHandler(e) {
+        this.setState({
+            choosedVariantType: e.target.value
+        },
+            () => {
+                const select = {};
+                select.selectedOption = this.props.variant.selectedOption;
+                select.selectedVariant = this.state.choosedVariantType
+                this.props.setSelectedOption(select);
+            })
+    }
+
+    render() {
+        return (
+            <div className="sizes pt-2">
+                <div className="d-flex">
+                    <h6 className="color_size_h6">{this.props.variant.selectedOption}</h6>
+                    <h6 className="color_Demo_h6 px-2 ">{this.state.choosedVariantType}</h6>
+                    {this.props.variant.selectedOption === 'Size' ? <a href="#"><p className="px-5 mx-5 size-guid_look ">Size Guid</p></a> : null}
+                </div>
+                {
+                    this.props.variant.tags.map(
+                        (tag) => {
+                            return (
+                                <>
+                                    <input type="radio" className="btn-check" name={this.props.variant.selectedOption} value={tag.text} id={tag.id + tag.text} autocomplete="off" onClick={(e) => this.onClickHandler(e)} />
+                                    <label className="btn btn-light  border text-center  p-2 px-3 mb-2 size-box_look " for={tag.id + tag.text}>{tag.text}</label>
+                                </>
+                            )
+                        }
+                    )
+                }
+            </div>
+        )
+    }
+}
+const Overview = props => {
+    const text = parse(props.product.description)
+    return (
+        <>
+            <div className="ho pt-4 mb-3 w-100"></div>
+
+            <span className="fw-bold ov_look">OVERVIEW </span>
+            {
+                text.map(
+                    (part) => {
+                        if (text.indexOf(part) > (text.length / 3)) {
+                            return part;
+                        }
+                    }
+                )
+>>>>>>> f6f25a6153553cc4e24c7610545b06871fe7a02d
             }
           })}
         </div>
@@ -540,6 +804,7 @@ class AddReview extends Component {
                 />
               </div>
 
+<<<<<<< HEAD
               <div class="form-group mb-4">
                 <label for="Rating">RATING</label>
                 <ul class="list-inline large d-flex">
@@ -584,3 +849,6 @@ class AddReview extends Component {
     );
   }
 }
+=======
+}
+>>>>>>> f6f25a6153553cc4e24c7610545b06871fe7a02d

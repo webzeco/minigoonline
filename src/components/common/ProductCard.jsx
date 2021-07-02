@@ -22,25 +22,22 @@ const ProductCard = ({ images, title, price, colorImg }) => {
         setImage(e.target.value)
     }
     return (
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-3 pb-3 bg-gray-200">
-            <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <div class="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3">
+            <div class="card hid_border">
+              
                     <img
-                    alt='item img'
+                    alt='item img '
                         src={image}
                         onMouseEnter={() => changeImgEnter()} onMouseLeave={() => { changeImgLeave() }}
-                        class="img-fluid"
+                        class="img-fluid img_back_col"
                     />
-                    <a href="#!">
-                        <div class="mask" style={{backgroundColor: "rgba(251, 251, 251, 0.15)" } }></div>
-                    </a>
-                </div>
+                
                 <div class="card-body">
-                    <h5 class="card-title">{title}</h5>
+                    <h5 class="card-title fw-bold">{title}</h5>
                     <p class="card-text">
                         ${price}
                     </p>
-                    <div class="mt-2 radio-buttons">
+                    <div class="radio-buttons">
                         {colorImg.map(
                             (colorbtn) => {
                                 return (<label class="radio">

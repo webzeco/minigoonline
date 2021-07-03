@@ -10,7 +10,6 @@ import {UserContext} from './contexts/UserContext';
 import "./style/global.css";
 import ShowProductDetail from "./ShowProductDetail";
 import ShowComponents from "./ShowCardsComponents";
-import Cart from "./Cart"
 import Signup from "./Signup";
 import { productData } from "./data";
 import Login from "./Login";
@@ -23,12 +22,8 @@ const Main = () => {
   const [user,setUser]=useState();
   const [collection, setColl] = useState("");
   const [items, setItems] = useState([]);
-<<<<<<< HEAD
   const [product,setProduct]=useState();
   const [relatedProd,setRelatedProd]=useState();
-=======
-  const [cartData, setCartData] = useState([]);
->>>>>>> f6f25a6153553cc4e24c7610545b06871fe7a02d
 
   useEffect(() => {
     setItems(productData);
@@ -83,11 +78,7 @@ const Main = () => {
             exact
               path="/showProductDetail"
               render={(props) => (
-<<<<<<< HEAD
                 <ShowProductDetail product={product} {...props}  />
-=======
-                <ShowProductDetail setCartData={(data) => setCartData(data)} product={productData[0]} {...props} />
->>>>>>> f6f25a6153553cc4e24c7610545b06871fe7a02d
               )}
             />
              <Route
@@ -118,17 +109,6 @@ const Main = () => {
                 <Account onForgot={forgotHandler} {...props} />
               )}
             />
-<<<<<<< HEAD
-=======
-              <Route
-                path="/cart"
-                render={(props) => (
-                  <Cart cartData={cartData} {...props} />
-                )}
-              />
-            
-
->>>>>>> f6f25a6153553cc4e24c7610545b06871fe7a02d
             <Route  component={NotFound} />
           </Switch>
           <Footer />

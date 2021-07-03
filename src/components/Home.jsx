@@ -14,5 +14,6 @@ const Home = ({bestSells}) => (
 );
 export default Home;
 
+    
 
     

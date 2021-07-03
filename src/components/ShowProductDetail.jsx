@@ -12,8 +12,12 @@ export default class ShowProductDetail extends Component {
     super(props);
     this.state = {
       selectedVariants: [],
+      customWriting: '',
+      customDate: null
     };
     this.handleSelected = this.handleSelected.bind(this);
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.setCustomizationOptions = this.setCustomizationOptions.bind(this);
   }
   componentDidMount() {
     const temparray = [];
@@ -41,27 +45,47 @@ export default class ShowProductDetail extends Component {
     let discountedPrice = (price * discount) / 100;
     return discountedPrice;
   }
+  handleAddToCart(e) {
+    e.preventDefault();
+    const product = this.props.product;
+    const temp = {};
+    temp.price = product.price;
+    temp.title = product.title;
+    temp.img = product.images[0];
+    temp.estimatedProcessingTime = product.estimatedProcessingTime;
+    temp.selectedVariants = this.state.selectedVariants;
+    temp.customWriting = this.state.customWriting;
+    temp.date = this.state.customDate;
+    this.props.sendCartData(temp);
+  }
+  setCustomizationOptions(writing, date) {
+    this.setState({
+      customWriting: writing,
+      customeDate: date
+    })
+  }
+  
   render() {
     const product = this.props.product;
     return (
-      <div  className='mt-5'>
+      <div className='mt-5'>
         {/* <!-- =======Product display in Banner area ======= --> */}
-        <div className="container-fluid banner" style={{marginTop:'110px'}}>
+        <div className="container-fluid banner" style={{ marginTop: '110px' }}>
           <nav>
             <ol className="breadcrumb  px-5">
               <li className="breadcrumb-item  look">
-                <a  className='text-dark font-weight-bold' href="#">Home</a>
+                <a className='text-dark font-weight-bold' href="#">Home</a>
               </li>
               <li className="breadcrumb-item text-black look">
-                <a  className='text-dark' href="#">{product.title}</a>
+                <a className='text-dark' href="#">{product.title}</a>
               </li>
             </ol>
           </nav>
           <div className="row justify-content-center ">
             <div className="col-md-6 w-40">
-              
-           {/* caroausel start */}
-           {/* <div id="carouselExampleControlsNoTouching" class="carousel slide banner" data-bs-touch="false" data-bs-interval="false">
+
+              {/* caroausel start */}
+              {/* <div id="carouselExampleControlsNoTouching" class="carousel slide banner" data-bs-touch="false" data-bs-interval="false">
   <div class="carousel-inner" style={{width:'60%',placeItems:'center',alignItems:'center',marginLeft:'20%'}}>
     <div class="carousel-item active">
       <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" class="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
@@ -83,8 +107,8 @@ export default class ShowProductDetail extends Component {
   </button>
 </div>
             */}
-           {/* caroausel end */}
-           </div>
+              {/* caroausel end */}
+            </div>
             <div className="col-md-6 back px-5">
               <div className="product pt-4">
                 <div className=" align-items-center w-75">
@@ -118,16 +142,13 @@ export default class ShowProductDetail extends Component {
                     variants={product.variants}
                   />
                   {/* Variants End */}
-                  <Customization
-                    deliveryTime={product.deliveryTime}
-                    customWriting={product.customWriting}
-                  />
+                  <Customization setCustomizationOptions={this.setCustomizationOptions} customDate={product.customDate} customWriting={product.customWriting} />
                   {!product.sellOutofStock && product.availableQuantity < 10 ? (
                     <div className="fst-italic few_dis pt-5">Only few left</div>
                   ) : null}
 
                   <div className="cart mt-4 align-items-center">
-                    <button className="btn text-uppercase w-50 add_cart_btn ">
+                    <button className="btn text-uppercase w-50 add_cart_btn " onClick={this.handleAddToCart}>
                       Add to cart
                     </button>
                   </div>
@@ -191,10 +212,15 @@ export default class ShowProductDetail extends Component {
   }
 }
 const Customization = (props) => {
-  const [deliveryDate, setDeliveryDate] = useState(new Date());
+  const [customDate, setcustomDate] = useState(new Date());
+  const [customWriting, setCustomWriting] = useState('');
+  React.useEffect(
+    () => {
+      props.setCustomizationOptions(customWriting, customDate)
+    }, [customWriting, customDate]
+  )
   return (
     <>
-      {console.log("will it rerender after date is set" + deliveryDate)}
       {props.customWriting && (
         <div class="mb-4 mt-3">
           <label for="name" class="color_size_h6">
@@ -204,14 +230,14 @@ const Customization = (props) => {
         </div>
       )}
 
-      {props.deliveryTime ? (
+      {props.customDate ? (
         <div class="mb-4 mt-3">
           <label for="name" class="color_size_h6">
             Date
           </label>
           <DatePicker
-            selected={deliveryDate}
-            onChange={(date) => setDeliveryDate(date)}
+            selected={customDate}
+            onChange={(date) => setcustomDate(date)}
           />
         </div>
       ) : null}
@@ -436,7 +462,7 @@ const Overview = (props) => {
           return part;
         }
       })}
-      <p className="about">{}</p>
+      <p className="about">{ }</p>
       <a
         className="re_look fw-bold mb-4"
         data-bs-toggle="collapse"
@@ -496,9 +522,9 @@ class AddReview extends Component {
         <div class="container font_fam">
           <div class="ho pt-2 mb-3 w-100">
             {/* caroausel start */}
-          <TryCarauosel getRelatedProducts/>
-           {/* caroausel end */}
-           
+            <TryCarauosel getRelatedProducts />
+            {/* caroausel end */}
+
           </div>
           <h6 class="text-center pt-4 pb-2 ov_look"> CUSTOMER REVIEWS </h6>
           <a

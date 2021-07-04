@@ -1,0 +1,22 @@
+.shop-cart-h1 {
+  font-size: 30px;
+  color: #333333;
+}
+.font_fam {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.ho {
+  border-bottom: 1px solid #e6e4e1 !important;
+}
+.pro_price_h5 {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  color: #363636;
+}
+.pro_title_h5 {
+  font-size: 22px !important;
+  color: #333333;
+}
+.img_back_col {
+  background-color: #f5f3f2 !important;
+}

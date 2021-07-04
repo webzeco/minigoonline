@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import Search from "./Search";
 import {
-  faSearch,
   faUser,
   faCartPlus,
 } from "@fortawesome/free-solid-svg-icons";
@@ -24,16 +24,7 @@ export default function Header() {
   return (
     <>
       <div className="row bg-white fixed-top">
-        <div className="col-3 d-flex justify-content-end mt-2">
-          {/* <i className="fa fa-search pt-3 px-1"></i> */}
-          <FontAwesomeIcon className="m-3 mr-2" icon={faSearch} />
-          <input
-            type="search"
-            className="form-control  w-50 mb-5 no-border mr-sm-2"
-            placeholder="Search"
-          />
-        </div>
-
+       <Search/>
         <div className="col-5 text-center pt-3  not-show">
           <img
             // src={`${process.env.REACT_APP_URL}/images/logo.png`}

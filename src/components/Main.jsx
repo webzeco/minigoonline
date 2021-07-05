@@ -60,6 +60,10 @@ const Main = () => {
     console.log('email sent!!!!');
     history.push('/');
   }
+  const addToCratHandler = (user) => {
+    console.log('add to cart');
+    history.push('/cart');
+  }
 
   const productDetailHandler = (prod) => {
 
@@ -94,7 +98,7 @@ const Main = () => {
                 exact
                 path="/showProductDetail"
                 render={(props) => (
-                  <ShowProductDetail sendCartData={handleCartData} product={product} {...props} />
+                  <ShowProductDetail addToCratHandler={addToCratHandler} sendCartData={handleCartData} product={product} {...props} />
                 )}
               />
               <Route

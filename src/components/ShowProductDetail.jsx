@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+
 import ntcjs from "ntcjs";
 import parse from "html-react-parser";
 import DatePicker from "react-datepicker";
@@ -57,6 +58,7 @@ export default class ShowProductDetail extends Component {
     temp.customWriting = this.state.customWriting;
     temp.date = this.state.customDate;
     this.props.sendCartData(temp);
+    this.props.addToCratHandler();
   }
   setCustomizationOptions(writing, date) {
     this.setState({

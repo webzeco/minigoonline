@@ -23,7 +23,7 @@ export default function Search() {
   }
   return (
     <>
-      <div className="col-3 d-flex justify-content-end mt-2">
+  <div className="col-3 d-flex justify-content-end mt-2" >
         <FontAwesomeIcon className="m-3 mr-2" icon={faSearch} />
         <input
           type="search"
@@ -34,24 +34,19 @@ export default function Search() {
           placeholder="Search"
         />
       </div>
-      <ul class="list-group" style={{border:'none'}}>
-
-        {items.map(prod => {
+  {items.map((prod,index) => {
           return (
-            <li class="list-group-item " aria-current="true" style={{width:'25%',marginLeft:'60px'}}>
-              <a href="#" class="list-group-item list-group-item-action list_look" >
-                <div class="d-flex justify-content-between">
-                  <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" height="40px" width="40px" class="img-fluid" />
-                  <p class="pro_title_look">{prod.title}</p>
-                  <small class="fw-bold mt-4">From $30.00</small>
+            <li  style={{width:'25%'}} key={index} className="list-group-item w-30">
+              <a href="#" className="list-group-item list-group-item-action list_look" >
+                <div className="d-flex justify-content-between">
+                  <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" height="40px" width="40px" className="img-fluid" />
+                  <p className="pro_title_look">{prod.title}</p>
+                  <small className="fw-bold mt-4">From $30.00</small>
                 </div>
               </a>
             </li>
-
           )
         })}
-      </ul>
-
     </>
   )
 }

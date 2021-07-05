@@ -76,29 +76,44 @@ const Cart = props => {
                         (data) => <ShowCartProduct setPrice={updateTotal} removeItem={removeItem} data={data} />
                     )
                 }
-
+  <div className="container">
+      <div className="row">
+        <div className="col-lg-7 col-md-12">
+            <div className="row">
+            <div className="col-lg-12">
                 <p>Include a special message for your recipient on the order packing slip at no extra charge!</p>
-                <textarea rows='4' cols='10' id='specialMessage'></textarea>
-
+                <textarea rows='5' cols='30' id='specialMessage'></textarea>
+                </div>
+                <div className="col-lg-12 ">
+                {
+                    props.cartData.map(
+                        (obj) => {
+                            return <>
+                            <div className="d-flex  ">
+                                <input id={obj.id} type='checkbox' className="mt-1" value={obj.bucketPrice} onChange={handleBucket} />
+                                <label className="px-2" for={obj.id}>Do you want bucket for product {obj.title} at price {obj.bucketPrice}
+                                </label>
+                                </div>
+                            </>
+                        }
+                    )
+                }
+                </div>
+                </div>
+</div>
+<div className="col-lg-5 col-md-12 ">
                 <h3>Subtotal:{subTotal}</h3>
                 <p>Shipping & taxes calculated at checkout</p>
                 <input id='agreementCheckBox' type='checkbox' onChange={handleAgreement} />
                 <label for='agreementCheckBox'>I agree to the Terms of Sale, Terms of Service, and Privacy Policy.
                 </label>
-                <button id='Checkoutbtn' disabled>CheckOut</button>
-                <button id='CheckoutAsGuestbtn' disabled>CheckOut As Guest</button>
-                {
-                    props.cartData.map(
-                        (obj) => {
-                            return <>
-                                <input id={obj.id} type='checkbox' value={obj.bucketPrice} onChange={handleBucket} />
-                                <label for={obj.id}>Do you want bucket for product {obj.title} at price {obj.bucketPrice}
-                                </label>
-                            </>
-                        }
-                    )
-                }
-
+                <button id='Checkoutbtn' className="btn btn-danger mb-3 mt-2" disabled>CheckOut</button>
+                <br />
+                <button id='CheckoutAsGuestbtn' className="btn btn-danger" disabled>CheckOut As Guest</button>
+          
+                </div>
+</div>
+</div>
             </div>
         </>
     )

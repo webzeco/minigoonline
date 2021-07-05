@@ -93,11 +93,7 @@ const Main = () => {
                 exact
                 path="/showProductDetail"
                 render={(props) => (
-<<<<<<< HEAD
-                  <ShowProductDetail addToCratHandler={addToCratHandler} sendCartData={handleCartData} product={product} {...props} />
-=======
-                  <ShowProductDetail cartData={cartData} sendCartData={handleCartData} product={product} {...props} />
->>>>>>> 228203fcbdcaac1b2b43a7a2007375233eb3cd2d
+                  <ShowProductDetail cartData={cartData} addToCratHandler={addToCratHandler} sendCartData={handleCartData} product={product} {...props} />
                 )}
               />
               <Route

@@ -9,7 +9,7 @@ export default function ControlledCarousel({ productData, title }) {
   const second=productData.slice(4,8);
   // const third=productData.slice(8,12);
 
-  console.log({first,second});
+  // console.log({first,second});
 
   return (
     <div className='container'>

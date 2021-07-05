@@ -1,4 +1,4 @@
-import { multiply } from 'lodash';
+import { omitBy } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import "./style/cart.css";
 
@@ -9,14 +9,12 @@ const Cart = props => {
         setPriceIDArray(priceIDArray.map(
             (elem) => {
                 if (elem.id === priceID.id) {
-                     elem.price = priceID.price
+                    elem.price = priceID.price
                 }
                 return elem;
             }
         ));
-
     }
-
     useEffect(
         () => {
             setPriceIDArray(props.cartData.map(
@@ -30,7 +28,6 @@ const Cart = props => {
             )
         }, []
     )
-
     useEffect(
         () => {
             let sum = 0;
@@ -40,8 +37,13 @@ const Cart = props => {
             setsubTotal(sum);
         }, [priceIDArray]
     )
-
-
+    const removeItem = (e) => {
+        const priceID = {};
+        priceID.id = Number(e.target.value);
+        priceID.price = 0;
+        updateTotal(priceID);
+        props.removeItem(e);
+    }
     const handleAgreement = (e) => {
         if (e.target.checked) {
             document.getElementById('Checkoutbtn').disabled = false;
@@ -50,6 +52,15 @@ const Cart = props => {
             document.getElementById('Checkoutbtn').disabled = true;
             document.getElementById('CheckoutAsGuestbtn').disabled = true;
         }
+    }
+    const handleBucket = (e) => {
+        const priceID = {};
+        priceID.id = Number(e.target.id)
+        priceID.price = (
+            priceIDArray.map(elem => elem.id === e.target.id)[0].price
+        )
+        console.log(priceID)
+        updateTotal(priceID)
     }
     return (
         <>
@@ -62,7 +73,7 @@ const Cart = props => {
                 <div className="ho mt-2 w-100"></div>
                 {
                     props.cartData.map(
-                        (data) => <ShowCartProduct setPrice={updateTotal} removeItem={(e) => props.removeItem(e)} data={data} />
+                        (data) => <ShowCartProduct setPrice={updateTotal} removeItem={removeItem} data={data} />
                     )
                 }
 
@@ -76,7 +87,17 @@ const Cart = props => {
                 </label>
                 <button id='Checkoutbtn' disabled>CheckOut</button>
                 <button id='CheckoutAsGuestbtn' disabled>CheckOut As Guest</button>
-
+                {
+                    props.cartData.map(
+                        (obj) => {
+                            return <>
+                                <input id={obj.id} type='checkbox' value={obj.bucketPrice} onChange={handleBucket} />
+                                <label for={obj.id}>Do you want bucket for product {obj.title} at price {obj.bucketPrice}
+                                </label>
+                            </>
+                        }
+                    )
+                }
 
             </div>
         </>
@@ -129,7 +150,7 @@ const ShowCartProduct = props => {
                             <div className="col-lg-5 col-md-6 col-xs-12 d-flex justify-content-between">
                                 <input className="form-control mt-5 mb-5 w-25" value={Quantity} type='number' onChange={handleQuantityChange} />
                                 <button type="button" className="btn btn-white text-center  " onClick={
-                                    (id) => props.removeItem(id)}
+                                    (e) => props.removeItem(e)}
                                     value={data.id}
 
                                 >x Remove</button>

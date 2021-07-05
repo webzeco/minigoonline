@@ -32,12 +32,8 @@ const Main = () => {
     },
     []);
 
-  useEffect(
-    () => { console.log(cartData) },
-    [cartData]
-  );
-  const removeCartItem = (id) => {
-    setCartData(cartData.filter(data => data.id === (id.target.value - 1)))
+  const removeCartItem = (e) => {
+    setCartData(cartData.filter(data => data.id === (e.target.value - 1)))
   }
 
   const handleCartData = (data) => {
@@ -57,15 +53,14 @@ const Main = () => {
     history.push('/');
   }
   const forgotHandler = (user) => {
-    console.log('email sent!!!!');
+    ('email sent!!!!');
     history.push('/');
   }
 
   const productDetailHandler = (prod) => {
-
     setProduct(prod);
     setRelatedProd(items);
-    console.log(prod);
+    
     history.push('/showProductDetail');
   }
 
@@ -94,7 +89,7 @@ const Main = () => {
                 exact
                 path="/showProductDetail"
                 render={(props) => (
-                  <ShowProductDetail sendCartData={handleCartData} product={product} {...props} />
+                  <ShowProductDetail cartData={cartData} sendCartData={handleCartData} product={product} {...props} />
                 )}
               />
               <Route

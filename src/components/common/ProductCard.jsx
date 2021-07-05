@@ -19,7 +19,7 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
     }
   };
   const onradioBtnChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setImage(e.target.value);
   };
   const onClicked = (prod) => {

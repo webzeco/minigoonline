@@ -11,12 +11,12 @@ export default function Search() {
   const searchInput = useRef('');
   useEffect(() => {
     getRelatedItemsHandler();
-    console.log(items);
+    // console.log(items);
     if (!searchText) setItems([]);
   }, [searchText])
   const onTextChangeHandler = () => {
     setSearchText(searchInput.current.value);
-    console.log(searchText);
+    // console.log(searchText);
   }
   const getRelatedItemsHandler = () => {
     setItems(productData.filter(prod => prod.title.includes(searchText)));

@@ -57,6 +57,7 @@ export default class ShowProductDetail extends Component {
     temp.selectedVariants = this.state.selectedVariants;
     temp.customWriting = this.state.customWriting;
     temp.date = this.state.customDate;
+    temp.bucketPrice = product.bucketPrice;
     this.props.sendCartData(temp);
     this.props.addToCratHandler();
   }
@@ -66,9 +67,19 @@ export default class ShowProductDetail extends Component {
       customeDate: date
     })
   }
-  
+  componentDidUpdate() {
+    this.props.cartData.map(
+      (cart) => {
+        if (cart.title === this.props.product.title) {
+          document.getElementById('addtocart').disabled = true
+          document.getElementById('addtocart').innerHTML = 'Already added to Cart'
+        }
+      }
+    )
+  }
   render() {
     const product = this.props.product;
+
     return (
       <div className='mt-5'>
         {/* <!-- =======Product display in Banner area ======= --> */}
@@ -150,7 +161,7 @@ export default class ShowProductDetail extends Component {
                   ) : null}
 
                   <div className="cart mt-4 align-items-center">
-                    <button className="btn text-uppercase w-50 add_cart_btn " onClick={this.handleAddToCart}>
+                    <button id='addtocart' className="btn text-uppercase w-50 add_cart_btn " onClick={this.handleAddToCart}>
                       Add to cart
                     </button>
                   </div>
@@ -307,7 +318,7 @@ class Variants extends Component {
         indexT = index;
       }
     });
-    console.log(indexT);
+    // console.log(indexT);
     newSelected[indexT].selectedVariant = select.selectedVariant;
     this.props.setSelected(newSelected);
   }
@@ -506,7 +517,7 @@ class AddReview extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
     this.props.reviews.push(this.state);
     // We will add method to push this review in the backend later
   }

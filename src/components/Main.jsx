@@ -37,8 +37,10 @@ const Main = () => {
   }
 
   const handleCartData = (data) => {
+
     let id = (cartData.length + 1);
     data.id = id
+    data.quantity = 1;
     setCartData([...cartData, data])
   }
   const setCollectionHandler = (coll) => {

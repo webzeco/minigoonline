@@ -36,7 +36,7 @@ export default function Search() {
       </div>
   {items.map((prod,index) => {
           return (
-            <li  style={{width:'25%'}} key={index} className="list-group-item w-30">
+            <li  style={{width:'25%'}} key={index} className="list-group-item w-25">
               <a href="#" className="list-group-item list-group-item-action list_look" >
                 <div className="d-flex justify-content-between">
                   <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" height="40px" width="40px" className="img-fluid" />

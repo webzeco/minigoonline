@@ -4,7 +4,6 @@ import ImageUploader from "react-images-upload";
 const Media = props => {
     const [pictures, setPictures] = useState([]);
     const [picturesNameList, setPicturesNameList] = useState([]);
-
     React.useEffect(
         () => {
             const namearr = [];

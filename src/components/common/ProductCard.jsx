@@ -33,6 +33,8 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
                     <img
                     alt='item img '
                         src={image}
+                        height='440'
+                        width="440"
                         onMouseEnter={() => changeImgEnter()} onMouseLeave={() => { changeImgLeave() }}
                         class="img-fluid img_back_col"
                     />

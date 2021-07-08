@@ -1,49 +1,89 @@
-import { omitBy } from 'lodash';
+import { iteratee } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import "./style/cart.css";
 
 const Cart = props => {
-    const [priceIDArray, setPriceIDArray] = useState([]);
-    const [subTotal, setsubTotal] = useState(0);
-    const updateTotal = (priceID) => {
-        setPriceIDArray(priceIDArray.map(
-            (elem) => {
-                if (elem.id === priceID.id) {
-                    elem.price = priceID.price
+    const [Data, setData] = useState([]);//This will have all products Data and Prices
+    const [Total, setTotal] = useState(0);//This will have total price
+
+    //This function will update the totalPrice after every change in prices will check if bucket is checked or not
+    const updateTotalPrice = () => {
+        let sum = 0;
+        setData(Data.map(
+            (data) => {
+                if (!data.addBucket) {
+                    data.totalProductPrice = data.basePrice * data.quantity
+                    data.productPrice = data.basePrice * data.quantity;
+                } else {
+                    data.totalProductPrice = (data.basePrice * data.quantity) + data.product.bucketPrice
+                    data.productPrice=data.basePrice * data.quantity;
                 }
-                return elem;
+                sum += data.totalProductPrice;
+                return data;
             }
-        ));
+        ))
+        setTotal(sum);
     }
+
+    //This is handle change in bucket
+    const handleBucketChange = (e) => {
+        setData(
+            Data.map(
+                (data) => {
+                    if (data.product.id == e.target.id) {
+                        data.addBucket = e.target.checked
+                    }
+                    return data;
+                }
+            )
+        )
+    }
+
+    //This will handle Change in qunatity and update Data Array
+    const handleQuantityChanged = (e) => {
+        setData(Data.map(
+            (data) => {
+
+                if (data.product.id == e.target.id) {
+                    data.quantity = e.target.value
+                }
+                return data;
+            }
+        ))
+    }
+
+    //This useEffect will be used to recalculate TotalPrice by calling updateTotalPrice after every change Data
     useEffect(
         () => {
-            setPriceIDArray(props.cartData.map(
-                (elem) => {
-                    const temp = {}
-                    temp.id = elem.id;
-                    temp.price = elem.price;
-                    return temp;
+            updateTotalPrice();
+        }, [Data]
+    )
+
+    //This is just to assign values for first time
+    function assignValues(cartData) {
+        const temp = {}
+        temp.product = cartData
+        temp.quantity = cartData.quantity;
+        temp.addBucket = false;
+        temp.basePrice = cartData.price
+        temp.productPrice = temp.basePrice * temp.quantity//This is for price shown for each product  quantity
+        temp.totalProductPrice = temp.basePrice * temp.quantity//This is for whole producl quantiy*basePrice+bucketPrice
+        return temp;
+    }
+    //On Mounting of Cart variable initialization
+    useEffect(
+        () => {
+            const cartData = props.cartData;
+            const tempArr = cartData.map(
+                (data) => {
+                    return assignValues(data)
                 }
             )
-            )
+            setData(tempArr);
         }, []
     )
-    useEffect(
-        () => {
-            let sum = 0;
-            priceIDArray.map(
-                (elem) => { sum += elem.price }
-            )
-            setsubTotal(sum);
-        }, [priceIDArray]
-    )
-    const removeItem = (e) => {
-        const priceID = {};
-        priceID.id = Number(e.target.value);
-        priceID.price = 0;
-        updateTotal(priceID);
-        props.removeItem(e);
-    }
+
+    //Checkout buttons enable disable handler
     const handleAgreement = (e) => {
         if (e.target.checked) {
             document.getElementById('Checkoutbtn').disabled = false;
@@ -52,15 +92,6 @@ const Cart = props => {
             document.getElementById('Checkoutbtn').disabled = true;
             document.getElementById('CheckoutAsGuestbtn').disabled = true;
         }
-    }
-    const handleBucket = (e) => {
-        const priceID = {};
-        priceID.id = Number(e.target.id)
-        priceID.price = (
-            priceIDArray.map(elem => elem.id === e.target.id)[0].price
-        )
-        console.log(priceID)
-        updateTotal(priceID)
     }
     return (
         <>
@@ -72,104 +103,86 @@ const Cart = props => {
                 </div>
                 <div className="ho mt-2 w-100"></div>
                 {
-                    props.cartData.map(
-                        (data) => <ShowCartProduct setPrice={updateTotal} removeItem={removeItem} data={data} />
+                    Data.map(
+                        (data) => <ShowCartProduct
+                            quantity={data.quantity}
+                            productPrice={data.productPrice}
+                            product={data.product}
+                            removeCartItem={props.removeCartItem}
+                            handleQuantityChange={(e) => handleQuantityChanged(e)}
+                        />
                     )
                 }
-  <div className="container">
-      <div className="row">
-        <div className="col-lg-7 col-md-12">
-            <div className="row">
-            <div className="col-lg-12">
-                <p>Include a special message for your recipient on the order packing slip at no extra charge!</p>
-                <textarea rows='5' cols='30' id='specialMessage'></textarea>
-                </div>
-                <div className="col-lg-12 ">
-                {
-                    props.cartData.map(
-                        (obj) => {
-                            return <>
-                            <div className="d-flex  ">
-                                <input id={obj.id} type='checkbox' className="mt-1" value={obj.bucketPrice} onChange={handleBucket} />
-                                <label className="px-2" for={obj.id}>Do you want bucket for product {obj.title} at price {obj.bucketPrice}
-                                </label>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-7 col-md-12">
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <p>Include a special message for your recipient on the order packing slip at no extra charge!</p>
+                                    <textarea rows='5' cols='30' id='specialMessage'></textarea>
                                 </div>
-                            </>
-                        }
-                    )
-                }
+                                <div className="col-lg-12 ">
+                                    {
+                                        Data.map(
+                                            (obj) => {
+                                                return <>
+                                                    <div className="d-flex  ">
+                                                        <input id={obj.product.id} type='checkbox' className="mt-1" onChange={handleBucketChange} />
+                                                        <label className="px-2" for={obj.product.id}>Do you want bucket for product {obj.product.title} at price {obj.product.bucketPrice} RS
+                                                        </label>
+                                                    </div>
+                                                </>
+                                            }
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-5 col-md-12 ">
+                            <h3>Subtotal:{Total}</h3>
+                            <p>Shipping & taxes calculated at checkout</p>
+                            <input id='agreementCheckBox' type='checkbox' onChange={handleAgreement} />
+                            <label for='agreementCheckBox'>I agree to the Terms of Sale, Terms of Service, and Privacy Policy.
+                            </label>
+                            <button id='Checkoutbtn' className="btn btn-danger mb-3 mt-2" disabled>CheckOut</button>
+                            <br />
+                            <button id='CheckoutAsGuestbtn' className="btn btn-danger" disabled>CheckOut As Guest</button>
+
+                        </div>
+                    </div>
                 </div>
-                </div>
-</div>
-<div className="col-lg-5 col-md-12 ">
-                <h3>Subtotal:{subTotal}</h3>
-                <p>Shipping & taxes calculated at checkout</p>
-                <input id='agreementCheckBox' type='checkbox' onChange={handleAgreement} />
-                <label for='agreementCheckBox'>I agree to the Terms of Sale, Terms of Service, and Privacy Policy.
-                </label>
-                <button id='Checkoutbtn' className="btn btn-danger mb-3 mt-2" disabled>CheckOut</button>
-                <br />
-                <button id='CheckoutAsGuestbtn' className="btn btn-danger" disabled>CheckOut As Guest</button>
-          
-                </div>
-</div>
-</div>
             </div>
         </>
     )
 }
 
 const ShowCartProduct = props => {
-    const [Quantity, setQuantity] = useState(1);
-    const [Totalprice, setTotalPrice] = useState(props.data.price);
-    const handleQuantityChange = (e) => {
-        setQuantity(e.target.value)
-        e.preventDefault();
-    }
-    useEffect(
-        () => {
-            setTotalPrice(props.data.price * Quantity);
-        }, [Quantity]
-    )
-
-    useEffect(
-        () => {
-            const priceID = {};
-            priceID.price = Totalprice;
-            priceID.id = props.data.id;
-            props.setPrice(priceID)
-        }, [Totalprice]
-    )
-
-    const data = props.data;
 
     return (
         <>
+
             <div className="container font_fam">
                 <div className="row justify-content-center">
                     <div className="col-lg-12 col-md-12 d-flex">
                         <div className="row">
                             <div className="col-lg-3 col-md-2 col-xs-4">
-                                <img className="img-fluid img_back_col" height='80px' width='80px' src={data.img} alt='Product Image' />
+                                <img className="img-fluid img_back_col" height='80px' width='80px' src={props.product.img} alt='Product Image' />
                             </div>
                             <div className="col-lg-4 col-md-4 col-xs-12">
-                                <div className="h5 pro_title_h5 pb-1">{data.title}</div>
+                                <div className="h5 pro_title_h5 pb-1">{props.product.title}</div>
 
-                                {data.selectedVariants.map(
+                                {props.product.selectedVariants.map(
                                     (variant) => <>{variant.selectedVariant}/</>
                                 )}
                                 <p>Estimated Processing Time:</p>
-                                <p>{data.estimatedProcessingTime}</p>
+                                <p>{props.product.estimatedProcessingTime}</p>
                             </div>
 
                             <div className="col-lg-5 col-md-6 col-xs-12 d-flex justify-content-between">
-                                <input className="form-control mt-5 mb-5 w-25" value={Quantity} type='number' onChange={handleQuantityChange} />
-                                <button type="button" className="btn btn-white text-center  " onClick={
-                                    (e) => props.removeItem(e)}
-                                    value={data.id}
-
+                                <input className="form-control mt-5 mb-5 w-25" id={props.product.id} type='number' onChange={(e) => props.handleQuantityChange(e)} />
+                                <button type="button" className="btn btn-white text-center  " onClick={props.removeCartItem}
                                 >x Remove</button>
-                                <div className="h5 pro_price_h5 mt-5 mb-5 mx-5">Rs. {Totalprice}</div>
+                                <div className="h5 pro_price_h5 mt-5 mb-5 mx-5">Rs. {props.productPrice}</div>
 
                             </div>
                         </div>
@@ -180,10 +193,7 @@ const ShowCartProduct = props => {
         </>
     )
 }
-
-
 export default Cart;
-
 // customWriting: ""
 // date: null
 // estimatedProcessingTime: undefined
@@ -196,3 +206,14 @@ export default Cart;
 // 1:
 // selectedVariant: "Cyan / Aqua"
 // variantType: "Color"
+///////////////////////////////////////
+// data.id = id
+// data.quantity = 1;
+// temp.price = product.price;
+// temp.title = product.title;
+// temp.img = product.images[0];
+// temp.estimatedProcessingTime = product.estimatedProcessingTime;
+// temp.selectedVariants = this.state.selectedVariants;
+// temp.customWriting = this.state.customWriting;
+// temp.date = this.state.customDate;
+// temp.bucketPrice = product.bucketPrice;

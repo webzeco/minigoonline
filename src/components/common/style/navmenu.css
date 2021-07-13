@@ -1,0 +1,20 @@
+.menu {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  letter-spacing: "15px";
+  font-size: "15px";
+  font-stretch: "normal";
+  line-height: "1.88";
+  text-align: "center";
+  color: "#333333";
+  display: "block";
+  text-decoration: "none";
+  white-space: "nowrap";
+}
+
+#menu {
+  display: none;
+}
+
+#personal:hover + div {
+  display: block;
+}

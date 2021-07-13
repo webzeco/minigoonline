@@ -155,7 +155,8 @@ export default class ShowProductDetail extends Component {
                     variants={product.variants}
                   />
                   {/* Variants End */}
-                  <Customization setCustomizationOptions={this.setCustomizationOptions} customDate={product.customDate} customWriting={product.customWriting} />
+                  <Customization setCustomizationOptions={this.setCustomizationOptions} 
+                  customDate={product.customDate} customWriting={product.customWriting} />
                   {!product.sellOutofStock && product.availableQuantity < 10 ? (
                     <div className="fst-italic few_dis pt-5">Only few left</div>
                   ) : null}

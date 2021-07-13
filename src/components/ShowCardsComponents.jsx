@@ -128,10 +128,11 @@ setPage(newPage);
       {/* <!-- ======= pagination ======= -->  */}
  
 
-      <ul className="pagination justify-content-center p-4">
+      <ul className="pagination justify-content-center p-4 ">
       {/* {console.log({dd:totalPageItems})} */}
 
-      <Pagination  itemsCount={totalPageItems} pageSize={page.pageSize} currentPage={page.currentPage} onPageChange={changePageHandler} />
+      <Pagination className="bg-danger"  itemsCount={totalPageItems} pageSize={page.pageSize}
+       currentPage={page.currentPage} onPageChange={changePageHandler} />
         {/* <li className="page-item">
           <a className="page-link" href="/" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>

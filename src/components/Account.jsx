@@ -6,7 +6,7 @@ export default function Account() {
     <div>
       <div class="container pro_spec pt-5 pb-5 mt-3">
         <div class="row justify-content-center ">
-          <div class="col-12 pt-5 ">
+          <div class="col-12 pt-5 mt-5 ">
             <div class="d-flex row ">
               <div class="col-10">
                 <div class="h5 text-uppercase pro_title_h5">My Account</div>
@@ -25,7 +25,7 @@ export default function Account() {
             <div class="row">
               <div class="col-8 pb-5 ">
                 <span class="fw-bold ov_look">Order History </span>
-                <p class=" ">You haven't place any orders yet.</p>
+                <p class=" order_p">You haven't place any orders yet.</p>
               </div>
 
               <div class="col-md-4 back ">

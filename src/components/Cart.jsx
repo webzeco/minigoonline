@@ -95,7 +95,7 @@ const Cart = props => {
     }
     return (
         <>
-            <div className="container pt-5 mt-3 pb-5 font_fam">
+            <div className="container pt-5 mt-3 pb-5 ">
                 <div className="row justify-content-center">
                     <div className="col-12">
                         <h1 className="shop-cart-h1 fw-bold mt-4 pt-5">Shoping Cart</h1>
@@ -115,11 +115,15 @@ const Cart = props => {
                 }
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-7 col-md-12">
+                        <div className="col-lg-7 col-md-12 mt-4">
                             <div className="row">
-                                <div className="col-lg-12">
-                                    <p>Include a special message for your recipient on the order packing slip at no extra charge!</p>
-                                    <textarea rows='5' cols='30' id='specialMessage'></textarea>
+                                <div className="col-lg-6">
+                                    <p className="message_look">Include a special message for your recipient on the order packing slip at no extra charge!</p>
+                                    <textarea rows='6' cols='30' id='specialMessage' placeholder="Write a Messages..."></textarea>
+                                </div>
+                                <div className="col-lg-6">
+                                    <p className="message_look">Messange which you want to state on bucket</p>
+                                    <textarea rows='6' cols='30' id='specialMessage' placeholder="Write a Meassage..."></textarea>
                                 </div>
                                 <div className="col-lg-12 ">
                                     {
@@ -127,8 +131,10 @@ const Cart = props => {
                                             (obj) => {
                                                 return <>
                                                     <div className="d-flex  ">
-                                                        <input id={obj.product.id} type='checkbox' className="mt-1" onChange={handleBucketChange} />
-                                                        <label className="px-2" for={obj.product.id}>Do you want bucket for product {obj.product.title} at price {obj.product.bucketPrice} RS
+                                                        <img src="https://banner2.cleanpng.com/20180402/kpq/kisspng-shopping-cart-royalty-free-clip-art-shopping-basket-5ac267268e7582.8242265715226898305835.jpg" 
+                                                        height="25px" width="25px" className="m-2" />
+                                                        <input id={obj.product.id} type='checkbox' className="mt-3" onChange={handleBucketChange} />
+                                                        <label className="px-1 mt-2 message_look" for={obj.product.id}>Do you want bucket for product {obj.product.title} at price Rs.{obj.product.bucketPrice} 
                                                         </label>
                                                     </div>
                                                 </>
@@ -138,15 +144,16 @@ const Cart = props => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-5 col-md-12 ">
-                            <h3>Subtotal:{Total}</h3>
-                            <p>Shipping & taxes calculated at checkout</p>
+                        <div className="col-lg-5 col-md-12 mt-4">
+                            <h3 className="message_look fw-bold">Subtotal:{Total}</h3>
+                            <p className="message_look">Shipping & taxes calculated at checkout</p>
+                            <div className="ho mt-1 mb-2 w-100"></div>
                             <input id='agreementCheckBox' type='checkbox' onChange={handleAgreement} />
-                            <label for='agreementCheckBox'>I agree to the Terms of Sale, Terms of Service, and Privacy Policy.
+                            <label for='agreementCheckBox' className="message_look">I agree to the Terms of Sale, Terms of Service, and Privacy Policy.
                             </label>
-                            <button id='Checkoutbtn' className="btn btn-danger mb-3 mt-2" disabled>CheckOut</button>
+                            <button id='Checkoutbtn' className="btn btn-danger mb-3 mt-2 message_look fw-bold" disabled>CheckOut</button>
                             <br />
-                            <button id='CheckoutAsGuestbtn' className="btn btn-danger" disabled>CheckOut As Guest</button>
+                            <button id='CheckoutAsGuestbtn' className="btn btn-danger message_look fw-bold" disabled>CheckOut As Guest</button>
 
                         </div>
                     </div>
@@ -163,10 +170,10 @@ const ShowCartProduct = props => {
 
             <div className="container font_fam">
                 <div className="row justify-content-center">
-                    <div className="col-lg-12 col-md-12 d-flex">
-                        <div className="row">
+                    <div className="col-lg-12 col-md-12 d-flex font_fam">
+                        <div className="row pt-3">
                             <div className="col-lg-3 col-md-2 col-xs-4">
-                                <img className="img-fluid img_back_col" height='80px' width='80px' src={props.product.img} alt='Product Image' />
+                                <img className="img-fluid img_look_on_cart"  src={props.product.img} alt='Product Image' />
                             </div>
                             <div className="col-lg-4 col-md-4 col-xs-12">
                                 <div className="h5 pro_title_h5 pb-1">{props.product.title}</div>
@@ -182,7 +189,7 @@ const ShowCartProduct = props => {
                                 <input className="form-control mt-5 mb-5 w-25" id={props.product.id} type='number' onChange={(e) => props.handleQuantityChange(e)} />
                                 <button type="button" className="btn btn-white text-center  " onClick={props.removeCartItem}
                                 >x Remove</button>
-                                <div className="h5 pro_price_h5 mt-5 mb-5 mx-5">Rs. {props.productPrice}</div>
+                                <div className="h5 pro_price_h5 mt-5 mb-5 mx-5 fw-bold">Rs. {props.productPrice}</div>
 
                             </div>
                         </div>

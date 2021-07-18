@@ -23,7 +23,7 @@ function Footer() {
                 />{" "}
               </div>
               <div className="col-auto align-self-end mt-sm-0 mt-4">
-                <button className="btn btn-block btn-danger ml-2 mt-md-0 mt-3">
+                <button className="btn btn-block btn_style btn-danger ml-2 mt-md-0 mt-3">
                   SUBMIT
                 </button>
               </div>

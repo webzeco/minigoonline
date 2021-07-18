@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 .round-button {
   display: block;
   width: 17px;
@@ -10,12 +12,22 @@
 }
 .card-title {
   font-size: 15px !important;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Lato";
+  font-weight: bold !important;
 }
 .img_back_col {
   background-color: #f5f3f2 !important;
+  height: 250px !important;
+  width: 300px !important;
+}
+.round_btn_look {
+  border: 1px solid red;
+  border-style: dashed !important;
+  border-radius: 50px;
+  margin-left: 3px;
+  padding: 2px;
 }
 .card-text {
   font-size: 15px !important;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Lato";
 }

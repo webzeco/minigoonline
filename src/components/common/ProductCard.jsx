@@ -27,38 +27,34 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
   };
 
     return (
-        <div class="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3" onClick={()=>onClicked(product)}>
+        <div class="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3" >
             <div class="card hid_border">
-              
                     <img
                     alt='item img '
-                        src={image}
-                        onMouseEnter={() => changeImgEnter()} onMouseLeave={() => { changeImgLeave() }}
-                        class="img-fluid img_back_col"
+                        src={image} onClick={()=>onClicked(product)}
+                        onMouseEnter={() => changeImgEnter()} onMouseLeave={() =>
+                           { changeImgLeave() }}
+                        class="img-fluid img_back_col text-center mb-2 p-3"
                     />
-                
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">{title}</h5>
-                    <p class="card-text">
-                        ${price}
-                    </p>
+
+                    <h6 class="card-title fw-bold " onClick={()=>onClicked(product)}>{title}</h6>
+                    <span class="card-text">${price}</span>
                     <div class="radio-buttons">
                         {colorImg.map(
                             (colorbtn) => {
-                                return (<label class="radio">
+                                return (<label class="radio round_btn_look ">
                                     <button
                                         className='round-button'
                                         name="colorsBtn"
                                         value={colorbtn.img} onClick={(e) => onradioBtnChange(e)}
                                         style={{ backgroundColor: colorbtn.color }} />
-                                    <span ></span>
                                 </label>)
                             }
                         )}
                     </div>
                 </div>
             </div>
-        </div>
+        
     
 
                    

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext, useEffect, useRef, useState } from 'react';
-
+import './style/upperherader.css';
 import { productData } from '../data';
 import {
   faSearch
@@ -55,14 +55,14 @@ export default function Search() {
           <div className="row justify-content-end">
             <div className="col-5">
               {!user && (<Link to='/login'>
-                <FontAwesomeIcon className="mt-2" icon={faUser} />
-                <span style={{ fontSize: "small", paddingLeft: "2px" }}>
+                <FontAwesomeIcon className="mt-2 icon_s_look mx-1"  icon={faUser} />
+                <span className="s_look" >
                   Sign in
                 </span>
               </Link>)}
               {user && (<Link to='/account'>
-                <FontAwesomeIcon className="mt-2" icon={faUser} />
-                <span style={{ fontSize: "small", paddingLeft: "2px" }}>
+                <FontAwesomeIcon className="mt-2 icon_s_look mx-1" icon={faUser} />
+                <span className="s_look" >
                   {user.username}
                 </span>
               </Link>)}
@@ -70,8 +70,8 @@ export default function Search() {
             <div className="col-6">
               {/* <i className="fa fa-cart-plus pt-1 mx-2"></i> */}
               <Link to='/cart'>
-                <FontAwesomeIcon className="fa-cart-plus" icon={faCartPlus} />
-                <span style={{ fontSize: "small", paddingLeft: "2px" }}>
+                <FontAwesomeIcon className="fa-cart-plus icon_s_look mx-1" icon={faCartPlus} />
+                <span className="s_look " >
                   Cart
                 </span>
               </Link>
@@ -79,7 +79,7 @@ export default function Search() {
           </div>
         </div>
         {/* searched items starts */}
-        <ul class="list-group w-25 mx-5">
+        <ul class="List-group w-25 mx-5">
   {items.map((prod,index) => {
           return (
             <li   key={index} className="list-group-item ">

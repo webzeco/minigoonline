@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import React from "react";
+import "./style/forgot.css"
 import { Link } from "react-router-dom";
 const loginSchema = Yup.object().shape({
   username: Yup.string().required("Required").label("Username"),
@@ -59,14 +60,14 @@ export default function Login({ onLogin }) {
             </div>
 
             <div class="cart mt-4 align-items-center">
-              <button type="submit" class="btn text-uppercase w-100 creat_btn ">
+              <button type="submit" class="btn text-uppercase w-100 creat_btn message_look fw-bold ">
                 {/* <a href="/">SIGN IN</a> */}
                 SIGN IN
               </button>
             </div>
 
             <Link class="creat_look text-center fw-bold mb-4" to="/signup">
-              <h5 class=" mb-2 mt-5 creat_look"> CREAT ACCOUNT</h5>
+              <h5 class=" mb-2 mt-5 creat_look fw-bold "> CREAT ACCOUNT</h5>
             </Link>
           </Form>
         )}

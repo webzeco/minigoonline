@@ -1,220 +1,123 @@
-/*Section above NAVBAR */
-
-.no-border {
-    border: 0px !important;
-    border-bottom: 1px solid rgb(190, 169, 169) !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    font-size: 12px !important;
-}
-
-
-/*Section above NAVBAR end*/
-
-
-/*NAVBAR */
-
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 
 /*Banner*/
 
 .banner {
-    background-color: #f5f5f5;
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-    color: #333333;
-    height: auto;
+  background-color: #f5f5f5;
+  font-family: "Source Sans Pro";
+  color: #333333;
+  height: auto;
 }
 
 .vl {
-    border-left: 1px solid gray;
-    height: 15px;
+  border-left: 1px solid gray;
+  height: 15px;
 }
 
 .color_size_h6 {
-    color: #9999;
-    font-size: 14px;
+  color: #9999;
+  font-size: 14px;
 }
 
 .color_Demo_h6 {
-    color: #333333;
-    font-size: 14px;
+  color: #333333;
+  font-size: 14px;
 }
 
 .ho {
-    border-bottom: 1px solid linen;
+  border-bottom: 1px solid linen;
 }
 
 .add_cart_btn {
-    font-weight: bold !important;
-    background-color: #e4563c !important;
-    font-size: 16px;
-    border-radius: 0px !important;
-    color: #fff !important;
+  font-weight: bold !important;
+  background-color: #e4563c !important;
+  font-size: 16px;
+  border-radius: 0px !important;
+  color: #fff !important;
+  font-family: "Lato";
 }
 
 .pro_title_h5 {
-    font-size: 22px !important;
-    font-weight: bold !important;
-    color: #333333;
+  font-size: 22px !important;
+  font-weight: bold !important;
+  color: #333333;
+  font-family: "Source Sans Pro";
 }
 
 .pro_price_h5 {
-    font-size: 18px !;
-    font-weight: bold !important;
-    color: #363636;
+  font-size: 18px !;
+
+  color: #363636;
+  font-family: "Lato";
 }
 
 .size-guid_look {
-    color: #999999;
-    font-size: 12px;
+  color: #999999;
+  font-size: 12px;
 }
 
-.breadcrumb>.look a {
-    color: #999999;
-    text-decoration: none;
-    font-size: 12px;
+.breadcrumb > .look a {
+  color: #999999;
+  text-decoration: none;
+  font-size: 12px;
 }
 
 .re_look {
-    color: #363636;
-    text-decoration: underline;
-    font-size: 12px;
+  color: #363636;
+  text-decoration: underline;
+  font-size: 12px;
 }
 
 .few_dis {
-    font-size: 14px;
-    color: #333333;
-}
-
-.about {
-    color: #333333;
-    font-size: 14px;
+  font-size: 14px;
+  color: #333333;
+  font-family: "Lato";
 }
 
 .ov_look {
-    color: #999999 !important;
-    font-size: 14px;
+  color: #999999 !important;
+  font-size: 14px;
+  font-family: "Lato";
 }
-
+.over_look {
+  color: #333333;
+  font-family: "Lato";
+}
 .code_dis {
-    font-size: 12px;
-    color: #999999;
+  font-size: 12px;
+  color: #999999;
+  font-family: "Lato";
 }
-
 
 /*Pro view Banner end */
-
 
 /*Pro speci  */
 
 .pro_spec {
-    background-color: #fff;
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  background-color: #fff;
+  font-family: "Source Sans Pro";
+}
+.round_btn_look {
+  border: 1px solid red;
+  border-style: dashed !important;
+  border-radius: 50px;
+  margin-left: 3px;
+  padding: 2px;
 }
 
 .about {
-    color: #333333;
-    font-size: 14px;
+  color: #333333;
+  font-size: 14px;
+  font-family: "Lato";
 }
 
-
 /*Pro speci end */
-
 
 /*Product review in  */
 
 .font_fam {
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Source Sans Pro";
 }
-
 
 /*Disoply review end */
-
-
-/* FOOTER    */
-
-#footer {
-    font-size: 14px;
-    background: #37517e;
-    font-family: "NYT Cheltenham Light", Helvetica, Arial, sans-serif;
-}
-
-#footer .footer-newsletter {
-    padding: 50px 0;
-    background: #f5f5f5;
-    text-align: center;
-    font-size: 15px;
-    color: #444444;
-}
-
-#footer .footer-newsletter p {
-    padding: 50px 0;
-    text-align: center;
-    font-size: 24px;
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-    color: #333333;
-}
-
-#footer .footer-top {
-    padding: 60px 0 30px 0;
-    background: #fff;
-}
-
-#footer .footer-top .footer-contact {
-    margin-bottom: 30px;
-}
-
-#footer .footer-top .footer-links {
-    margin-bottom: 30px;
-}
-
-#footer .footer-top .footer-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#footer .footer-top .footer-links ul li {
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-}
-
-#footer .footer-top .footer-links ul a {
-    color: #333333;
-    transition: 0.3s;
-    display: inline-block;
-    line-height: 1;
-    text-decoration: none;
-}
-
-#footer .footer-top .footer-links ul a:hover {
-    text-decoration: none;
-    color: black;
-}
-
-#footer .footer-bottom {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    color: #fff;
-}
-
-#footer .copyright {
-    text-decoration: none;
-    color: #9999;
-    font-size: 14px;
-}
-
-@media (max-width: 768px) {
-    #footer .footer-bottom {
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-    #footer .copyright,
-    #footer .credits {
-        text-align: center;
-        float: none;
-    }
-    #footer .credits {
-        padding-top: 4px;
-    }
-}

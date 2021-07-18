@@ -93,7 +93,7 @@ export default function Signup({onSignUp}) {
             </div>
 
             <div class="cart mt-4 align-items-center">
-            <button type="submit" class="btn text-uppercase w-100 creat_btn ">CREATE</button></div>
+            <button type="submit" class="btn text-uppercase w-100 creat_btn fw-bold ">CREATE</button></div>
             
           </Form>
         )}

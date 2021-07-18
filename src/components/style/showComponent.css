@@ -1,20 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 /*bann*/
 .bann {
-  background-color: #000000;
+  background-color: red;
   height: 320px;
 }
 .bann_discription {
   color: #fff;
   font-size: 13px;
+  font-family: "Lato";
+}
+.message_look {
+  font-family: "Lato";
 }
 .bann_title {
   color: #f5f5f5;
+  font-family: "Source Sans Pro";
 }
 .breadcrumb > .look a {
   color: #fff;
   text-decoration: none;
   font-size: 12px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Lato";
 }
 .dropdown-toggle:hover {
   background-color: #000000 !important;
@@ -23,7 +30,7 @@
 .count {
   color: gray;
   font-size: 13px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Source Sans Pro";
   font-weight: bold;
 }
 .vl {

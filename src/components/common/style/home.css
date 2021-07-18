@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 .home-content {
   color: red;
 }
@@ -36,7 +38,7 @@ a:hover {
   font-size: 17px;
   text-align: center;
   font-weight: bold;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Lato";
 }
 .btn_1:hover {
   background-color: red;
@@ -48,14 +50,14 @@ a:hover {
   text-decoration: none;
 }
 .banner_content_h1 {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Source Sans Pro";
   font-size: 38px;
   color: #000000;
 }
 .banner_content_p {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Lato";
   font-size: 15px;
-  color: #000000;
+  color: #333333;
 }
 @media screen and (max-width: 1024px) {
   .banner {
@@ -87,13 +89,13 @@ a:hover {
   height: 350px;
 }
 .category_box_h4 {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Source Sans Pro";
   font-size: 32px;
   text-decoration: none;
   color: #000000;
 }
 .category_box_h7 {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Lato";
   font-weight: bold;
   font-size: 16px;
   text-decoration: underline;
@@ -102,7 +104,7 @@ a:hover {
 /* end of category ends */
 /*gift subscription  */
 .gift_sub_heading {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Source Sans Pro";
   font-size: 30px;
 }
 .gift-bg {
@@ -114,110 +116,28 @@ a:hover {
   background-color: #ffffff;
   text-decoration: none;
   font-size: 16px;
-  font-weight: bold;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: bold !important;
+  font-family: "Lato";
 }
 .gift_h1 {
   color: #ffffff;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Source Sans Pro";
 }
 .gift_h6 {
   color: #ffffff;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Lato";
+  font-weight: bold !important;
 }
 @media screen and (max-width: 600px) {
   .gift_sub_heading {
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-family: "Source Sans Pro";
     font-size: 16px;
   }
 }
 
 /*gift subscription  end*/
 
-/* FOOTER    */
-#footer {
-  font-size: 14px;
-  background: #37517e;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-}
-
-#footer .footer-newsletter {
-  padding: 50px 0;
-  background: #f5f5f5;
-  text-align: center;
-  font-size: 15px;
-  color: #444444;
-}
-
-#footer .footer-newsletter p {
-  padding: 50px 0;
-  text-align: center;
-  font-size: 24px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  color: #333333;
-}
-
-#footer .footer-top {
-  padding: 60px 0 30px 0;
-  background: #fff;
-}
-
-#footer .footer-top .footer-contact {
-  margin-bottom: 30px;
-}
-
-#footer .footer-top .footer-links {
-  margin-bottom: 30px;
-}
-
-#footer .footer-top .footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#footer .footer-top .footer-links ul li {
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-}
-
-#footer .footer-top .footer-links ul a {
-  color: #333333;
-  transition: 0.3s;
-  display: inline-block;
-  line-height: 1;
-  text-decoration: none;
-}
-
-#footer .footer-top .footer-links ul a:hover {
-  text-decoration: none;
-  color: black;
-}
-
-#footer .footer-bottom {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  color: #fff;
-}
-
-#footer .copyright {
-  text-decoration: none;
-  color: #9999;
-  font-size: 14px;
-}
-
-@media (max-width: 768px) {
-  #footer .footer-bottom {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  #footer .copyright,
-  #footer .credits {
-    text-align: center;
-    float: none;
-  }
-  #footer .credits {
-    padding-top: 4px;
-  }
+.submit-content {
+  font-family: "Source Sans Pro";
+  font-size: 26px;
 }

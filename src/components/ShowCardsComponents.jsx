@@ -78,7 +78,7 @@ setPage(newPage);
         <div className="row">
           <div className="col-6 text-center">
             <div className="dropdown d-flex justify-content-center">
-              <DropdownButton
+              {/* <DropdownButton
                 variant='light'
                 alignRight
                 title={price}
@@ -89,8 +89,34 @@ setPage(newPage);
                   Less than $50
                 </Dropdown.Item>
                 <Dropdown.Item eventKey="$50-$100">$50-$100</Dropdown.Item>
-                {/* <Dropdown.Divider /> */}
-              </DropdownButton>
+              </DropdownButton> */}
+               {/* <div class="dropdown">
+                                            <button
+                                                class="btn btn-light dropdown-toggle"
+                                                type="button"
+                                                id="dropdownMenuButton"
+                                                data-mdb-toggle="dropdown"
+                                                aria-expanded="false"
+                                            >
+                                                change status
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            </ul> 
+                                        </div> */}
+                                        <div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
             </div>
           </div>
 

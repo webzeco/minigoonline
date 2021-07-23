@@ -5,7 +5,6 @@ import "./style/cart.css";
 const Cart = props => {
     const [Data, setData] = useState([]);//This will have all products Data and Prices
     const [Total, setTotal] = useState(0);//This will have total price
-
     //This function will update the totalPrice after every change in prices will check if bucket is checked or not
     const updateTotalPrice = () => {
         let sum = 0;

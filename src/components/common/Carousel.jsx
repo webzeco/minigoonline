@@ -16,7 +16,8 @@ export default function ControlledCarousel({ productData, title }) {
       <h1 className="gift_sub_heading text-center p-3 mt-3">
         {title && title}
       </h1>
-      <Carousel infiniteLoop swipeable swipeScrollTolerance centerMode={true} showIndicators={false} showThumbs={false} showStatus={false} showArrows={true} >
+      <Carousel infiniteLoop swipeable swipeScrollTolerance centerMode
+       showIndicators={false} showThumbs={false} showStatus={false} showArrows >
         <div class="row h-100 align-items-center g-2 mt-2">
           <ProductList pageDataList={first} />
         </div>

@@ -1,9 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 .shop-cart-h1 {
   font-size: 30px;
   color: #333333;
+  font-family: "Source Sans Pro";
 }
-.font_fam {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+.message_look {
+  font-family: "Lato";
 }
 .ho {
   border-bottom: 1px solid #e6e4e1 !important;
@@ -12,11 +15,18 @@
   font-size: 18px !important;
   font-weight: bold !important;
   color: #363636;
+  font-family: "Lato";
 }
 .pro_title_h5 {
   font-size: 22px !important;
   color: #333333;
+  font-family: "Source Sans Pro";
 }
-.img_back_col {
+.img_look_on_cart {
   background-color: #f5f3f2 !important;
+  height: 80px !important;
+  width: 80px !important;
+}
+.font_fam {
+  font-family: "Lato";
 }

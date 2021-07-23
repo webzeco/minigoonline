@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-
+import "./style/showProductDetail.css"
 import ntcjs from "ntcjs";
 import parse from "html-react-parser";
 import DatePicker from "react-datepicker";
@@ -85,15 +85,16 @@ export default class ShowProductDetail extends Component {
         {/* <!-- =======Product display in Banner area ======= --> */}
         <div className="container-fluid banner" style={{ marginTop: '110px' }}>
           <nav>
-            <ol className="breadcrumb  px-5">
+            <ol className="breadcrumb  px-5 pt-4">
               <li className="breadcrumb-item  look">
-                <a className='text-dark font-weight-bold' href="#">Home</a>
+                <a className='text-dark font-weight-bold message_look' href="#">Home</a>
               </li>
               <li className="breadcrumb-item text-black look">
-                <a className='text-dark' href="#">{product.title}</a>
+                <a className='text-dark message_look' href="#">{product.title}</a>
               </li>
             </ol>
           </nav>
+
           <div className="row justify-content-center ">
             <div className="col-md-6 w-40">
 
@@ -123,7 +124,7 @@ export default class ShowProductDetail extends Component {
               {/* caroausel end */}
             </div>
             <div className="col-md-6 back px-5">
-              <div className="product pt-4">
+              <div className="product pt-2">
                 <div className=" align-items-center w-75">
                   <div className="h5 text-uppercase pro_title_h5">
                     {product.title}
@@ -155,17 +156,21 @@ export default class ShowProductDetail extends Component {
                     variants={product.variants}
                   />
                   {/* Variants End */}
-                  <Customization setCustomizationOptions={this.setCustomizationOptions} customDate={product.customDate} customWriting={product.customWriting} />
+                  <Customization setCustomizationOptions={this.setCustomizationOptions} 
+                  customDate={product.customDate} customWriting={product.customWriting} />
                   {!product.sellOutofStock && product.availableQuantity < 10 ? (
                     <div className="fst-italic few_dis pt-5">Only few left</div>
                   ) : null}
 
                   <div className="cart mt-4 align-items-center">
-                    <button id='addtocart' className="btn text-uppercase w-50 add_cart_btn " onClick={this.handleAddToCart}>
+                    <button id='addtocart' className="btn text-uppercase w-50 add_cart_btn " 
+                    onClick={this.handleAddToCart}>
                       Add to cart
                     </button>
                   </div>
+                  <div className="over_look">
                   <Overview product={product} />
+                  </div>
                   <div className="code_dis pt-2 pb-3">
                     SKU: {product.stockKeepingUnit}
                   </div>
@@ -382,7 +387,7 @@ class ShowColorVariant extends Component {
               return (
                 <li className="list-inline-item ">
                   <input
-                    className="btn-check"
+                    className="btn-check "
                     id={tag.id + tag.text}
                     type="radio"
                     value={tag.text}
@@ -391,7 +396,7 @@ class ShowColorVariant extends Component {
                   />
                   <label className="btn p-0 m-0" for={tag.id + tag.text}>
                     <i
-                      className="fas fa-circle"
+                      className="fas fa-circle round_btn_look"
                       style={{ color: tag.text }}
                     ></i>
                   </label>
@@ -434,7 +439,7 @@ class ShowNonColorVariant extends Component {
           <h6 className="color_Demo_h6 px-2 ">
             {this.state.choosedVariantType}
           </h6>
-          <a href="#">
+          <a href="#" className=" mx-5">
             <p className="px-5 mx-5 size-guid_look ">Size Guid</p>
           </a>
         </div>
@@ -539,7 +544,7 @@ class AddReview extends Component {
             {/* caroausel end */}
 
           </div>
-          <h6 class="text-center pt-4 pb-2 ov_look"> CUSTOMER REVIEWS </h6>
+          <h6 class="text-center pt-4 pb-2 fw-bold ov_look"> CUSTOMER REVIEWS </h6>
           <a
             class="re_look text-center fw-bold mb-4"
             data-bs-toggle="collapse"
@@ -613,7 +618,7 @@ class AddReview extends Component {
                   placeholder="write your comments here"
                 ></textarea>
               </div>
-              <button type="submit" class="btn mb-3 sub_review_btn float-end">
+              <button type="submit" class="btn mb-3 sub_review_btn float-end bg-danger text-white">
                 Submit
               </button>
             </form>

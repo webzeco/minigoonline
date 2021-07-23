@@ -13,7 +13,7 @@ export default function HomeGift() {
     <img src="https://www.nicepng.com/png/detail/328-3288922_the-cooks-cooking-school-cooking-school-logo.png" height="35" alt='img'/>
     <p className="h1 gift_h1 pb-2 pt-5">A gift for every taste.</p>
     <p className="h6 gift_h6 pb-5">give NYT Cooking for $40</p>
-    <Link href="#" className="btn_give px-5 p-3">GIVE NOW</Link>
+    <Link href="#" className="btn_give px-5 p-3 fw-bold">GIVE NOW</Link>
   </div>
   </div>
   </div>

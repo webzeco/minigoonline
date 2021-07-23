@@ -50,7 +50,7 @@ setPage(newPage);
       {/* {console.log({to:page})} */}
       {/* <!-- ======= bann area ======= --> */}
       <div className="container-fluid bann pt-5 mt-5">
-        <ol className="breadcrumb pt-2 m-3 px-5">
+        <ol className="breadcrumb pt-4 m-3 px-5">
           <li className="breadcrumb-item look">
             <a href="/">Home</a>
           </li>
@@ -61,7 +61,7 @@ setPage(newPage);
         <div className="row justify-content-center">
           <div className="col-auto w-50">
             <div className="info text-center">
-              <span className="h2 bann_title text-center">{coll}</span>
+              <span className="h2 bann_title fw-bold text-center">{coll}</span>
               <br></br>
               <span className="h7 bann_discription justify-content-center ">
                 Take The Times wherever you go. Stand out in a crowd and look.
@@ -77,12 +77,17 @@ setPage(newPage);
       <div className="container-fluid border mt-1 p-2">
         <div className="row">
           <div className="col-6 text-center">
+<<<<<<< HEAD
             <div className="dropdown d-flex justify-content-center">
               {/* <DropdownButton
+=======
+            <div className="dropdown d-flex justify-content-center message_look">
+              <DropdownButton
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
                 variant='light'
                 alignRight
                 title={price}
-                id="dropdown-menu-align-right"
+                id="dropdown-menu-align-right "
                 onSelect={handlePriceSelect}
               >
                 <Dropdown.Item eventKey="Less than $50">
@@ -122,12 +127,12 @@ setPage(newPage);
 
           <div className="col-6 d-flex justify-content-center">
             <span className=" pt-2  count mx-3 ">{totalPageItems} items</span>
-            <div className="dropdown">
+            <div className="dropdown message_look fw-bold">
               <DropdownButton
                 variant='light'
                 alignRight
                 title={sort}
-                id="dropdown-menu-align-right"
+                id="dropdown-menu-align-right "
                 onSelect={handleSortSelect}
               >
                 <Dropdown.Item eventKey="New Arrivals">New Arrivals</Dropdown.Item>
@@ -154,10 +159,11 @@ setPage(newPage);
       {/* <!-- ======= pagination ======= -->  */}
  
 
-      <ul className="pagination justify-content-center p-4">
+      <ul className="pagination justify-content-center p-4  message_look">
       {/* {console.log({dd:totalPageItems})} */}
 
-      <Pagination  itemsCount={totalPageItems} pageSize={page.pageSize} currentPage={page.currentPage} onPageChange={changePageHandler} />
+      <Pagination className="bg-danger"  itemsCount={totalPageItems} pageSize={page.pageSize}
+       currentPage={page.currentPage} onPageChange={changePageHandler} />
         {/* <li className="page-item">
           <a className="page-link" href="/" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>

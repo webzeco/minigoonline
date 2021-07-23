@@ -7,7 +7,7 @@ import NotFound from "./common/NotFound";
 import Home from "./Home";
 import { CollectionContext } from "./contexts/CollectionContext";
 import { UserContext } from './contexts/UserContext';
-import "./style/global.css";
+
 import ShowProductDetail from "./ShowProductDetail";
 import ShowComponents from "./ShowCardsComponents";
 import Signup from "./Signup";

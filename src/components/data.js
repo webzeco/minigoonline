@@ -13,7 +13,11 @@ export const productData = [
         sellOutofStock: false,
         availableQuantity: 9,
         physicalProduct: true,
+<<<<<<< HEAD
         images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+        images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
         weight: "0.30",
         country: "Pakistan",
         estimatedProcessingTime: '3 days',
@@ -70,7 +74,11 @@ export const productData = [
         sellOutofStock: false,
         availableQuantity: 9,
         physicalProduct: true,
+<<<<<<< HEAD
         images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+        images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
         weight: "0.30",
         country: "Pakistan",
         deliveryTime: true, //will be used to set Option for delivery on specific date
@@ -129,7 +137,11 @@ export const productData = [
         sellOutofStock: false,
         availableQuantity: 9,
         physicalProduct: true,
+<<<<<<< HEAD
         images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+        images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
         weight: "0.30",
         country: "Pakistan",
         deliveryTime: true, //will be used to set Option for delivery on specific date
@@ -182,7 +194,11 @@ export const productData = [
         sellOutofStock: false,
         availableQuantity: 9,
         physicalProduct: true,
+<<<<<<< HEAD
         images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+        images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
         weight: "0.30",
         country: "Pakistan",
         deliveryTime: true, //will be used to set Option for delivery on specific date
@@ -235,7 +251,11 @@ export const productData = [
         sellOutofStock: false,
         availableQuantity: 9,
         physicalProduct: true,
+<<<<<<< HEAD
         images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+        images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
         weight: "0.30",
         country: "Pakistan",
         customDate: true, //will be used very similar to custom Writng
@@ -288,7 +308,11 @@ export const productData = [
         sellOutofStock: false,
         availableQuantity: 9,
         physicalProduct: true,
+<<<<<<< HEAD
         images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+        images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
         weight: "0.30",
         country: "Pakistan",
         deliveryTime: true, //will be used to set Option for delivery on specific date
@@ -342,7 +366,11 @@ export const productData = [
         sellOutofStock: false,
         availableQuantity: 9,
         physicalProduct: true,
+<<<<<<< HEAD
         images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+        images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
         weight: "0.30",
         country: "Pakistan",
         deliveryTime: true, //will be used to set Option for delivery on specific date
@@ -404,7 +432,11 @@ export const productData = [
 //         sellOutofStock: true,
 //         availableQuantity: 50,
 //         physicalProduct: true,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //         weight: "0.30",
 //         country: "Pakistan",
 //             variants: [
@@ -436,7 +468,11 @@ export const productData = [
 //             compareAtPrice: 23,
 //             costPerItem: 60,
 //             chargeTax: false,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //             stockKeepingUnit: "no number",
 //             barcode: "ISUN0945",
 //             trackQuantity: false,
@@ -476,7 +512,11 @@ export const productData = [
 //             compareAtPrice: 23,
 //             costPerItem: 60,
 //             chargeTax: false,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //             stockKeepingUnit: "no number",
 //             barcode: "ISUN0945",
 //             trackQuantity: false,
@@ -516,7 +556,11 @@ export const productData = [
 //             compareAtPrice: 23,
 //             costPerItem: 60,
 //             chargeTax: false,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //             stockKeepingUnit: "no number",
 //             barcode: "ISUN0945",
 //             trackQuantity: false,
@@ -556,7 +600,11 @@ export const productData = [
 //             compareAtPrice: 23,
 //             costPerItem: 60,
 //             chargeTax: false,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //             stockKeepingUnit: "no number",
 //             barcode: "ISUN0945",
 //             trackQuantity: false,
@@ -596,7 +644,11 @@ export const productData = [
 //             compareAtPrice: 23,
 //             costPerItem: 60,
 //             chargeTax: false,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //             stockKeepingUnit: "no number",
 //             barcode: "ISUN0945",
 //             trackQuantity: false,
@@ -636,7 +688,11 @@ export const productData = [
 //             compareAtPrice: 23,
 //             costPerItem: 60,
 //             chargeTax: false,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //             stockKeepingUnit: "no number",
 //             barcode: "ISUN0945",
 //             trackQuantity: false,
@@ -676,7 +732,11 @@ export const productData = [
 //             compareAtPrice: 23,
 //             costPerItem: 60,
 //             chargeTax: false,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //             stockKeepingUnit: "no number",
 //             barcode: "ISUN0945",
 //             trackQuantity: false,
@@ -716,7 +776,11 @@ export const productData = [
 //             compareAtPrice: 23,
 //             costPerItem: 60,
 //             chargeTax: false,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //             stockKeepingUnit: "no number",
 //             barcode: "ISUN0945",
 //             trackQuantity: false,
@@ -756,7 +820,11 @@ export const productData = [
 //             compareAtPrice: 23,
 //             costPerItem: 60,
 //             chargeTax: false,
+<<<<<<< HEAD
 //             images: ['https://sb.kaleidousercontent.com/800x533/9e7eebd2c6/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb-removebg.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+=======
+//             images: ['https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png', 'https://www.freeiconspng.com/uploads/women-bag-png-32.png'],
+>>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
 //             stockKeepingUnit: "no number",
 //             barcode: "ISUN0945",
 //             trackQuantity: false,

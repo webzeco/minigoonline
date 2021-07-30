@@ -18,6 +18,12 @@ import Forgot from "./Forgot";
 import Account from "./Account";
 import { ProductDetailContext } from "./contexts/ProductDetailContext";
 import { retry } from "async";
+import { login } from "../services/authService";
+import { toast, ToastContainer } from "react-toastify";
+import Navbar from "./common/Navbar";
+import { getAllCategories } from "../services/categoryService";
+import { getMe } from "../services/UsersService";
+import { deleteProduct, getAllProducts } from "../services/productServices";
 const Main = () => {
   const history = useHistory();
   const [user, setUser] = useState();
@@ -26,12 +32,20 @@ const Main = () => {
   const [product, setProduct] = useState();
   const [relatedProd, setRelatedProd] = useState();
   const [cartData, setCartData] = useState([]);
-  useEffect(
-    () => {
-      setItems(productData);
-    },
-    []);
+  const [categories, setCategories] = useState();
+  const [products, setProducts] = useState([]);
 
+
+  
+    useEffect(() => {
+      getAllCategoriesHandler();
+      getAllProductHandler();
+      getMeHandler();
+      // alert("JSON.stringify(categories)");
+      return () => {
+        console.log('clean up');
+      }
+    }, [])
   const removeCartItem = (e) => {
     setCartData(cartData.filter(data => data.id === (e.target.value - 1)))
   }
@@ -46,14 +60,48 @@ const Main = () => {
   const setCollectionHandler = (coll) => {
     setColl(coll);
   };
-  const loginHandler = (user) => {
-    setUser(user);
-    history.push('/');
+  const loginHandler = async (user) => {
+    try {
+      const { data } = await login(user);
+      console.log(data);
+      localStorage.setItem("jwt", data.token);
+      toast.success("logged in successfully !!!", {
+        position: toast.POSITION.TOP_CENTER
+      });
+      // history.push('/');
+      window.location='/';
+    } catch (error) {
+      toast.error("Incorrect username or password", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  }
+  const getAllCategoriesHandler = async () => {
+    const data  = await getAllCategories();
+    // console.log({data});
+    setCategories(data.data.data);
   }
   const signUpHandler = (user) => {
     setUser(user);
     history.push('/');
   }
+  const getMeHandler = async () => {
+    const { data } = await getMe();
+    console.log({ data });
+    setUser(data.data);
+  }
+  const getAllProductHandler = async () => {
+    try {
+      const { data } = await getAllProducts();
+      setProducts(data.data);
+    } catch (error) {
+      toast.error("something went wrong to get all products", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  console.log({products});
+  }
+  
   const forgotHandler = (user) => {
     ('email sent!!!!');
     history.push('/');
@@ -62,21 +110,20 @@ const Main = () => {
     console.log('add to cart');
     history.push('/cart');
   }
-
   const productDetailHandler = (prod) => {
     setProduct(prod);
     setRelatedProd(items);
-    
     history.push('/showProductDetail');
   }
-
   return (
     <UserContext.Provider value={{ user: user }}>
       <ProductDetailContext.Provider value={{ product, relatedProd, productDetailHandler }}>
         <CollectionContext.Provider value={{ coll: collection, setCollectionHandler }}>
           <div>
-            <Header />
-            <hr />
+          <ToastContainer style={{ width: "322px" }} />
+            {/* <Header /> */}
+            <Navbar categories={categories} />
+            {/* <hr /> */}
             <Switch>
               {/* <Route path="/showProduct"   component={ ShowComponents} /> */}
               <Route
@@ -88,7 +135,7 @@ const Main = () => {
                 exact
                 path="/showProduct"
                 render={(props) => (
-                  <ShowComponents productData={productData} {...props} />
+                  <ShowComponents productData={products} {...props} />
                 )}
               />
               <Route

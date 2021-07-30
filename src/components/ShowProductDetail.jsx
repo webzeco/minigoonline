@@ -90,7 +90,7 @@ export default class ShowProductDetail extends Component {
                 <a className='text-dark font-weight-bold message_look' href="#">Home</a>
               </li>
               <li className="breadcrumb-item text-black look">
-                <a className='text-dark message_look' href="#">{product.title}</a>
+                <a className='text-dark message_look' href="#">{product.name}</a>
               </li>
             </ol>
           </nav>
@@ -121,13 +121,43 @@ export default class ShowProductDetail extends Component {
   </button>
 </div>
             */}
+               <div id="carouselExampleIndicators" class="carousel slide" style={{background:'#D3D3D3'}} data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          {product.images.map((image,index )=>{
+            console.log({index});
+            return <div class={`carousel-item ${index===0?'active':''}`}>
+            <img src={`${process.env.REACT_APP_URL}/img/${image}`} class="d-block w-100" height="400" alt="..."/>
+          </div>
+          })}
+           {/* <div class={`carousel-item`} >
+            <img src="https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png" class="d-block w-100" height="400" alt="..."/>
+          </div> */}
+          {/*
+          <div class="carousel-item">
+            <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" class="d-block w-100" height="400" alt="..."/>
+          </div> */}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
               {/* caroausel end */}
             </div>
             <div className="col-md-6 back px-5">
               <div className="product pt-2">
                 <div className=" align-items-center w-75">
                   <div className="h5 text-uppercase pro_title_h5">
-                    {product.title}
+                    {product.name}
                   </div>
                   <div className="h5 text-uppercase pro_price_h5">
                     {product.discount === 0 ? (
@@ -266,10 +296,10 @@ const Customization = (props) => {
 const Reviews = (props) => {
   function avergeRating() {
     let sum = 0;
-    props.reviews.map((review) => {
+    props.reviews?.map((review) => {
       sum += review.rating;
     });
-    return Math.ceil(sum / props.reviews.length);
+    return Math.ceil(sum / props.reviews?.length);
   }
   function fakeArray(length) {
     const fakearr = [];
@@ -301,7 +331,7 @@ const Reviews = (props) => {
         />
       </ul>
       <a href="#">
-        <p className="mb-2 re_look">{props.reviews.length} REVIEWS</p>
+        <p className="mb-2 re_look">{props.reviews?.length} REVIEWS</p>
       </a>
       <div className="vl mb-1 mx-4"></div>
       <a href="#">
@@ -413,7 +443,7 @@ class ShowNonColorVariant extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      choosedVariantType: this.props.variant.tags[0].text,
+      choosedVariantType: this.props.variant?.tags[0]?.text,
     };
     this.onClickHandler = this.onClickHandler.bind(this);
   }
@@ -475,11 +505,11 @@ const Overview = (props) => {
       <div className="ho pt-4 mb-3 w-100"></div>
 
       <span className="fw-bold ov_look">OVERVIEW </span>
-      {text.map((part) => {
+      {/* {text?.map((part) => {
         if (text.indexOf(part) > text.length / 3) {
           return part;
         }
-      })}
+      })} */}
       <p className="about">{ }</p>
       <a
         className="re_look fw-bold mb-4"
@@ -493,11 +523,12 @@ const Overview = (props) => {
       </a>
       <div className="collapse" id="collapseExample">
         <div className="about pb-3">
-          {text.map((part) => {
+          {/* {text.map((part) => {
             if (text.indexOf(part) <= text.length / 3) {
               return part;
             }
-          })}
+          })} */}
+          {text}
         </div>
       </div>
     </>

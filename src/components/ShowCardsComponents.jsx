@@ -10,7 +10,7 @@ import { filterByPrice } from "../utils/filter";
 import { sortBy } from "../utils/sort";
 export default function ShowComponents({ productData }) {
   const {coll,setCollectionHandler}= useContext(CollectionContext);
-  const [page,setPage] = useState({currentPage:1,itemsCount:productData.length,pageSize:2});
+  const [page,setPage] = useState({currentPage:1,itemsCount:productData.length,pageSize:8});
   const [price, setPrice] = useState("Price");
   const [sort, setSort] = useState("Sort");
   const [data, setData] = useState();
@@ -43,13 +43,11 @@ setPage(newPage);
   const handleSortSelect = (e) => {
     setSort(e);
   };
-  
-  
   return (
     <div>
       {/* {console.log({to:page})} */}
       {/* <!-- ======= bann area ======= --> */}
-      <div className="container-fluid bann pt-5 mt-5">
+      <div className="container-fluid bann  mt-2">
         <ol className="breadcrumb pt-4 m-3 px-5">
           <li className="breadcrumb-item look">
             <a href="/">Home</a>
@@ -77,13 +75,8 @@ setPage(newPage);
       <div className="container-fluid border mt-1 p-2">
         <div className="row">
           <div className="col-6 text-center">
-<<<<<<< HEAD
-            <div className="dropdown d-flex justify-content-center">
-              {/* <DropdownButton
-=======
             <div className="dropdown d-flex justify-content-center message_look">
               <DropdownButton
->>>>>>> ca179c15e8573c41e5fdea4e65f69a35979141d1
                 variant='light'
                 alignRight
                 title={price}
@@ -94,7 +87,7 @@ setPage(newPage);
                   Less than $50
                 </Dropdown.Item>
                 <Dropdown.Item eventKey="$50-$100">$50-$100</Dropdown.Item>
-              </DropdownButton> */}
+              </DropdownButton> 
                {/* <div class="dropdown">
                                             <button
                                                 class="btn btn-light dropdown-toggle"
@@ -111,17 +104,7 @@ setPage(newPage);
                                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                                             </ul> 
                                         </div> */}
-                                        <div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown link
-  </a>
-
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
+                                      
             </div>
           </div>
 

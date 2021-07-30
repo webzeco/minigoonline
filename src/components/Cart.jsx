@@ -43,7 +43,7 @@ const Cart = props => {
         setData(Data.map(
             (data) => {
 
-                if (data.product.id == e.target.id) {
+                if (data.product.id === e.target.id) {
                     data.quantity = e.target.value
                 }
                 return data;
@@ -104,6 +104,7 @@ const Cart = props => {
                 {
                     Data.map(
                         (data) => <ShowCartProduct
+                            
                             quantity={data.quantity}
                             productPrice={data.productPrice}
                             product={data.product}

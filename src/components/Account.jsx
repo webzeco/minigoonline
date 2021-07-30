@@ -1,7 +1,16 @@
 import React from "react";
+import { toast } from "react-toastify";
 import './style/account.css';
 
 export default function Account() {
+  const logoutHandler = async () => {
+      localStorage.removeItem('jwt');
+      toast.success("logout  successfully !!!", {
+        position: toast.POSITION.TOP_CENTER
+      });
+      // history.push('/');
+      window.location='/';
+  }
   return (
     <div>
       <div class="container pro_spec pt-5 pb-5 mt-3">
@@ -12,8 +21,8 @@ export default function Account() {
                 <div class="h5 text-uppercase pro_title_h5">My Account</div>
               </div>
               <div class="col-2 justify-content-center">
-                <a href="#">
-                  <p class="re_look text-center  pt-2">Logout</p>
+                <a href="/">
+                  <p onClick={logoutHandler} class="re_look text-center  pt-2">Logout</p>
                 </a>
               </div>
             </div>

@@ -86,7 +86,7 @@ class OptionComponent extends Component {
                 data.selectedOption = this.state.selectedOption;
                 data.tags = this.state.tags;
                 let indexitem;
-                variantsData.map(
+                variantsData?.map(
                     (item, index) => {
                         if (item.id === this.props.id) {
                             indexitem = index
@@ -95,7 +95,6 @@ class OptionComponent extends Component {
                 );
                 variantsData[indexitem] = data;
                 console.log(JSON.stringify(variantsData));
-
             }
 
         )

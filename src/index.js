@@ -7,12 +7,13 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { BrowserRouter as Router } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+    <App />
     </Router>
   </React.StrictMode>
   ,

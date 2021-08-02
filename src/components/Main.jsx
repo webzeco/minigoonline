@@ -6,12 +6,12 @@ import Header from "./common/Header";
 import NotFound from "./common/NotFound";
 import Home from "./Home";
 import { CollectionContext } from "./contexts/CollectionContext";
-import { UserContext } from './contexts/UserContext';
+import { UserContext } from "./contexts/UserContext";
 
 import ShowProductDetail from "./ShowProductDetail";
 import ShowComponents from "./ShowCardsComponents";
 import Signup from "./Signup";
-import Cart from './Cart';
+import Cart from "./Cart";
 import { productData } from "./data";
 import Login from "./Login";
 import Forgot from "./Forgot";
@@ -36,28 +36,27 @@ const Main = () => {
   const [categories, setCategories] = useState();
   const [products, setProducts] = useState([]);
 
-
-  
-    useEffect(() => {
-      getAllCategoriesHandler();
-      getAllProductHandler();
-      getMeHandler();
-      // alert("JSON.stringify(categories)");
-      return () => {
-        console.log('clean up');
-      }
-    }, [])
+  useEffect(() => {
+    getAllCategoriesHandler();
+    getAllProductHandler();
+    getMeHandler();
+    // alert("JSON.stringify(categories)");
+    return () => {
+      console.log("clean up");
+    };
+  }, []);
   const removeCartItem = (e) => {
-    setCartData(cartData.filter(data => data.id === (e.target.value - 1)))
-  }
+    console.log("Remove Cart Item called" + e.target.id);
+
+    setCartData(cartData.filter((data) => data.id == e.target.value - 1));
+  };
 
   const handleCartData = (data) => {
-
-    let id = (cartData.length + 1);
-    data.id = id
+    let id = cartData.length + 1;
+    data.id = id;
     data.quantity = 1;
-    setCartData([...cartData, data])
-  }
+    setCartData([...cartData, data]);
+  };
   const setCollectionHandler = (coll) => {
     setColl(coll);
   };
@@ -67,30 +66,30 @@ const Main = () => {
       console.log(data);
       localStorage.setItem("jwt", data.token);
       toast.success("logged in successfully !!!", {
-        position: toast.POSITION.TOP_CENTER
+        position: toast.POSITION.TOP_CENTER,
       });
       // history.push('/');
-      window.location='/';
+      window.location = "/";
     } catch (error) {
       toast.error("Incorrect username or password", {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-  }
+  };
   const getAllCategoriesHandler = async () => {
-    const data  = await getAllCategories();
+    const data = await getAllCategories();
     // console.log({data});
     setCategories(data.data.data);
-  }
+  };
   const signUpHandler = (user) => {
     setUser(user);
-    history.push('/');
-  }
+    history.push("/");
+  };
   const getMeHandler = async () => {
     const { data } = await getMe();
     console.log({ data });
     setUser(data.data);
-  }
+  };
   const getAllProductHandler = async () => {
     try {
       const { data } = await getAllProducts();
@@ -100,28 +99,32 @@ const Main = () => {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-  console.log({products});
-  }
-  
+    console.log({ products });
+  };
+
   const forgotHandler = (user) => {
-    ('email sent!!!!');
-    history.push('/');
-  }
+    ("email sent!!!!");
+    history.push("/");
+  };
   const addToCratHandler = (user) => {
-    console.log('add to cart');
-    history.push('/cart');
-  }
+    console.log("add to cart");
+    history.push("/cart");
+  };
   const productDetailHandler = (prod) => {
     setProduct(prod);
     setRelatedProd(items);
-    history.push('/showProductDetail');
-  }
+    history.push("/showProductDetail");
+  };
   return (
     <UserContext.Provider value={{ user: user }}>
-      <ProductDetailContext.Provider value={{ product, relatedProd, productDetailHandler }}>
-        <CollectionContext.Provider value={{ coll: collection, setCollectionHandler }}>
+      <ProductDetailContext.Provider
+        value={{ product, relatedProd, productDetailHandler }}
+      >
+        <CollectionContext.Provider
+          value={{ coll: collection, setCollectionHandler }}
+        >
           <div>
-          <ToastContainer style={{ width: "322px" }} />
+            <ToastContainer style={{ width: "322px" }} />
             {/* <Header /> */}
             <Navbar categories={categories} />
             
@@ -144,7 +147,13 @@ const Main = () => {
                 exact
                 path="/showProductDetail"
                 render={(props) => (
-                  <ShowProductDetail cartData={cartData} addToCratHandler={addToCratHandler} sendCartData={handleCartData} product={product} {...props} />
+                  <ShowProductDetail
+                    cartData={cartData}
+                    addToCratHandler={addToCratHandler}
+                    sendCartData={handleCartData}
+                    product={product}
+                    {...props}
+                  />
                 )}
               />
               <Route
@@ -164,9 +173,7 @@ const Main = () => {
               <Route
                 exact
                 path="/login"
-                render={(props) => (
-                  <Login onLogin={loginHandler} {...props} />
-                )}
+                render={(props) => <Login onLogin={loginHandler} {...props} />}
               />
               <Route
                 exact
@@ -184,7 +191,11 @@ const Main = () => {
               <Route
                 path="/cart"
                 render={(props) => (
-                  <Cart removeItem={(id) => removeCartItem(id)} cartData={cartData} {...props} />
+                  <Cart
+                    removeItem={(e) => removeCartItem(e)}
+                    cartData={cartData}
+                    {...props}
+                  />
                 )}
               />
               <Route component={NotFound} />

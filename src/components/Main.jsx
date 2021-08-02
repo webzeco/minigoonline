@@ -24,6 +24,7 @@ import Navbar from "./common/Navbar";
 import { getAllCategories } from "../services/categoryService";
 import { getMe } from "../services/UsersService";
 import { deleteProduct, getAllProducts } from "../services/productServices";
+import Payment from "./Payment";
 const Main = () => {
   const history = useHistory();
   const [user, setUser] = useState();
@@ -123,6 +124,7 @@ const Main = () => {
           <ToastContainer style={{ width: "322px" }} />
             {/* <Header /> */}
             <Navbar categories={categories} />
+            
             {/* <hr /> */}
             <Switch>
               {/* <Route path="/showProduct"   component={ ShowComponents} /> */}
@@ -150,6 +152,13 @@ const Main = () => {
                 path="/signup"
                 render={(props) => (
                   <Signup onSignUp={signUpHandler} {...props} />
+                )}
+              />
+               <Route
+                exact
+                path="/payment"
+                render={(props) => (
+                  <Payment   />
                 )}
               />
               <Route

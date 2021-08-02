@@ -36,6 +36,7 @@
     "react-responsive-carousel": "^3.2.18",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-stripe-checkout": "^2.6.3",
     "react-tag-input": "^4.8.1",
     "react-toastify": "^7.0.4",
     "web-vitals": "^1.1.2",

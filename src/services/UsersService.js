@@ -31,7 +31,7 @@ export  function  updatePassword(data) {
 const AllServices = {
     addUser,
     getAllUsers,
-    getMe:getMe,
+    getMe,
     updateMe,
     updatePassword
 }

@@ -1,4 +1,3 @@
-import { iteratee } from "lodash";
 import React, { useEffect, useState } from "react";
 import "./style/cart.css";
 
@@ -70,14 +69,21 @@ const Cart = (props) => {
   }
   //On Mounting of Cart variable initialization
   useEffect(() => {
+    console.log("This is not calling");
     const cartData = props.cartData;
     const tempArr = cartData.map((data) => {
       return assignValues(data);
     });
-    console.log(tempArr);
     setData(tempArr);
-    updateTotalPrice();
   }, []);
+
+  useEffect(() => {
+    const cartData = props.cartData;
+    const tempArr = cartData.map((data) => {
+      return assignValues(data);
+    });
+    setData(tempArr);
+  }, [props.cartData]);
 
   //Checkout buttons enable disable handler
   const handleAgreement = (e) => {
@@ -134,11 +140,11 @@ const Cart = (props) => {
                     placeholder="Write a Meassage..."
                   ></textarea>
                 </div>
-                <div className="col-lg-12 ">
+                <div className="col-lg-12">
                   {Data.map((obj) => {
                     return (
                       <>
-                        <div className="d-flex  ">
+                        <div className="d-flex">
                           <img
                             src="https://banner2.cleanpng.com/20180402/kpq/kisspng-shopping-cart-royalty-free-clip-art-shopping-basket-5ac267268e7582.8242265715226898305835.jpg"
                             height="25px"
@@ -150,7 +156,6 @@ const Cart = (props) => {
                             type="checkbox"
                             className="mt-3"
                             onChange={handleBucketChange}
-                            defaultValue="0"
                           />
                           <label
                             className="px-1 mt-2 message_look"
@@ -236,10 +241,12 @@ const ShowCartProduct = (props) => {
                   id={props.product.id}
                   type="number"
                   onChange={(e) => props.handleQuantityChange(e)}
+                  defaultValue="1"
                 />
                 <button
                   type="button"
                   className="btn btn-white text-center  "
+                  id={props.product.id - 1}
                   onClick={props.removeCartItem}
                 >
                   x Remove

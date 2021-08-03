@@ -46,10 +46,12 @@ const Main = () => {
     };
   }, []);
   const removeCartItem = (e) => {
-    console.log("Remove Cart Item called" + e.target.id);
-
-    setCartData(cartData.filter((data) => data.id == e.target.value - 1));
+    console.log(e.target.id);
+    setCartData(cartData.filter((data) => data.id == e.target.value));
   };
+  useEffect(() => {
+    console.log(cartData);
+  }, [cartData]);
 
   const handleCartData = (data) => {
     let id = cartData.length + 1;
@@ -107,7 +109,6 @@ const Main = () => {
     history.push("/");
   };
   const addToCratHandler = (user) => {
-    console.log("add to cart");
     history.push("/cart");
   };
   const productDetailHandler = (prod) => {
@@ -194,7 +195,6 @@ const Main = () => {
                   <Cart
                     removeItem={(e) => removeCartItem(e)}
                     cartData={cartData}
-                    {...props}
                   />
                 )}
               />

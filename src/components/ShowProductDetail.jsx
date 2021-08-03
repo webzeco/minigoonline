@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import "./style/showProductDetail.css"
+import "./style/showProductDetail.css";
 import ntcjs from "ntcjs";
 import parse from "html-react-parser";
 import DatePicker from "react-datepicker";
@@ -13,8 +13,8 @@ export default class ShowProductDetail extends Component {
     super(props);
     this.state = {
       selectedVariants: [],
-      customWriting: '',
-      customDate: null
+      customWriting: "",
+      customDate: null,
     };
     this.handleSelected = this.handleSelected.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -64,40 +64,44 @@ export default class ShowProductDetail extends Component {
   setCustomizationOptions(writing, date) {
     this.setState({
       customWriting: writing,
-      customeDate: date
-    })
+      customeDate: date,
+    });
   }
   componentDidUpdate() {
-    this.props.cartData.map(
-      (cart) => {
-        if (cart.title === this.props.product.title) {
-          document.getElementById('addtocart').disabled = true
-          document.getElementById('addtocart').innerHTML = 'Already added to Cart'
-        }
+    console.log(this.props.cartData);
+    console.log(this.props.product);
+    this.props.cartData.map((cart) => {
+      if (cart.title === this.props.product.title) {
+        document.getElementById("addtocart").disabled = true;
+        document.getElementById("addtocart").innerHTML =
+          "Already added to Cart";
       }
-    )
+    });
   }
   render() {
     const product = this.props.product;
 
     return (
-      <div className='mt-5'>
+      <div className="mt-5">
         {/* <!-- =======Product display in Banner area ======= --> */}
-        <div className="container-fluid banner" style={{ marginTop: '110px' }}>
+        <div className="container-fluid banner" style={{ marginTop: "110px" }}>
           <nav>
             <ol className="breadcrumb  px-5 pt-4">
               <li className="breadcrumb-item  look">
-                <a className='text-dark font-weight-bold message_look' href="#">Home</a>
+                <a className="text-dark font-weight-bold message_look" href="#">
+                  Home
+                </a>
               </li>
               <li className="breadcrumb-item text-black look">
-                <a className='text-dark message_look' href="#">{product.name}</a>
+                <a className="text-dark message_look" href="#">
+                  {product.name}
+                </a>
               </li>
             </ol>
           </nav>
 
           <div className="row justify-content-center ">
             <div className="col-md-6 w-40">
-
               {/* caroausel start */}
               {/* <div id="carouselExampleControlsNoTouching" class="carousel slide banner" data-bs-touch="false" data-bs-interval="false">
   <div class="carousel-inner" style={{width:'60%',placeItems:'center',alignItems:'center',marginLeft:'20%'}}>
@@ -121,36 +125,83 @@ export default class ShowProductDetail extends Component {
   </button>
 </div>
             */}
-               <div id="carouselExampleIndicators" class="carousel slide" style={{background:'#D3D3D3'}} data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-          {product.images.map((image,index )=>{
-            console.log({index});
-            return <div class={`carousel-item ${index===0?'active':''}`}>
-            <img src={`${process.env.REACT_APP_URL}/img/${image}`} class="d-block w-100" height="400" alt="..."/>
-          </div>
-          })}
-           {/* <div class={`carousel-item`} >
+              <div
+                id="carouselExampleIndicators"
+                class="carousel slide"
+                style={{ background: "#D3D3D3" }}
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-indicators">
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                  ></button>
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+                  ></button>
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"
+                  ></button>
+                </div>
+                <div class="carousel-inner">
+                  {product.images.map((image, index) => {
+                    console.log({ index });
+                    return (
+                      <div
+                        class={`carousel-item ${index === 0 ? "active" : ""}`}
+                      >
+                        <img
+                          src={`${process.env.REACT_APP_URL}/img/${image}`}
+                          class="d-block w-100"
+                          height="400"
+                          alt="..."
+                        />
+                      </div>
+                    );
+                  })}
+                  {/* <div class={`carousel-item`} >
             <img src="https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png" class="d-block w-100" height="400" alt="..."/>
           </div> */}
-          {/*
+                  {/*
           <div class="carousel-item">
             <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" class="d-block w-100" height="400" alt="..."/>
           </div> */}
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
               {/* caroausel end */}
             </div>
             <div className="col-md-6 back px-5">
@@ -186,20 +237,26 @@ export default class ShowProductDetail extends Component {
                     variants={product.variants}
                   />
                   {/* Variants End */}
-                  <Customization setCustomizationOptions={this.setCustomizationOptions} 
-                  customDate={product.customDate} customWriting={product.customWriting} />
+                  <Customization
+                    setCustomizationOptions={this.setCustomizationOptions}
+                    customDate={product.customDate}
+                    customWriting={product.customWriting}
+                  />
                   {!product.sellOutofStock && product.availableQuantity < 10 ? (
                     <div className="fst-italic few_dis pt-5">Only few left</div>
                   ) : null}
 
                   <div className="cart mt-4 align-items-center">
-                    <button id='addtocart' className="btn text-uppercase w-50 add_cart_btn " 
-                    onClick={this.handleAddToCart}>
+                    <button
+                      id="addtocart"
+                      className="btn text-uppercase w-50 add_cart_btn "
+                      onClick={this.handleAddToCart}
+                    >
                       Add to cart
                     </button>
                   </div>
                   <div className="over_look">
-                  <Overview product={product} />
+                    <Overview product={product} />
                   </div>
                   <div className="code_dis pt-2 pb-3">
                     SKU: {product.stockKeepingUnit}
@@ -261,12 +318,10 @@ export default class ShowProductDetail extends Component {
 }
 const Customization = (props) => {
   const [customDate, setcustomDate] = useState(new Date());
-  const [customWriting, setCustomWriting] = useState('');
-  React.useEffect(
-    () => {
-      props.setCustomizationOptions(customWriting, customDate)
-    }, [customWriting, customDate]
-  )
+  const [customWriting, setCustomWriting] = useState("");
+  React.useEffect(() => {
+    props.setCustomizationOptions(customWriting, customDate);
+  }, [customWriting, customDate]);
   return (
     <>
       {props.customWriting && (
@@ -510,7 +565,7 @@ const Overview = (props) => {
           return part;
         }
       })} */}
-      <p className="about">{ }</p>
+      <p className="about">{}</p>
       <a
         className="re_look fw-bold mb-4"
         data-bs-toggle="collapse"
@@ -573,9 +628,11 @@ class AddReview extends Component {
             {/* caroausel start */}
             <TryCarauosel getRelatedProducts />
             {/* caroausel end */}
-
           </div>
-          <h6 class="text-center pt-4 pb-2 fw-bold ov_look"> CUSTOMER REVIEWS </h6>
+          <h6 class="text-center pt-4 pb-2 fw-bold ov_look">
+            {" "}
+            CUSTOMER REVIEWS{" "}
+          </h6>
           <a
             class="re_look text-center fw-bold mb-4"
             data-bs-toggle="collapse"
@@ -649,7 +706,10 @@ class AddReview extends Component {
                   placeholder="write your comments here"
                 ></textarea>
               </div>
-              <button type="submit" class="btn mb-3 sub_review_btn float-end bg-danger text-white">
+              <button
+                type="submit"
+                class="btn mb-3 sub_review_btn float-end bg-danger text-white"
+              >
                 Submit
               </button>
             </form>

@@ -22,8 +22,8 @@ const SignupSchema = Yup.object().shape({
 
 export default function Signup({onSignUp}) {
   return (
-    <div class="container pt-5 mt-5 pb-5 font_fam w-25">
-      <h3 class="submit-content fw-bold text-center mt-5">Create an Account</h3>
+    <div className="container pt-5 mt-5 pb-5 font_fam w-25">
+      <h3 className="submit-content fw-bold text-center mt-5">Create an Account</h3>
       <Formik
         initialValues={{
           username: "",
@@ -39,19 +39,19 @@ export default function Signup({onSignUp}) {
       >
         {({ errors, touched }) => (
           <Form>
-            <div class="mb-4 mt-5 ">
+            <div className="mb-4 mt-5 ">
               <Field
                 name="username"
                 className="form-control"
                 placeholder="Username"
               />
               {errors.username && touched.username ? (
-                <div class="alert alert-danger  p-2" role="alert">
+                <div className="alert alert-danger  p-2" role="alert">
                   {errors.username}
                 </div>
               ) : null}
             </div>
-            <div class="mb-4">
+            <div className="mb-4">
               <Field
                 name="email"
                 type="email"
@@ -59,13 +59,13 @@ export default function Signup({onSignUp}) {
                 placeholder="Email"
               />
               {errors.email && touched.email ? (
-                <div class="alert alert-danger  p-2" role="alert">
+                <div className="alert alert-danger  p-2" role="alert">
                   {errors.email}
                 </div>
               ) : null}
             </div>
             
-            <div class="mb-4 ">
+            <div className="mb-4 ">
               <Field
                 name="password"
                 type="password"
@@ -73,12 +73,12 @@ export default function Signup({onSignUp}) {
                 placeholder="password"
               />
               {errors.password && touched.password ? (
-                <div class="alert alert-danger  p-2" role="alert">
+                <div className="alert alert-danger  p-2" role="alert">
                   {errors.password}
                 </div>
               ) : null}
             </div>
-            <div class="mb-4  ">
+            <div className="mb-4  ">
               <Field
                 name="passwordConfirm"
                 type="password"
@@ -86,14 +86,14 @@ export default function Signup({onSignUp}) {
                 placeholder="passwordConfirm"
               />
               {errors.passwordConfirm && touched.passwordConfirm ? (
-                <div class="alert alert-danger  p-2" role="alert">
+                <div className="alert alert-danger  p-2" role="alert">
                   {errors.passwordConfirm}
                 </div>
               ) : null}
             </div>
 
-            <div class="cart mt-4 align-items-center">
-            <button type="submit" class="btn text-uppercase w-100 creat_btn fw-bold ">CREATE</button></div>
+            <div className="cart mt-4 align-items-center">
+            <button type="submit" className="btn text-uppercase w-100 creat_btn fw-bold ">CREATE</button></div>
             
           </Form>
         )}

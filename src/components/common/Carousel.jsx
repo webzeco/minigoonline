@@ -18,13 +18,13 @@ export default function ControlledCarousel({ productData, title }) {
       </h1>
       <Carousel infiniteLoop swipeable swipeScrollTolerance centerMode
        showIndicators={false} showThumbs={false} showStatus={false} showArrows >
-        <div class="row h-100 align-items-center g-2 mt-2">
+        <div className="row h-100 align-items-center g-2 mt-2">
           <ProductList pageDataList={first} />
         </div>
-        <div class="row h-100 align-items-center g-2  mt-2 ">
+        <div className="row h-100 align-items-center g-2  mt-2 ">
         <ProductList pageDataList={second} />
         </div>
-        <div class="row h-100 align-items-center g-2  mt-2">
+        <div className="row h-100 align-items-center g-2  mt-2">
         <ProductList pageDataList={first} />
         </div>
       </Carousel>

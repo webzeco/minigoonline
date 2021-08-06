@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style/footer.css";
 import { Link } from 'react-router-dom';
-
 function Footer() {
+  const [email, setEmail] = useState("");
+  const setEmailHandler=(e)=>{
+setEmail(e.target.value)
+  }
   return (
     <div>
       <footer id="footer">
@@ -19,8 +22,9 @@ function Footer() {
                   type="text"
                   className="form-control"
                   placeholder="Email"
-                  value="Enter email"
-                />{" "}
+                  value={email}
+                  onChange={setEmailHandler}
+                />
               </div>
               <div className="col-auto align-self-end mt-sm-0 mt-4">
                 <button className="btn btn-block btn_style btn-danger ml-2 mt-md-0 mt-3">

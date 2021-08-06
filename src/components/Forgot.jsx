@@ -8,12 +8,12 @@ const forgotSchema = Yup.object().shape({
 });
 export default function Forgot({onForgot}) {
   return (
-    <div class="container pt-5 mt-5 pb-5  w-25">
-      <h3 class="submit-content fw-bold text-center mt-5">Reset Password</h3>
-      <div class="d-flex justify-content-center pt-2">
+    <div className="container pt-5 mt-5 pb-5  w-25">
+      <h3 className="submit-content fw-bold text-center mt-5">Reset Password</h3>
+      <div className="d-flex justify-content-center pt-2">
         <p className="message_look">Remember your password?</p>
-        <Link class=" text-center" to="/login">
-          <h5 class="creat_look fw-bold">Login</h5>
+        <Link className=" text-center" to="/login">
+          <h5 className="creat_look fw-bold">Login</h5>
         </Link>
       </div>
       <Formik
@@ -27,7 +27,7 @@ export default function Forgot({onForgot}) {
       >
         {({ errors, touched }) => (
           <Form>
-            <div class="mb-4">
+            <div className="mb-4">
               <Field
                 name="email"
                 type="email"
@@ -35,19 +35,19 @@ export default function Forgot({onForgot}) {
                 placeholder="Email"
               />
               {errors.email && touched.email ? (
-                <div class="alert alert-danger p-2" role="alert">
+                <div className="alert alert-danger p-2" role="alert">
                   {errors.email}
                 </div>
               ) : null}
             </div>
 
-            <div class="cart mt-4 align-items-center">
-              <button type="submit" class="btn text-uppercase w-100 creat_btn message_look fw-bold ">
+            <div className="cart mt-4 align-items-center">
+              <button type="submit" className="btn text-uppercase w-100 creat_btn message_look fw-bold ">
                 SEND RESET EMAIL
               </button>
             </div>
-            <Link class="creat_look text-center fw-bold mb-4" to="/signup">
-              <h5 class=" mb-2 mt-5 creat_look fw-bold"> CREAT ACCOUNT</h5>
+            <Link className="creat_look text-center fw-bold mb-4" to="/signup">
+              <h5 className=" mb-2 mt-5 creat_look fw-bold"> CREAT ACCOUNT</h5>
             </Link>
           </Form>
         )}

@@ -25,6 +25,8 @@ import { getAllCategories } from "../services/categoryService";
 import { getMe } from "../services/UsersService";
 import { deleteProduct, getAllProducts } from "../services/productServices";
 import Payment from "./Payment";
+import ShippingInfo from "./ShippingInfo";
+import { OrderContext } from "./contexts/OrderContext";
 const Main = () => {
   const history = useHistory();
   const [user, setUser] = useState();
@@ -35,7 +37,7 @@ const Main = () => {
   const [cartData, setCartData] = useState([]);
   const [categories, setCategories] = useState();
   const [products, setProducts] = useState([]);
-
+  const [order, setOrder] = useState({});
   useEffect(() => {
     getAllCategoriesHandler();
     getAllProductHandler();
@@ -45,6 +47,10 @@ const Main = () => {
       console.log("clean up");
     };
   }, []);
+  const orderHandler=(order)=>{
+    setOrder(order);
+    console.log({order});
+  }
   const removeCartItem = (e) => {
     console.log(e.target.id);
     setCartData(cartData.filter((data) => data.id == e.target.value));
@@ -124,6 +130,9 @@ const Main = () => {
         <CollectionContext.Provider
           value={{ coll: collection, setCollectionHandler }}
         >
+           <OrderContext.Provider
+          value={{ order, orderHandler }}
+        >
           <div>
             <ToastContainer style={{ width: "322px" }} />
             {/* <Header /> */}
@@ -173,6 +182,13 @@ const Main = () => {
               />
               <Route
                 exact
+                path="/shipping"
+                render={(props) => (
+                  <ShippingInfo   />
+                )}
+              />
+              <Route
+                exact
                 path="/login"
                 render={(props) => <Login onLogin={loginHandler} {...props} />}
               />
@@ -202,6 +218,7 @@ const Main = () => {
             </Switch>
             <Footer />
           </div>
+          </OrderContext.Provider>
         </CollectionContext.Provider>
       </ProductDetailContext.Provider>
     </UserContext.Provider>

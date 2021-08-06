@@ -8,7 +8,7 @@ const ProductList = ({ pageDataList }) => {
       <div className="row">
         {pageDataList &&
           pageDataList.map((product, index) => {
-            const { images, name, price } = product;
+            const { images, title, price } = product;
             const colorImg = [];
             // variants adjusted to colorImg array by  map method
             product.variants.map((variant) => {
@@ -27,7 +27,7 @@ const ProductList = ({ pageDataList }) => {
                 product={product}
                 key={index}
                 images={images}
-                name={name}
+                title={title}
                 price={price}
                 colorImg={colorImg}
               />

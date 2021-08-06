@@ -9,8 +9,8 @@ const loginSchema = Yup.object().shape({
 });
 export default function Login({ onLogin }) {
   return (
-    <div class="container pt-5 mt-5 pb-5 font_fam w-25">
-      <h3 class="submit-content fw-bold text-center mt-5">LOGIN</h3>
+    <div className="container pt-5 mt-5 pb-5 font_fam w-25">
+      <h3 className="submit-content fw-bold text-center mt-5">LOGIN</h3>
       <Formik
         initialValues={{
           username: "",
@@ -26,20 +26,20 @@ export default function Login({ onLogin }) {
         {({ errors, touched }) => (
           <Form>
 
-            <div class="mb-4 mt-5 ">
+            <div className="mb-4 mt-5 ">
               <Field
                 name="username"
                 className="form-control"
                 placeholder="Username"
               />
               {errors.username && touched.username ? (
-                <div class="alert alert-danger  p-2" role="alert">
+                <div className="alert alert-danger  p-2" role="alert">
                   {errors.username}
                 </div>
               ) : null}
             </div>
 
-            <div class="mb-4">
+            <div className="mb-4">
               <Field
                 name="password"
                 type="password"
@@ -47,27 +47,27 @@ export default function Login({ onLogin }) {
                 placeholder="password"
               />
               {errors.password && touched.password ? (
-                <div class="alert alert-danger  p-2 p-2 " role="alert">
+                <div className="alert alert-danger  p-2 p-2 " role="alert">
                   {errors.password}
                 </div>
               ) : null}
               <Link
                 to="/forgot"
-                class="float-end small pb-2 pt-1 fg_link  fw-bold "
+                className="float-end small pb-2 pt-1 fg_link  fw-bold "
               >
                 <p>FORGOT PASSWORD?</p>
               </Link>
             </div>
 
-            <div class="cart mt-4 align-items-center">
-              <button type="submit" class="btn text-uppercase w-100 creat_btn message_look fw-bold ">
+            <div className="cart mt-4 align-items-center">
+              <button type="submit" className="btn text-uppercase w-100 creat_btn message_look fw-bold ">
                 {/* <a href="/">SIGN IN</a> */}
                 SIGN IN
               </button>
             </div>
 
-            <Link class="creat_look text-center fw-bold mb-4" to="/signup">
-              <h5 class=" mb-2 mt-5 creat_look fw-bold "> CREAT ACCOUNT</h5>
+            <Link className="creat_look text-center fw-bold mb-4" to="/signup">
+              <h5 className=" mb-2 mt-5 creat_look fw-bold "> CREAT ACCOUNT</h5>
             </Link>
           </Form>
         )}

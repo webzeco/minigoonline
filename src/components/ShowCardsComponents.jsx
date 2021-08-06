@@ -88,9 +88,9 @@ setPage(newPage);
                 </Dropdown.Item>
                 <Dropdown.Item eventKey="$50-$100">$50-$100</Dropdown.Item>
               </DropdownButton> 
-               {/* <div class="dropdown">
+               {/* <div className="dropdown">
                                             <button
-                                                class="btn btn-light dropdown-toggle"
+                                                className="btn btn-light dropdown-toggle"
                                                 type="button"
                                                 id="dropdownMenuButton"
                                                 data-mdb-toggle="dropdown"
@@ -98,10 +98,10 @@ setPage(newPage);
                                             >
                                                 change status
                                             </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li><a className="dropdown-item" href="#">Action</a></li>
+                                                <li><a className="dropdown-item" href="#">Another action</a></li>
+                                                <li><a className="dropdown-item" href="#">Something else here</a></li>
                                             </ul> 
                                         </div> */}
                                       

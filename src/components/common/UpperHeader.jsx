@@ -79,7 +79,7 @@ export default function Search() {
           </div>
         </div>
         {/* searched items starts */}
-        <ul class="List-group w-25 mx-5">
+        <ul className="List-group w-25 mx-5">
   {items.map((prod,index) => {
           return (
             <li   key={index} className="list-group-item ">

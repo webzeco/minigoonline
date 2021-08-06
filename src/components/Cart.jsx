@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { OrderContext } from "./contexts/OrderContext";
 import "./style/cart.css";
 
 const Cart = (props) => {
+  const {order, orderHandler} = useContext(OrderContext);
+  const history=useHistory();
   const [Data, setData] = useState([]); //This will have all products Data and Prices
   const [Total, setTotal] = useState(0); //This will have total price
   //This function will update the totalPrice after every change in prices will check if bucket is checked or not
@@ -95,12 +99,18 @@ const Cart = (props) => {
       document.getElementById("CheckoutAsGuestbtn").disabled = true;
     }
   };
+  const checkedOutHandler=()=>{
+    orderHandler({products:Data,subtotal:Total});
+    console.log({Data});
+    history.push('/shipping');
+  }
+  
   return (
     <>
       <div className="container pt-5 mt-3 pb-5 ">
         <div className="row justify-content-center">
           <div className="col-12">
-            <h1 className="shop-cart-h1 fw-bold mt-4 pt-5">Shoping Cart</h1>
+            <h1 className="shop-cart-h1 fw-bold mt-4 pt-5">Shopping Cart</h1>
           </div>
         </div>
         <div className="ho mt-2 w-100"></div>
@@ -150,6 +160,7 @@ const Cart = (props) => {
                             height="25px"
                             width="25px"
                             className="m-2"
+                            alt="basket img"
                           />
                           <input
                             id={obj.product.id}
@@ -188,8 +199,9 @@ const Cart = (props) => {
               </label>
               <button
                 id="Checkoutbtn"
+                onClick={checkedOutHandler}
                 className="btn btn-danger mb-3 mt-2 message_look fw-bold"
-                disabled
+                // disabled
               >
                 CheckOut
               </button>
@@ -219,8 +231,8 @@ const ShowCartProduct = (props) => {
               <div className="col-lg-3 col-md-2 col-xs-4">
                 <img
                   className="img-fluid img_look_on_cart"
-                  src={props.product.img}
-                  alt="Product Image"
+                  src={`${process.env.REACT_APP_URL}/img/${props.product.img}`}
+                  alt="Product Img"
                 />
               </div>
               <div className="col-lg-4 col-md-4 col-xs-12">
@@ -258,7 +270,7 @@ const ShowCartProduct = (props) => {
             </div>
           </div>
         </div>
-        <div class="ho mb-3 pt-3 w-75"></div>
+        <div className="ho mb-3 pt-3 w-75"></div>
       </div>
     </>
   );

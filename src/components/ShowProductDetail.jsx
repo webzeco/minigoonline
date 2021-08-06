@@ -94,7 +94,7 @@ export default class ShowProductDetail extends Component {
               </li>
               <li className="breadcrumb-item text-black look">
                 <a className="text-dark message_look" href="#">
-                  {product.name}
+                  {product.title}
                 </a>
               </li>
             </ol>
@@ -103,40 +103,40 @@ export default class ShowProductDetail extends Component {
           <div className="row justify-content-center ">
             <div className="col-md-6 w-40">
               {/* caroausel start */}
-              {/* <div id="carouselExampleControlsNoTouching" class="carousel slide banner" data-bs-touch="false" data-bs-interval="false">
-  <div class="carousel-inner" style={{width:'60%',placeItems:'center',alignItems:'center',marginLeft:'20%'}}>
-    <div class="carousel-item active">
-      <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" class="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
+              {/* <div id="carouselExampleControlsNoTouching" className="carousel slide banner" data-bs-touch="false" data-bs-interval="false">
+  <div className="carousel-inner" style={{width:'60%',placeItems:'center',alignItems:'center',marginLeft:'20%'}}>
+    <div className="carousel-item active">
+      <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" className="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
     </div>
-    <div class="carousel-item">
-      <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" class="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
+    <div className="carousel-item">
+      <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" className="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
     </div>
-    <div class="carousel-item">
-      <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" class="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
+    <div className="carousel-item">
+      <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" className="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
+  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
+  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
   </button>
 </div>
             */}
               <div
                 id="carouselExampleIndicators"
-                class="carousel slide"
+                className="carousel slide"
                 style={{ background: "#D3D3D3" }}
                 data-bs-ride="carousel"
               >
-                <div class="carousel-indicators">
+                <div className="carousel-indicators">
                   <button
                     type="button"
                     data-bs-target="#carouselExampleIndicators"
                     data-bs-slide-to="0"
-                    class="active"
+                    className="active"
                     aria-current="true"
                     aria-label="Slide 1"
                   ></button>
@@ -153,53 +153,53 @@ export default class ShowProductDetail extends Component {
                     aria-label="Slide 3"
                   ></button>
                 </div>
-                <div class="carousel-inner">
+                <div className="carousel-inner">
                   {product.images.map((image, index) => {
                     console.log({ index });
                     return (
                       <div
-                        class={`carousel-item ${index === 0 ? "active" : ""}`}
+                        className={`carousel-item ${index === 0 ? "active" : ""}`}
                       >
                         <img
                           src={`${process.env.REACT_APP_URL}/img/${image}`}
-                          class="d-block w-100"
+                          className="d-block w-100"
                           height="400"
                           alt="..."
                         />
                       </div>
                     );
                   })}
-                  {/* <div class={`carousel-item`} >
-            <img src="https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png" class="d-block w-100" height="400" alt="..."/>
+                  {/* <div className={`carousel-item`} >
+            <img src="https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png" className="d-block w-100" height="400" alt="..."/>
           </div> */}
                   {/*
-          <div class="carousel-item">
-            <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" class="d-block w-100" height="400" alt="..."/>
+          <div className="carousel-item">
+            <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" className="d-block w-100" height="400" alt="..."/>
           </div> */}
                 </div>
                 <button
-                  class="carousel-control-prev"
+                  className="carousel-control-prev"
                   type="button"
                   data-bs-target="#carouselExampleIndicators"
                   data-bs-slide="prev"
                 >
                   <span
-                    class="carousel-control-prev-icon"
+                    className="carousel-control-prev-icon"
                     aria-hidden="true"
                   ></span>
-                  <span class="visually-hidden">Previous</span>
+                  <span className="visually-hidden">Previous</span>
                 </button>
                 <button
-                  class="carousel-control-next"
+                  className="carousel-control-next"
                   type="button"
                   data-bs-target="#carouselExampleIndicators"
                   data-bs-slide="next"
                 >
                   <span
-                    class="carousel-control-next-icon"
+                    className="carousel-control-next-icon"
                     aria-hidden="true"
                   ></span>
-                  <span class="visually-hidden">Next</span>
+                  <span className="visually-hidden">Next</span>
                 </button>
               </div>
               {/* caroausel end */}
@@ -208,7 +208,7 @@ export default class ShowProductDetail extends Component {
               <div className="product pt-2">
                 <div className=" align-items-center w-75">
                   <div className="h5 text-uppercase pro_title_h5">
-                    {product.name}
+                    {product.title}
                   </div>
                   <div className="h5 text-uppercase pro_price_h5">
                     {product.discount === 0 ? (
@@ -325,17 +325,17 @@ const Customization = (props) => {
   return (
     <>
       {props.customWriting && (
-        <div class="mb-4 mt-3">
-          <label for="name" class="color_size_h6">
+        <div className="mb-4 mt-3">
+          <label for="name" className="color_size_h6">
             {props.customWriting}*
           </label>
-          <input type="name" class="form-control" maxlength="30" />
+          <input type="name" className="form-control" maxlength="30" />
         </div>
       )}
 
       {props.customDate ? (
-        <div class="mb-4 mt-3">
-          <label for="name" class="color_size_h6">
+        <div className="mb-4 mt-3">
+          <label for="name" className="color_size_h6">
             Date
           </label>
           <DatePicker
@@ -623,58 +623,58 @@ class AddReview extends Component {
   render() {
     return (
       <>
-        <div class="container font_fam">
-          <div class="ho pt-2 mb-3 w-100">
+        <div className="container font_fam">
+          <div className="ho pt-2 mb-3 w-100">
             {/* caroausel start */}
             <TryCarauosel getRelatedProducts />
             {/* caroausel end */}
           </div>
-          <h6 class="text-center pt-4 pb-2 fw-bold ov_look">
+          <h6 className="text-center pt-4 pb-2 fw-bold ov_look">
             {" "}
             CUSTOMER REVIEWS{" "}
           </h6>
           <a
-            class="re_look text-center fw-bold mb-4"
+            className="re_look text-center fw-bold mb-4"
             data-bs-toggle="collapse"
             href="#reviewform"
             role="button"
             aria-expanded="false"
             aria-controls="reviewform"
           >
-            <p class=" mb-2 re_look"> WRITE A REVIEW</p>
+            <p className=" mb-2 re_look"> WRITE A REVIEW</p>
           </a>
 
-          <div class="collapse pt-3 pb-5" id="reviewform">
+          <div className="collapse pt-3 pb-5" id="reviewform">
             <form onSubmit={(e) => this.handleSubmit(e)}>
-              <div class="form-group mb-4">
-                <label for="name" class="form-label">
+              <div className="form-group mb-4">
+                <label for="name" className="form-label">
                   NAME (AS IT WILL APPEAR WITH REVIEW)
                 </label>
                 <input
                   name="name"
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="nameInput1"
                   onChange={this.handleInputChange}
                   placeholder="Enter your name"
                 />
               </div>
 
-              <div class="form-group mb-4">
+              <div className="form-group mb-4">
                 <label for="email">EMAIL</label>
                 <input
                   type="email"
                   name="email"
-                  class="form-control"
+                  className="form-control"
                   id="emailInput2"
                   onChange={this.handleInputChange}
                   placeholder="john.smith@example.com"
                 />
               </div>
 
-              <div class="form-group mb-4">
+              <div className="form-group mb-4">
                 <label for="Rating">RATING</label>
-                <ul class="list-inline large d-flex">
+                <ul className="list-inline large d-flex">
                   <ReactStars
                     count={5}
                     onChange={this.ratingChanged}
@@ -684,22 +684,22 @@ class AddReview extends Component {
                 </ul>
               </div>
 
-              <div class="form-group mb-4">
+              <div className="form-group mb-4">
                 <label for="REVIEW TITLE">REVIEW TITLE</label>
                 <input
                   type="text"
                   name="reviewTitle"
-                  class="form-control"
+                  className="form-control"
                   id="reviewtitleInput3"
                   onChange={this.handleInputChange}
                   placeholder="Enter your name"
                 />
               </div>
-              <div class="form-group mb-4">
+              <div className="form-group mb-4">
                 <label for="body of Review">BODY OF REVIEW</label>
                 <textarea
                   name="bodyofReview"
-                  class="form-control"
+                  className="form-control"
                   id="bodyofreviewTextarea4"
                   rows="9"
                   onChange={this.handleInputChange}
@@ -708,7 +708,7 @@ class AddReview extends Component {
               </div>
               <button
                 type="submit"
-                class="btn mb-3 sub_review_btn float-end bg-danger text-white"
+                className="btn mb-3 sub_review_btn float-end bg-danger text-white"
               >
                 Submit
               </button>

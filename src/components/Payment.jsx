@@ -35,7 +35,6 @@ console.log({price:(order.subtotal+order.shipping.charges)/164,order});
                 );
                 toast("Success! Check email for details", { type: "success" });
                 history.push('/showProduct');
-
             } catch (error) {
                 console.log(error);
                 toast("Something went wrong", { type: "error" });

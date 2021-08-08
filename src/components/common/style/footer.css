@@ -11,7 +11,7 @@
 }
 .btn_style {
   font-size: 14px;
-  font-family: "Lato";
+  font-family: "Montserrat";
   font-weight: bold !important;
 }
 
@@ -27,7 +27,7 @@
   padding: 50px 0;
   text-align: center;
   font-size: 24px;
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
   color: #333333;
 }
 
@@ -54,7 +54,7 @@
   padding: 10px 0;
   display: flex;
   align-items: center;
-  font-family: "Lato";
+  font-family: "Montserrat";
   color: #333333;
 }
 
@@ -88,6 +88,10 @@
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  .footer-contact {
+    display: none;
+  }
+
   #footer .copyright,
   #footer .credits {
     text-align: center;

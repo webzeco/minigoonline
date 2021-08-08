@@ -84,7 +84,7 @@ export default function Navbar({ categories }) {
                             <div className="d-flex">
                                 <button className="d-lg-none me-md-4 sidemenu-toggle-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i className="fad fa-bars"></i></button>
                                 <div className="align-items-center d-none d-md-flex">
-                                    <span className="me-2 small"><i className="bold-500 fal fa-search"></i></span>
+                                    <span className="me-2 small"><i className="bold-500 fal fa-search icon-color"></i></span>
                                     <input className="form-control" type="text" placeholder="Search" />
                                 </div>
                                 <button className="d-md-none sidemenu-toggle-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i className="fal fa-search"></i></button>
@@ -92,14 +92,14 @@ export default function Navbar({ categories }) {
                         </div>
                         <div className="top-header-logo text-center">
                             <Link to="/"><img 
-                          src={`${process.env.REACT_APP_URL}/img/nav_logo.png`}
-                                width="50px" height="60px" alt="img" /></Link>
+                          src={`${process.env.REACT_APP_URL}/img/footer_logo.png`}
+                                 className="img-fluid" alt="img" /></Link>
                         </div>
 
-                        <div className="top-header-rightarea">
+                        <div className="top-header-rightarea ">
                             {!user && <Link to="/login">
                                 <i className="fal fa-user"></i>
-                                <span className="d-none d-md-inline-block">Sign In</span>
+                                <span className="d-none d-md-inline-block ">Sign In</span>
                             </Link>}
                             {user && <Link to="/account">
                                 <i className="fal fa-user"></i>
@@ -108,8 +108,8 @@ export default function Navbar({ categories }) {
 
                             <Link to="/cart" className="top-cart ms-md-5 ms-2">
                                 <i className="fal fa-shopping-cart"></i>
-                                <span className="d-none d-md-inline-block">Cart</span>
-                                <span className="cart-counter">0</span>
+                                <span className="d-none d-md-inline-block ">Cart</span>
+                                <span className="cart-counter icon-color">0</span>
                             </Link>
                         </div>
                     </div>
@@ -121,7 +121,7 @@ export default function Navbar({ categories }) {
                     <div className="collapse navbar-collapse" id="my-navbar">
                         <div className="nav-hidden-items">
                             <div className="align-items-center d-flex">
-                                <span className="me-2 small"><i className="bold-500 fal fa-search"></i></span>
+                                <span className="me-2 small"><i className="bold-500 fal fa-search icon-color"></i></span>
                                 <input className="form-control" type="text" placeholder="Search" />
                             </div>
                         </div>
@@ -266,7 +266,7 @@ export default function Navbar({ categories }) {
             <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
                 <div className="sidemenu-header">
                     <div className="position-relative">
-                        <input className="form-control" type="text" placeholder="SEARCH" />
+                        <input className="form-control " type="text" placeholder="SEARCH" />
                         <i className="fal fa-search"></i>
                     </div>
                 </div>
@@ -403,7 +403,8 @@ export default function Navbar({ categories }) {
                                                 <li><a href="#">Puzzles & Games</a></li>
                                                 <li><a href="#">Stationary</a></li> */}
                                                  {cate.subCategories?.map(subCate => {
-                                                    return <li key={subCate._id} ><Link onClick={() => onClickHandlers(subCate.name)} to={`showProduct`} style={{ textDecoration: 'none' }} className="text-dark fw-light">{subCate.name}</Link></li>
+                                                    return <li key={subCate._id} ><Link onClick={() => onClickHandlers(subCate.name)} to={`showProduct`}
+                                                     style={{ textDecoration: 'none' }} className="text-dark fw-light">{subCate.name}</Link></li>
                                                 })}
                                             </ul>
                                             {/* <ul className="sidemenu-sublist">

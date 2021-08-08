@@ -37,11 +37,12 @@ function Footer() {
         <div className="footer-top">
           <div className="container">
             <div className="row">
-              <div className="col-lg-2 col-md-4 col-sm-4 footer-contact">
+              <div className="col-lg-2 col-md-4 col-sm-4 footer-contact ">
                 <a href="index.html">
 
-                  <img src={`${process.env.REACT_APP_URL}/img/footer_logo.png`}
-                    width='120px' height='120px' alt="MiniGo" />
+                  <img src={`${process.env.REACT_APP_URL}/img/nav_logo.png`}
+                  className="img-fluid" height="100px" width="100px"
+                   alt="MiniGo" />
                 </a>
               </div>
 

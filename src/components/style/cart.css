@@ -3,10 +3,10 @@
 .shop-cart-h1 {
   font-size: 30px;
   color: #333333;
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
 }
 .message_look {
-  font-family: "Lato";
+  font-family: "Montserrat";
 }
 .ho {
   border-bottom: 1px solid #e6e4e1 !important;
@@ -15,12 +15,12 @@
   font-size: 18px !important;
   font-weight: bold !important;
   color: #363636;
-  font-family: "Lato";
+  font-family: "Montserrat";
 }
 .pro_title_h5 {
   font-size: 22px !important;
   color: #333333;
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
 }
 .img_look_on_cart {
   background-color: #f5f3f2 !important;
@@ -28,5 +28,5 @@
   width: 80px !important;
 }
 .font_fam {
-  font-family: "Lato";
+  font-family: "Montserrat";
 }

@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 .home-content {
-  color: red;
+  color: #e61523;
 }
 a {
   text-decoration: none;
@@ -30,19 +31,19 @@ a:hover {
   height: 600px;
 }
 .btn_1 {
-  color: black;
-  background-color: #ffe4e1;
+  color: #e61523 !important;
+  background-color: #fff;
   border-radius: 0px;
   text-decoration: none;
   border-style: ridge;
   font-size: 17px;
   text-align: center;
   font-weight: bold;
-  font-family: "Lato";
+  font-family: "Montserrat";
 }
 .btn_1:hover {
-  background-color: red;
-  color: #fff;
+  background-color: #e61523;
+  color: #fff !important;
   transition: 0.7s;
   border: none;
 }
@@ -50,14 +51,14 @@ a:hover {
   text-decoration: none;
 }
 .banner_content_h1 {
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
   font-size: 38px;
-  color: #000000;
+  color: #e61523;
 }
 .banner_content_p {
-  font-family: "Lato";
+  font-family: "Montserrat";
   font-size: 15px;
-  color: #333333;
+  color: #e61523;
 }
 @media screen and (max-width: 1024px) {
   .banner {
@@ -67,6 +68,12 @@ a:hover {
 @media screen and (max-width: 760px) {
   .hid_banner_pic {
     display: none;
+  }
+  .btn_1 {
+    font-size: 12px;
+  }
+  .banner {
+    height: 400px !important;
   }
 }
 
@@ -89,48 +96,49 @@ a:hover {
   height: 350px;
 }
 .category_box_h4 {
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
   font-size: 32px;
   text-decoration: none;
-  color: #000000;
+  color: #e61523;
 }
 .category_box_h7 {
-  font-family: "Lato";
+  font-family: "Montserrat";
   font-weight: bold;
   font-size: 16px;
   text-decoration: underline;
-  color: #000000;
+  color: #e61523;
 }
 /* end of category ends */
 /*gift subscription  */
 .gift_sub_heading {
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
   font-size: 30px;
+  color: #e61523;
 }
 .gift-bg {
-  background-color: #e33d26 !important;
+  background-color: #e61523 !important;
   height: 450px;
 }
 .btn_give {
-  color: #e33d26;
+  color: #e61523;
   background-color: #ffffff;
   text-decoration: none;
   font-size: 16px;
   font-weight: bold !important;
-  font-family: "Lato";
+  font-family: "Montserrat";
 }
 .gift_h1 {
   color: #ffffff;
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
 }
 .gift_h6 {
   color: #ffffff;
-  font-family: "Lato";
+  font-family: "Montserrat";
   font-weight: bold !important;
 }
 @media screen and (max-width: 600px) {
   .gift_sub_heading {
-    font-family: "Source Sans Pro";
+    font-family: "Montserrat";
     font-size: 16px;
   }
 }
@@ -138,6 +146,7 @@ a:hover {
 /*gift subscription  end*/
 
 .submit-content {
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
   font-size: 26px;
+  color: #e61523 !important;
 }

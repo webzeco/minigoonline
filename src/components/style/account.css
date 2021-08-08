@@ -10,32 +10,32 @@
   font-size: 30px !important;
   font-weight: bold !important;
   color: #363636;
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
 }
 
 .re_look {
   color: #363636;
   text-decoration: underline;
   font-size: 14px;
-  font-family: "Lato";
+  font-family: "Montserrat";
   font-weight: bold;
 }
 
 .ov_look {
   color: #363636 !important;
   font-size: 22px;
-  font-family: "Lato";
+  font-family: "Montserrat";
   font-weight: bold;
 }
 .order_p {
-  font-family: "Lato";
+  font-family: "Montserrat";
   font-size: 16px;
   color: #333333;
 }
 
 .pro_spec {
   background-color: #fff;
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
 }
 
 .about {

@@ -11,11 +11,11 @@
   border-radius: 0px !important;
 }
 .message_look {
-  font-family: "Lato";
+  font-family: "Montserrat";
 }
 .submit-content {
-  font-family: "Source Sans Pro";
-  color: #333333;
+  font-family: "Montserrat";
+  color: #e4563c;
 }
 .fg_link {
   color: #999999;
@@ -35,7 +35,7 @@
   font-size: 16px;
   border-radius: 0px !important;
   height: 50px;
-  font-family: "Lato";
+  font-family: "Montserrat";
 
   color: #fff !important;
 }

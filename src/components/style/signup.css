@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 /*Sign in form section*/
 .font_fam {
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
   color: #333333;
 }
 .creat_look {
@@ -16,7 +16,7 @@
   color: #999999;
   text-decoration: none;
   font-size: 12px !important;
-  font-family: "Source Sans Pro";
+  font-family: "Montserrat";
 }
 .fg_link:hover {
   color: #999999;

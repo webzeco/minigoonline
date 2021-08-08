@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function HomeContent() {
   return (
-    <div className="container-fluid banner pt-5 mt-5">
+    <div className="container-fluid banner  mt-2">
     <div className="row align-items-center">
     <div className="col-md-6 text-center">
     <div className="banner_text mt-4">

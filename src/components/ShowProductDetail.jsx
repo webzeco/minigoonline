@@ -88,7 +88,7 @@ export default class ShowProductDetail extends Component {
     return (
       <div className="mt-5">
         {/* <!-- =======Product display in Banner area ======= --> */}
-        <div className="container-fluid banner" style={{ marginTop: "110px" }}>
+        <div className="container-fluid banner" >
           <nav>
             <ol className="breadcrumb  px-5 pt-4">
               <li className="breadcrumb-item  look">
@@ -132,7 +132,7 @@ export default class ShowProductDetail extends Component {
               <div
                 id="carouselExampleIndicators"
                 className="carousel slide"
-                style={{ background: "#D3D3D3" }}
+                style={{ background: "#ffff" }}
                 data-bs-ride="carousel"
               >
                 <div className="carousel-indicators">
@@ -651,11 +651,11 @@ async  handleSubmit(e) {
     return (
       <>
    <div className="container font_fam">
-   <div className="ho pt-2 mb-3 w-100">
+   {/* <div className="ho pt-2 mb-3 w-100"> */}
      {/* caroausel start */}
-     <TryCarauosel getRelatedProducts />
+     {/* <TryCarauosel getRelatedProducts /> */}
      {/* caroausel end */}
-   </div>
+   {/* </div> */}
    <h6 className="text-center pt-4 pb-2 fw-bold ov_look">
      {" "}
      CUSTOMER REVIEWS{" "}

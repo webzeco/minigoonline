@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react'
+import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -8,33 +8,45 @@ import { toast } from 'react-toastify';
 import { OrderContext } from './contexts/OrderContext';
 
 export default function Payment() {
-const history=    useHistory();
+    const history = useHistory();
     const { order, orderHandler } = useContext(OrderContext);
-
-    const [product] =useState({
+console.log({price:(order.subtotal+order.shipping.charges)/164,order});
+    const [product, setProduct] = useState({
         name: "Tesla Roadster",
-        price: 64998.67,
+        price: (((order.subtotal+order.shipping.charges)/164)*100),
         description: "Cool car"
-      });
-    
-      async function handleToken(token) {
+    });
+    async function handleToken(token) {
         const response = await axios.post(
-          `${process.env.REACT_APP_URL}/api/v1/order/payment`,
-          { token, product }
+            `${process.env.REACT_APP_URL}/api/v1/order/payment`,
+            { token, product }
         );
-        const { status } = response.data;
+        const { data } = response;
         console.log("Response:", response);
-        if (status === "success") {
-          toast("Success! Check email for details", { type: "success" });
-        } 
-    // orderHandler({});
-    toast("Success! Check email for details", { type: "success" });
-        history.push('/showProduct');
-        // else {
-        //   toast("Something went wrong", { type: "error" });
-        // }
-        
-      }
+        if (data.status === "success") {
+            order.payment={
+                charge:data.charge
+            };
+            console.log({order})
+            try {
+                await axios.post(
+                    `${process.env.REACT_APP_URL}/api/v1/order/addOrder`,
+                    { data: order }
+                );
+                toast("Success! Check email for details", { type: "success" });
+                history.push('/showProduct');
+
+            } catch (error) {
+                console.log(error);
+                toast("Something went wrong", { type: "error" });
+            }
+
+        }
+        else {
+            toast("Something went wrong", { type: "error" });
+        }
+
+    }
     const makePayment = token => {
         const body = {
             token,
@@ -103,10 +115,10 @@ const history=    useHistory();
                             <div class="card">
                                 <div class="card-header p-0">
                                     <h2 class="mb-0"> <button class="btn btn-light btn-block text-left p-3 rounded-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <div class="d-flex align-items-center justify-content-between"> 
+                                        <div class="d-flex align-items-center justify-content-between">
                                             <StripeCheckout
                                                 name={'Pay Now'}
-                                                amount={order.subtotal }
+                                                amount={product.price}
                                                 token={handleToken}
                                                 stripeKey={"pk_test_51JL45oFh5EerqhFKO0LJoMRMa0MypvnAiTiizHjL6xUYmj3nYitJmS5fsVhQTPYHXw6gKBDfaz39z5iw0refUBQN00wJIvWNqh"}  >
                                                 {/* <button className="btn btn-light btn-block text-left p-3 rounded-0"> Click here to Buy order  from Rs.{order.subtotal}</button> */}

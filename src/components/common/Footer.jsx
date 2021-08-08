@@ -3,8 +3,8 @@ import "./style/footer.css";
 import { Link } from 'react-router-dom';
 function Footer() {
   const [email, setEmail] = useState("");
-  const setEmailHandler=(e)=>{
-setEmail(e.target.value)
+  const setEmailHandler = (e) => {
+    setEmail(e.target.value)
   }
   return (
     <div>
@@ -39,8 +39,9 @@ setEmail(e.target.value)
             <div className="row">
               <div className="col-lg-2 col-md-4 col-sm-4 footer-contact">
                 <a href="index.html">
-                
-                  <img src='https://namibwear.com/wp-content/plugins/minigo/inc/admin/img/logo.png' width='120px' height='120px' alt="MiniGo" />
+
+                  <img src={`${process.env.REACT_APP_URL}/img/footer_logo.png`}
+                    width='120px' height='120px' alt="MiniGo" />
                 </a>
               </div>
 

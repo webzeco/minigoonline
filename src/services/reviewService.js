@@ -1,12 +1,10 @@
 import http from './httpservice';
-const url =`${process.env.REACT_APP_URL}/api/v1/order`;
+const url =`${process.env.REACT_APP_URL}/api/v1/review`;
 export function getAllOrders() {
     return http.get(`${url}/allOrders`);
 }
-export function addOrder(data) {
-    return http.post(`${url}/addOrder`, {
-        data
-});
+export function addReview(data) {
+    return http.post(`${url}/addReview`, data);
 }
 export function addBalance(id,method,balance){
     return http.patch(`${url}/addBalance/${id}`, {
@@ -31,7 +29,6 @@ export function createNewTransaction(trans) {
     return http.post(url,data);
 }
 const AllServices = {
-    getAllOrders,
-    addOrder
+    addReview
 }
 export default AllServices;

@@ -91,7 +91,8 @@ export default function Navbar({ categories }) {
                             </div>
                         </div>
                         <div className="top-header-logo text-center">
-                            <Link to="/"><img src='https://namibwear.com/wp-content/plugins/minigo/inc/admin/img/logo.png'
+                            <Link to="/"><img 
+                          src={`${process.env.REACT_APP_URL}/img/nav_logo.png`}
                                 width="50px" height="60px" alt="img" /></Link>
                         </div>
 

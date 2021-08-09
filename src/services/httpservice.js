@@ -12,7 +12,7 @@ axios.interceptors.response.use(null, error => {
   if (!expectedError) {
     // console.log("logging the error", error);
     // alert("An unexpected error occurred.");
-    toast.error("An unexpected error occurred.");
+    // toast.error("An unexpected error occurred.");
   }
 
   return Promise.reject(error);

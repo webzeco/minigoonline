@@ -144,11 +144,11 @@ const Main = () => {
               <Route
                 exact
                 path="/"
-                render={(props) => <Home bestSells={productData} {...props} />}
+                render={(props) => <Home bestSells={products} {...props} />}
               />
               <Route
                 exact
-                path="/showProduct"
+                path="/showProduct" 
                 render={(props) => (
                   <ShowComponents productData={products} {...props} />
                 )}

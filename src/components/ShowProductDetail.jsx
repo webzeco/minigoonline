@@ -26,6 +26,7 @@ export default class ShowProductDetail extends Component {
   }
   componentDidMount() {
     const temparray = [];
+    console.log(this.props.product);
     this.props.product.variants.map((variant) => {
       const temp = {};
       temp.variantType = variant.selectedOption;
@@ -42,9 +43,7 @@ export default class ShowProductDetail extends Component {
     });
   }
   handleSelected(selected) {
-    this.setState({ selectedVariants: selected }, () => {
-      console.log(this.state.selectedVariants);
-    });
+    this.setState({ selectedVariants: selected }, () => {});
   }
   calculateDiscountPrice(price, discount) {
     let discountedPrice = (price * discount) / 100;
@@ -72,8 +71,6 @@ export default class ShowProductDetail extends Component {
     });
   }
   componentDidUpdate() {
-    console.log(this.props.cartData);
-    console.log(this.props.product);
     this.props.cartData.map((cart) => {
       if (cart.title === this.props.product.title) {
         document.getElementById("addtocart").disabled = true;
@@ -88,7 +85,7 @@ export default class ShowProductDetail extends Component {
     return (
       <div className="mt-5">
         {/* <!-- =======Product display in Banner area ======= --> */}
-        <div className="container-fluid banner" >
+        <div className="container-fluid banner">
           <nav>
             <ol className="breadcrumb  px-5 pt-4">
               <li className="breadcrumb-item  look">
@@ -159,10 +156,11 @@ export default class ShowProductDetail extends Component {
                 </div>
                 <div className="carousel-inner">
                   {product.images.map((image, index) => {
-                    console.log({ index });
                     return (
                       <div
-                        className={`carousel-item ${index === 0 ? "active" : ""}`}
+                        className={`carousel-item ${
+                          index === 0 ? "active" : ""
+                        }`}
                       >
                         <img
                           src={`${process.env.REACT_APP_URL}/img/${image}`}
@@ -208,7 +206,7 @@ export default class ShowProductDetail extends Component {
               </div>
               {/* caroausel end */}
             </div>
-            <div className="col-md-6 back px-5" >
+            <div className="col-md-6 back px-5">
               <div className="product pt-2">
                 <div className=" align-items-center w-75">
                   <div className="h5 text-uppercase pro_title_h5">
@@ -412,7 +410,7 @@ class Variants extends Component {
         indexT = index;
       }
     });
-    // console.log(indexT);
+
     newSelected[indexT].selectedVariant = select.selectedVariant;
     this.props.setSelected(newSelected);
   }
@@ -603,37 +601,35 @@ class AddReview extends Component {
       rating: 0,
       reviewTitle: "",
       feedback: "",
-      product:""
+      product: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.ratingChanged = this.ratingChanged.bind(this);
   }
-  componentDidMount(){
-    const detail = this.context
+  componentDidMount() {
+    const detail = this.context;
     this.setState({
       name: "",
       email: "",
       rating: 0,
       reviewTitle: "",
       feedback: "",
-      product:detail.product._id
-    })
+      product: detail.product._id,
+    });
   }
   ratingChanged(newrating) {
     this.setState({ rating: newrating });
   }
-async  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
-    const {name,email,rating,reviewTitle,feedback,product}=this.state;
+    const { name, email, rating, reviewTitle, feedback, product } = this.state;
     try {
-     await addReview({name,email,rating,reviewTitle,feedback,product});
-     this.props.history.push("/showProduct"); 
-     toast("Success! Thanks for Your Review.", { type: "success" });
-    } catch (error) {
-      console.log(error);
-    }
-    // console.log(this.state);
+      await addReview({ name, email, rating, reviewTitle, feedback, product });
+      this.props.history.push("/showProduct");
+      toast("Success! Thanks for Your Review.", { type: "success" });
+    } catch (error) {}
+
     // this.props.reviews.push(this.state);
 
     // We will add method to push this review in the backend later
@@ -646,103 +642,103 @@ async  handleSubmit(e) {
       [name]: value,
     });
   }
-  
+
   render() {
     return (
       <>
-   <div className="container font_fam">
-   {/* <div className="ho pt-2 mb-3 w-100"> */}
-     {/* caroausel start */}
-     {/* <TryCarauosel getRelatedProducts /> */}
-     {/* caroausel end */}
-   {/* </div> */}
-   <h6 className="text-center pt-4 pb-2 fw-bold ov_look">
-     {" "}
-     CUSTOMER REVIEWS{" "}
-   </h6>
-   <a
-     className="re_look text-center fw-bold mb-4"
-     data-bs-toggle="collapse"
-     href="#reviewform"
-     role="button"
-     aria-expanded="false"
-     aria-controls="reviewform"
-   >
-     <p className=" mb-2 re_look"> WRITE A REVIEW</p>
-   </a>
+        <div className="container font_fam">
+          {/* <div className="ho pt-2 mb-3 w-100"> */}
+          {/* caroausel start */}
+          {/* <TryCarauosel getRelatedProducts /> */}
+          {/* caroausel end */}
+          {/* </div> */}
+          <h6 className="text-center pt-4 pb-2 fw-bold ov_look">
+            {" "}
+            CUSTOMER REVIEWS{" "}
+          </h6>
+          <a
+            className="re_look text-center fw-bold mb-4"
+            data-bs-toggle="collapse"
+            href="#reviewform"
+            role="button"
+            aria-expanded="false"
+            aria-controls="reviewform"
+          >
+            <p className=" mb-2 re_look"> WRITE A REVIEW</p>
+          </a>
 
-   <div className="collapse pt-3 pb-5" id="reviewform">
-     <form onSubmit={(e) => this.handleSubmit(e)}>
-       <div className="form-group mb-4">
-         <label for="name" className="form-label">
-           NAME (AS IT WILL APPEAR WITH REVIEW)
-         </label>
-         <input
-           name="name"
-           type="text"
-           className="form-control"
-           id="nameInput1"
-           onChange={this.handleInputChange}
-           placeholder="Enter your name"
-         />
-       </div>
+          <div className="collapse pt-3 pb-5" id="reviewform">
+            <form onSubmit={(e) => this.handleSubmit(e)}>
+              <div className="form-group mb-4">
+                <label for="name" className="form-label">
+                  NAME (AS IT WILL APPEAR WITH REVIEW)
+                </label>
+                <input
+                  name="name"
+                  type="text"
+                  className="form-control"
+                  id="nameInput1"
+                  onChange={this.handleInputChange}
+                  placeholder="Enter your name"
+                />
+              </div>
 
-       <div className="form-group mb-4">
-         <label for="email">EMAIL</label>
-         <input
-           type="email"
-           name="email"
-           className="form-control"
-           id="emailInput2"
-           onChange={this.handleInputChange}
-           placeholder="john.smith@example.com"
-         />
-       </div>
+              <div className="form-group mb-4">
+                <label for="email">EMAIL</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  id="emailInput2"
+                  onChange={this.handleInputChange}
+                  placeholder="john.smith@example.com"
+                />
+              </div>
 
-       <div className="form-group mb-4">
-         <label for="Rating">RATING</label>
-         <ul className="list-inline large d-flex">
-           <ReactStars
-             count={5}
-             onChange={this.ratingChanged}
-             size={24}
-             activeColor="#ffd700"
-           />
-         </ul>
-       </div>
+              <div className="form-group mb-4">
+                <label for="Rating">RATING</label>
+                <ul className="list-inline large d-flex">
+                  <ReactStars
+                    count={5}
+                    onChange={this.ratingChanged}
+                    size={24}
+                    activeColor="#ffd700"
+                  />
+                </ul>
+              </div>
 
-       <div className="form-group mb-4">
-         <label for="REVIEW TITLE">REVIEW TITLE</label>
-         <input
-           type="text"
-           name="reviewTitle"
-           className="form-control"
-           id="reviewtitleInput3"
-           onChange={this.handleInputChange}
-           placeholder="Enter your name"
-         />
-       </div>
-       <div className="form-group mb-4">
-         <label for="body of Review">BODY OF REVIEW</label>
-         <textarea
-           name="feedback"
-           className="form-control"
-           id="bodyofreviewTextarea4"
-           rows="9"
-           onChange={this.handleInputChange}
-           placeholder="write your comments here"
-         ></textarea>
-       </div>
-       <button
-         type="submit"
-         className="btn mb-3 sub_review_btn float-end bg-danger text-white"
-       >
-         Submit
-       </button>
-     </form>
-   </div>
- </div>
-    </>    
+              <div className="form-group mb-4">
+                <label for="REVIEW TITLE">REVIEW TITLE</label>
+                <input
+                  type="text"
+                  name="reviewTitle"
+                  className="form-control"
+                  id="reviewtitleInput3"
+                  onChange={this.handleInputChange}
+                  placeholder="Enter your name"
+                />
+              </div>
+              <div className="form-group mb-4">
+                <label for="body of Review">BODY OF REVIEW</label>
+                <textarea
+                  name="feedback"
+                  className="form-control"
+                  id="bodyofreviewTextarea4"
+                  rows="9"
+                  onChange={this.handleInputChange}
+                  placeholder="write your comments here"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="btn mb-3 sub_review_btn float-end bg-danger text-white"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </>
     );
   }
 }

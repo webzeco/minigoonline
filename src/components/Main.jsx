@@ -43,21 +43,15 @@ const Main = () => {
     getAllProductHandler();
     getMeHandler();
     // alert("JSON.stringify(categories)");
-    return () => {
-      console.log("clean up");
-    };
+    return () => {};
   }, []);
-  const orderHandler=(order)=>{
+  const orderHandler = (order) => {
     setOrder(order);
-    console.log({order});
-  }
-  const removeCartItem = (e) => {
-    console.log(e.target.id);
-    setCartData(cartData.filter((data) => data.id == e.target.value));
   };
-  useEffect(() => {
-    console.log(cartData);
-  }, [cartData]);
+  const removeCartItem = (e) => {
+    setCartData(cartData.filter((data) => data.id != e.target.id));
+  };
+  useEffect(() => {}, [cartData]);
 
   const handleCartData = (data) => {
     let id = cartData.length + 1;
@@ -71,7 +65,7 @@ const Main = () => {
   const loginHandler = async (user) => {
     try {
       const { data } = await login(user);
-      console.log(data);
+
       localStorage.setItem("jwt", data.token);
       toast.success("logged in successfully !!!", {
         position: toast.POSITION.TOP_CENTER,
@@ -86,7 +80,7 @@ const Main = () => {
   };
   const getAllCategoriesHandler = async () => {
     const data = await getAllCategories();
-    // console.log({data});
+console.log(data.data.data);
     setCategories(data.data.data);
   };
   const signUpHandler = (user) => {
@@ -95,7 +89,7 @@ const Main = () => {
   };
   const getMeHandler = async () => {
     const { data } = await getMe();
-    console.log({ data });
+
     setUser(data.data);
   };
   const getAllProductHandler = async () => {
@@ -107,7 +101,6 @@ const Main = () => {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-    console.log({ products });
   };
 
   const forgotHandler = (user) => {
@@ -130,94 +123,89 @@ const Main = () => {
         <CollectionContext.Provider
           value={{ coll: collection, setCollectionHandler }}
         >
-           <OrderContext.Provider
-          value={{ order, orderHandler }}
-        >
-          <div>
-            <ToastContainer style={{ width: "322px" }} />
-            {/* <Header /> */}
-            <Navbar categories={categories} />
-            
-            {/* <hr /> */}
-            <Switch>
-              {/* <Route path="/showProduct"   component={ ShowComponents} /> */}
-              <Route
-                exact
-                path="/"
-                render={(props) => <Home bestSells={products} {...props} />}
+          <OrderContext.Provider value={{ order, orderHandler }}>
+            <div>
+              <ToastContainer style={{ width: "322px" }} />
+              {/* <Header /> */}
+              <Navbar
+                categories={categories}
+                cartProductNumber={cartData.length}
               />
-              <Route
-                exact
-                path="/showProduct" 
-                render={(props) => (
-                  <ShowComponents productData={products} {...props} />
-                )}
-              />
-              <Route
-                exact
-                path="/showProductDetail"
-                render={(props) => (
-                  <ShowProductDetail
-                    cartData={cartData}
-                    addToCratHandler={addToCratHandler}
-                    sendCartData={handleCartData}
-                    product={product}
-                    {...props}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/signup"
-                render={(props) => (
-                  <Signup onSignUp={signUpHandler} {...props} />
-                )}
-              />
-               <Route
-                exact
-                path="/payment"
-                render={(props) => (
-                  <Payment   />
-                )}
-              />
-              <Route
-                exact
-                path="/shipping"
-                render={(props) => (
-                  <ShippingInfo   />
-                )}
-              />
-              <Route
-                exact
-                path="/login"
-                render={(props) => <Login onLogin={loginHandler} {...props} />}
-              />
-              <Route
-                exact
-                path="/forgot"
-                render={(props) => (
-                  <Forgot onForgot={forgotHandler} {...props} />
-                )}
-              />
-              <Route
-                path="/account"
-                render={(props) => (
-                  <Account onForgot={forgotHandler} {...props} />
-                )}
-              />
-              <Route
-                path="/cart"
-                render={(props) => (
-                  <Cart
-                    removeItem={(e) => removeCartItem(e)}
-                    cartData={cartData}
-                  />
-                )}
-              />
-              <Route component={NotFound} />
-            </Switch>
-            <Footer />
-          </div>
+
+              {/* <hr /> */}
+              <Switch>
+                {/* <Route path="/showProduct"   component={ ShowComponents} /> */}
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => <Home bestSells={products} {...props} />}
+                />
+                <Route
+                  exact
+                  path="/showProduct"
+                  render={(props) => (
+                    <ShowComponents productData={products} {...props} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/showProductDetail"
+                  render={(props) => (
+                    <ShowProductDetail
+                      cartData={cartData}
+                      addToCratHandler={addToCratHandler}
+                      sendCartData={handleCartData}
+                      product={product}
+                      {...props}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/signup"
+                  render={(props) => (
+                    <Signup onSignUp={signUpHandler} {...props} />
+                  )}
+                />
+                <Route exact path="/payment" render={(props) => <Payment />} />
+                <Route
+                  exact
+                  path="/shipping"
+                  render={(props) => <ShippingInfo />}
+                />
+                <Route
+                  exact
+                  path="/login"
+                  render={(props) => (
+                    <Login onLogin={loginHandler} {...props} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/forgot"
+                  render={(props) => (
+                    <Forgot onForgot={forgotHandler} {...props} />
+                  )}
+                />
+                <Route
+                  path="/account"
+                  render={(props) => (
+                    <Account onForgot={forgotHandler} {...props} />
+                  )}
+                />
+                <Route
+                  path="/cart"
+                  render={(props) => (
+                    <Cart
+                      removeItem={(e) => removeCartItem(e)}
+                      cartData={cartData}
+                    />
+                  )}
+                />
+                <Route component={NotFound} />
+              </Switch>
+              <Footer />
+            </div>
           </OrderContext.Provider>
         </CollectionContext.Provider>
       </ProductDetailContext.Provider>

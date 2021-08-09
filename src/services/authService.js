@@ -2,7 +2,6 @@ import http from './httpservice';
 import decode from 'jwt-decode';
 const url =`${process.env.REACT_APP_URL}/api/v1/auth`;
 
-console.log({url});
 export const login=(user)=> {
     return http.post(`${url}/login`,
         {

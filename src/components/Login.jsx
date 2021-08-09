@@ -1,7 +1,7 @@
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import React from "react";
-import "./style/forgot.css"
+import "./style/forgot.css";
 import { Link } from "react-router-dom";
 const loginSchema = Yup.object().shape({
   username: Yup.string().required("Required").label("Username"),
@@ -20,12 +20,10 @@ export default function Login({ onLogin }) {
         onSubmit={(values) => {
           // same shape as initial values
           onLogin(values);
-          // console.log(values);
         }}
       >
         {({ errors, touched }) => (
           <Form>
-
             <div className="mb-4 mt-5 ">
               <Field
                 name="username"
@@ -60,7 +58,10 @@ export default function Login({ onLogin }) {
             </div>
 
             <div className="cart mt-4 align-items-center">
-              <button type="submit" className="btn text-uppercase w-100 creat_btn message_look fw-bold ">
+              <button
+                type="submit"
+                className="btn text-uppercase w-100 creat_btn message_look fw-bold "
+              >
                 {/* <a href="/">SIGN IN</a> */}
                 SIGN IN
               </button>

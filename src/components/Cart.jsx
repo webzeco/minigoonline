@@ -4,10 +4,11 @@ import { OrderContext } from "./contexts/OrderContext";
 import "./style/cart.css";
 
 const Cart = (props) => {
-  const {order, orderHandler} = useContext(OrderContext);
-  const history=useHistory();
+  const { order, orderHandler } = useContext(OrderContext);
+  const history = useHistory();
   const [Data, setData] = useState([]); //This will have all products Data and Prices
   const [Total, setTotal] = useState(0); //This will have total price
+
   //This function will update the totalPrice after every change in prices will check if bucket is checked or not
   const updateTotalPrice = () => {
     let sum = 0;
@@ -54,12 +55,6 @@ const Cart = (props) => {
     updateTotalPrice();
   };
 
-  //This useEffect will be used to recalculate TotalPrice by calling updateTotalPrice after every change Data
-  //   useEffect(() => {
-  //     console.log("update total use Effect");
-  //     updateTotalPrice();
-  //   }, [Data]);
-
   //This is just to assign values for first time
   function assignValues(cartData) {
     const temp = {};
@@ -73,7 +68,6 @@ const Cart = (props) => {
   }
   //On Mounting of Cart variable initialization
   useEffect(() => {
-    console.log("This is not calling");
     const cartData = props.cartData;
     const tempArr = cartData.map((data) => {
       return assignValues(data);
@@ -99,12 +93,12 @@ const Cart = (props) => {
       document.getElementById("CheckoutAsGuestbtn").disabled = true;
     }
   };
-  const checkedOutHandler=()=>{
-    orderHandler({products:Data,subtotal:Total});
-    console.log({Data});
-    history.push('/shipping');
-  }
-  
+  const checkedOutHandler = () => {
+    orderHandler({ products: Data, subtotal: Total });
+
+    history.push("/shipping");
+  };
+
   return (
     <>
       <div className="container pt-5 mt-3 pb-5 ">
@@ -253,12 +247,12 @@ const ShowCartProduct = (props) => {
                   id={props.product.id}
                   type="number"
                   onChange={(e) => props.handleQuantityChange(e)}
-                  defaultValue="1"
+                  defaultValue="0"
                 />
                 <button
                   type="button"
                   className="btn btn-white text-center  "
-                  id={props.product.id - 1}
+                  id={props.product.id}
                   onClick={props.removeCartItem}
                 >
                   x Remove

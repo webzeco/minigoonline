@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { productData } from "../data";
 
-export default function Navbar({ categories }) {
+export default function Navbar(props, { categories }) {
   const { coll, setCollectionHandler } = useContext(CollectionContext);
   const { user } = useContext(UserContext);
   const [searchText, setSearchText] = useState();
@@ -167,7 +167,9 @@ export default function Navbar({ categories }) {
               <Link to="/cart" className="top-cart ms-md-5 ms-2">
                 <i className="fal fa-shopping-cart"></i>
                 <span className="d-none d-md-inline-block ">Cart</span>
-                <span className="cart-counter icon-color">0</span>
+                <span className="cart-counter icon-color">
+                  {props.cartProductNumber}
+                </span>
               </Link>
             </div>
           </div>
@@ -358,7 +360,7 @@ export default function Navbar({ categories }) {
               <Link to="/cart" className="top-cart">
                 <i className="bold-500 fal fa-shopping-cart"></i>
                 Cart
-                <span className="cart-counter">0</span>
+                <span className="cart-counter">{props.cartProductNumber}</span>
               </Link>
             </div>
           </div>

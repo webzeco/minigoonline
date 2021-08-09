@@ -26,6 +26,7 @@ export default class ShowProductDetail extends Component {
   }
   componentDidMount() {
     const temparray = [];
+    console.log(this.props.product);
     this.props.product.variants.map((variant) => {
       const temp = {};
       temp.variantType = variant.selectedOption;

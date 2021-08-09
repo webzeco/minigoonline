@@ -49,15 +49,9 @@ const Main = () => {
     setOrder(order);
   };
   const removeCartItem = (e) => {
-    console.log("Remove Item Called");
-    console.log("Cart Data" + cartData);
-    console.log("\n Event" + e.target.id);
-
     setCartData(cartData.filter((data) => data.id != e.target.id));
   };
-  useEffect(() => {
-    console.log(cartData);
-  }, [cartData]);
+  useEffect(() => {}, [cartData]);
 
   const handleCartData = (data) => {
     let id = cartData.length + 1;
@@ -133,7 +127,10 @@ const Main = () => {
             <div>
               <ToastContainer style={{ width: "322px" }} />
               {/* <Header /> */}
-              <Navbar categories={categories} />
+              <Navbar
+                categories={categories}
+                cartProductNumber={cartData.length}
+              />
 
               {/* <hr /> */}
               <Switch>

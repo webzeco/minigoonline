@@ -28,7 +28,7 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
 
     return (
         <div className="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3" >
-            <div className="card hid_border">
+            <div className="card hid_border ">
                     <img
                     alt='item img'
                         src={`${process.env.REACT_APP_URL}/img/${image}`} onClick={()=>onClicked(product)}

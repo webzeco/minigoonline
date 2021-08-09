@@ -75,7 +75,7 @@ setPage(newPage);
       <div className="container-fluid border mt-1 p-2">
         <div className="row">
           <div className="col-6 text-center">
-            <div className="dropdown d-flex justify-content-center message_look">
+            <div className="dropdown d-flex justify-content-center message_look" style={{zIndex:"-1"}}>
               <DropdownButton
                 variant='light'
                 alignRight
@@ -110,7 +110,7 @@ setPage(newPage);
 
           <div className="col-6 d-flex justify-content-center">
             <span className=" pt-2  count mx-3 ">{totalPageItems} items</span>
-            <div className="dropdown message_look fw-bold">
+            <div className="dropdown message_look fw-bold " style={{zIndex:"-1"}}>
               <DropdownButton
                 variant='light'
                 alignRight

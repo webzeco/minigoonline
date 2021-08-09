@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import './style/navbar.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "jquery/dist/jquery.min.js";
 import $ from 'jquery';
 import { CollectionContext } from '../contexts/CollectionContext';
 import { Link } from 'react-router-dom';
@@ -44,9 +46,13 @@ export default function Navbar({ categories }) {
                 header.classList.remove("stick-head");
             }
         }
+      
         return () => {
             console.log('clean up navbar');
         }
+      
+
+
     }, [])
     return (
         <header>

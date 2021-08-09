@@ -208,7 +208,7 @@ export default class ShowProductDetail extends Component {
               </div>
               {/* caroausel end */}
             </div>
-            <div className="col-md-6 back px-5">
+            <div className="col-md-6 back px-5" style={{zIndex:"-1"}}>
               <div className="product pt-2">
                 <div className=" align-items-center w-75">
                   <div className="h5 text-uppercase pro_title_h5">

@@ -17,8 +17,8 @@
   color: #f5f5f5;
   font-family: "Montserrat";
 }
-.breadcrumb > .look a {
-  color: #fff;
+.breadcrumb > .lookb a {
+  color: #fff !important;
   text-decoration: none;
   font-size: 12px;
   font-family: "Montserrat";

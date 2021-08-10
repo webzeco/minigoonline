@@ -13,9 +13,9 @@ export default function Account() {
   }
   return (
     <div>
-      <div className="container pro_spec pt-5 pb-5 mt-3">
+      <div className="container pro_spec  pb-5 mt-3 ">
         <div className="row justify-content-center ">
-          <div className="col-12 pt-5 mt-5 ">
+          <div className="col-12">
             <div className="d-flex row ">
               <div className="col-10">
                 <div className="h5 text-uppercase pro_title_h5">My Account</div>

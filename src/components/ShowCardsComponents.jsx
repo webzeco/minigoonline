@@ -49,10 +49,10 @@ setPage(newPage);
       {/* <!-- ======= bann area ======= --> */}
       <div className="container-fluid bann  mt-2">
         <ol className="breadcrumb pt-4 m-3 px-5">
-          <li className="breadcrumb-item look">
+          <li className="breadcrumb-item lookb">
             <a href="/">Home</a>
           </li>
-          <li className="breadcrumb-item look">
+          <li className="breadcrumb-item lookb">
             <a href="/">{coll}</a>
           </li>
         </ol>
@@ -75,7 +75,7 @@ setPage(newPage);
       <div className="container-fluid border mt-1 p-2">
         <div className="row">
           <div className="col-6 text-center">
-            <div className="dropdown d-flex justify-content-center message_look" style={{zIndex:"-1"}}>
+            <div className="dropdown d-flex justify-content-center message_look" >
               <DropdownButton
                 variant='light'
                 alignRight
@@ -110,7 +110,7 @@ setPage(newPage);
 
           <div className="col-6 d-flex justify-content-center">
             <span className=" pt-2  count mx-3 ">{totalPageItems} items</span>
-            <div className="dropdown message_look fw-bold " style={{zIndex:"-1"}}>
+            <div className="dropdown message_look fw-bold ">
               <DropdownButton
                 variant='light'
                 alignRight

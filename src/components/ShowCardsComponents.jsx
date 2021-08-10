@@ -45,6 +45,7 @@ export default function ShowComponents({ productData }) {
   const handleSortSelect = (e) => {
     setSort(e);
   };
+  
   return (
     <div>
       {/* <!-- ======= bann area ======= --> */}

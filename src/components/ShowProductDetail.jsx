@@ -12,6 +12,7 @@ import { addReview } from "../services/reviewService";
 import { ProductDetailContext } from "./contexts/ProductDetailContext";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import { Link } from "@material-ui/core";
 export default class ShowProductDetail extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +27,9 @@ export default class ShowProductDetail extends Component {
   }
   componentDidMount() {
     const temparray = [];
-    console.log(this.props.product);
+    
+    // window.history.scrollRestoration = 'manual';
+    // console.log(this.props.product);
     this.props.product.variants.map((variant) => {
       const temp = {};
       temp.variantType = variant.selectedOption;
@@ -49,6 +52,7 @@ export default class ShowProductDetail extends Component {
     let discountedPrice = (price * discount) / 100;
     return discountedPrice;
   }
+  
   handleAddToCart(e) {
     e.preventDefault();
     const product = this.props.product;
@@ -81,7 +85,6 @@ export default class ShowProductDetail extends Component {
   }
   render() {
     const product = this.props.product;
-
     return (
       <div className="mt-5">
         {/* <!-- =======Product display in Banner area ======= --> */}
@@ -103,29 +106,6 @@ export default class ShowProductDetail extends Component {
 
           <div className="row justify-content-center ">
             <div className="col-md-6 w-40">
-              {/* caroausel start */}
-              {/* <div id="carouselExampleControlsNoTouching" className="carousel slide banner" data-bs-touch="false" data-bs-interval="false">
-  <div className="carousel-inner" style={{width:'60%',placeItems:'center',alignItems:'center',marginLeft:'20%'}}>
-    <div className="carousel-item active">
-      <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" className="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
-    </div>
-    <div className="carousel-item">
-      <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" className="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
-    </div>
-    <div className="carousel-item">
-      <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" className="d-block w-80" alt="https://www.freeiconspng.com/uploads/women-bag-png-32.png"/>
-    </div>
-  </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-</div>
-            */}
               <div
                 id="carouselExampleIndicators"
                 className="carousel slide"
@@ -171,13 +151,7 @@ export default class ShowProductDetail extends Component {
                       </div>
                     );
                   })}
-                  {/* <div className={`carousel-item`} >
-            <img src="https://cdn.pixabay.com/photo/2017/09/17/02/02/png-2757379_1280.png" className="d-block w-100" height="400" alt="..."/>
-          </div> */}
-                  {/*
-          <div className="carousel-item">
-            <img src="https://www.freeiconspng.com/uploads/women-bag-png-32.png" className="d-block w-100" height="400" alt="..."/>
-          </div> */}
+                 
                 </div>
                 <button
                   className="carousel-control-prev"
@@ -225,7 +199,6 @@ export default class ShowProductDetail extends Component {
                       </>
                     )}
                   </div>
-
                   <div className="d-flex align-items-center">
                     {/* Reviews Component */}
                     <Reviews reviews={product.reviews} />
@@ -351,6 +324,7 @@ const Customization = (props) => {
 };
 
 const Reviews = (props) => {
+  console.log({props});
   function avergeRating() {
     let sum = 0;
     props.reviews?.map((review) => {
@@ -387,11 +361,11 @@ const Reviews = (props) => {
           activeColor="#ffd700"
         />
       </ul>
-      <a href="#">
+      <Link to="#">
         <p className="mb-2 re_look">{props.reviews?.length} REVIEWS</p>
-      </a>
+      </Link>
       <div className="vl mb-1 mx-4"></div>
-      <a href="#">
+      <a href="#write-review">
         <p className=" mb-2 re_look"> WRITE A REVIEW</p>
       </a>
     </>
@@ -669,8 +643,9 @@ class AddReview extends Component {
 
           <div className="collapse pt-3 pb-5" id="reviewform">
             <form onSubmit={(e) => this.handleSubmit(e)}>
-              <div className="form-group mb-4">
-                <label for="name" className="form-label">
+              <div className="form-group mb-4 ">
+                <a name="write-review"></a>
+                <label  for="name" className="form-label">
                   NAME (AS IT WILL APPEAR WITH REVIEW)
                 </label>
                 <input

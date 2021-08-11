@@ -2,42 +2,44 @@ import React, { useContext, useEffect, useState } from "react";
 import "./style/showComponent.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import ProductList from './common/showProductList';
+import ProductList from "./common/showProductList";
 import { CollectionContext } from "./contexts/CollectionContext";
 import Pagination from "./common/Pagination";
-import {  paginate } from "../utils/paginate";
+import { paginate } from "../utils/paginate";
 import { filterByPrice } from "../utils/filter";
 import { sortBy } from "../utils/sort";
 export default function ShowComponents({ productData }) {
-  const {coll,setCollectionHandler}= useContext(CollectionContext);
-  const [page,setPage] = useState({currentPage:1,itemsCount:productData.length,pageSize:8});
+  const { coll, setCollectionHandler } = useContext(CollectionContext);
+  const [page, setPage] = useState({
+    currentPage: 1,
+    itemsCount: productData.length,
+    pageSize: 8,
+  });
   const [price, setPrice] = useState("Price");
   const [sort, setSort] = useState("Sort");
   const [data, setData] = useState();
   const [totalPageItems, setTotalPageItems] = useState(productData.length);
 
-useEffect(() => {
- let pageDataList= filterByPrice(productData,price);
- pageDataList=sortBy(pageDataList,sort);
- setTotalPageItems(pageDataList.length);
-     pageDataList=paginate(pageDataList,page.currentPage,page.pageSize);
-  setData(pageDataList);
-  return () => {
-    console.log("clean up");
-  }
-}, [page,price,sort]);
+  useEffect(() => {
+    let pageDataList = filterByPrice(productData, price);
+    pageDataList = sortBy(pageDataList, sort);
+    setTotalPageItems(pageDataList.length);
+    pageDataList = paginate(pageDataList, page.currentPage, page.pageSize);
+    setData(pageDataList);
+    return () => {};
+  }, [page, price, sort]);
 
-const changePageHandler=(c_page)=>{
-  const newPage={...page};
-  newPage.currentPage=c_page;
-  page.currentPage=newPage;
-setPage(newPage);
-}
+  const changePageHandler = (c_page) => {
+    const newPage = { ...page };
+    newPage.currentPage = c_page;
+    page.currentPage = newPage;
+    setPage(newPage);
+  };
   const handlePriceSelect = (e) => {
-    const newPage={...page};
-    newPage.currentPage=1;
-    page.currentPage=newPage;
-  setPage(newPage);
+    const newPage = { ...page };
+    newPage.currentPage = 1;
+    page.currentPage = newPage;
+    setPage(newPage);
     setPrice(e);
   };
   const handleSortSelect = (e) => {
@@ -45,7 +47,6 @@ setPage(newPage);
   };
   return (
     <div>
-      {/* {console.log({to:page})} */}
       {/* <!-- ======= bann area ======= --> */}
       <div className="container-fluid bann  mt-2">
         <ol className="breadcrumb pt-4 m-3 px-5">
@@ -77,7 +78,7 @@ setPage(newPage);
           <div className="col-6 text-center">
             <div className="dropdown d-flex justify-content-center message_look" >
               <DropdownButton
-                variant='light'
+                variant="light"
                 alignRight
                 title={price}
                 id="dropdown-menu-align-right "
@@ -87,8 +88,8 @@ setPage(newPage);
                   Less than $50
                 </Dropdown.Item>
                 <Dropdown.Item eventKey="$50-$100">$50-$100</Dropdown.Item>
-              </DropdownButton> 
-               {/* <div className="dropdown">
+              </DropdownButton>
+              {/* <div className="dropdown">
                                             <button
                                                 className="btn btn-light dropdown-toggle"
                                                 type="button"
@@ -104,7 +105,6 @@ setPage(newPage);
                                                 <li><a className="dropdown-item" href="#">Something else here</a></li>
                                             </ul> 
                                         </div> */}
-                                      
             </div>
           </div>
 
@@ -112,17 +112,26 @@ setPage(newPage);
             <span className=" pt-2  count mx-3 ">{totalPageItems} items</span>
             <div className="dropdown message_look fw-bold ">
               <DropdownButton
-                variant='light'
+                variant="light"
                 alignRight
                 title={sort}
                 id="dropdown-menu-align-right "
                 onSelect={handleSortSelect}
               >
-                <Dropdown.Item eventKey="New Arrivals">New Arrivals</Dropdown.Item>
-                <Dropdown.Item eventKey="Bestselling">Bestselling</Dropdown.Item>
-                <Dropdown.Item eventKey="Featured" > Featured</Dropdown.Item>
-                <Dropdown.Item eventKey="Price: High to Low">Price: High to Low </Dropdown.Item>
-                <Dropdown.Item   eventKey="Price: Low to High">  Price: Low to High</Dropdown.Item>
+                <Dropdown.Item eventKey="New Arrivals">
+                  New Arrivals
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="Bestselling">
+                  Bestselling
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="Featured"> Featured</Dropdown.Item>
+                <Dropdown.Item eventKey="Price: High to Low">
+                  Price: High to Low{" "}
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="Price: Low to High">
+                  {" "}
+                  Price: Low to High
+                </Dropdown.Item>
                 {/* <Dropdown.Divider /> */}
               </DropdownButton>
             </div>
@@ -135,18 +144,20 @@ setPage(newPage);
 
       <div className="container pt-5">
         <div className="row ">
-        <ProductList pageDataList={data} />
-  </div>
+          <ProductList pageDataList={data} />
+        </div>
       </div>
       {/* <!-- ======= product display in cards ends ======= -->  */}
       {/* <!-- ======= pagination ======= -->  */}
- 
 
       <ul className="pagination justify-content-center p-4  message_look">
-      {/* {console.log({dd:totalPageItems})} */}
-
-      <Pagination className="bg-danger"  itemsCount={totalPageItems} pageSize={page.pageSize}
-       currentPage={page.currentPage} onPageChange={changePageHandler} />
+        <Pagination
+          className="bg-danger"
+          itemsCount={totalPageItems}
+          pageSize={page.pageSize}
+          currentPage={page.currentPage}
+          onPageChange={changePageHandler}
+        />
         {/* <li className="page-item">
           <a className="page-link" href="/" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>

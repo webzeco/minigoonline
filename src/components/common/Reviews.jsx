@@ -250,6 +250,7 @@ import ReactStars from "react-rating-stars-component";
 
 import "./style/review.css";
 export default function Reviews({ reviews }) {
+  const activeReviews=reviews.filter(r=>r.favorite);
   return (
     <div>
       <h4 className="text-danger text-center">Our Customer's Reviews</h4>
@@ -259,9 +260,8 @@ export default function Reviews({ reviews }) {
       data-bs-ride="carousel"
     >
       <div class="carousel-inner">
-        {reviews &&
-          reviews.map((rev, index, array) => {
-            
+        {activeReviews &&
+          activeReviews.map((rev, index, array) => {
             if (array.length < index + 3) return null;
             return (
               <div

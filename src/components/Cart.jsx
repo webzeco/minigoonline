@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { OrderContext } from "./contexts/OrderContext";
 import "./style/cart.css";
-
 const Cart = (props) => {
   const { order, orderHandler } = useContext(OrderContext);
   const history = useHistory();

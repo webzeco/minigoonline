@@ -11,6 +11,7 @@ const Home = ({ bestSells }) => {
 
   const getAllReviewsHandler = async () => {
     const { data } = await getAllReviews();
+    // console.log(data.data);
     setReviews(data.data);
   };
   useEffect(() => {

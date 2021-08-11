@@ -131,7 +131,6 @@ console.log(data.data.data);
                 categories={categories}
                 cartProductNumber={cartData.length}
               />
-
               {/* <hr /> */}
               <Switch>
                 {/* <Route path="/showProduct"   component={ ShowComponents} /> */}

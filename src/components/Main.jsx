@@ -18,7 +18,7 @@ import Forgot from "./Forgot";
 import Account from "./Account";
 import { ProductDetailContext } from "./contexts/ProductDetailContext";
 import { retry } from "async";
-import { login } from "../services/authService";
+import { forgotPassword, login, resetPassword, signup } from "../services/authService";
 import { toast, ToastContainer } from "react-toastify";
 import Navbar from "./common/Navbar";
 import { getAllCategories } from "../services/categoryService";
@@ -27,6 +27,7 @@ import { deleteProduct, getAllProducts } from "../services/productServices";
 import Payment from "./Payment";
 import ShippingInfo from "./ShippingInfo";
 import { OrderContext } from "./contexts/OrderContext";
+import ResetPassword from "./ResetPassword";
 const Main = () => {
   const history = useHistory();
   const [user, setUser] = useState();
@@ -65,7 +66,6 @@ const Main = () => {
   const loginHandler = async (user) => {
     try {
       const { data } = await login(user);
-
       localStorage.setItem("jwt", data.token);
       toast.success("logged in successfully !!!", {
         position: toast.POSITION.TOP_CENTER,
@@ -83,9 +83,22 @@ const Main = () => {
 console.log(data.data.data);
     setCategories(data.data.data);
   };
-  const signUpHandler = (user) => {
-    setUser(user);
-    history.push("/");
+  const signUpHandler =async  (user) => {
+   try {
+    const { data } = await signup(user);
+    localStorage.setItem("jwt", data.token);
+    toast.success("sign up in successfully !!!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+    // history.push('/');
+    window.location = "/";
+  } catch (error) {
+    toast.error("Username or Email already existed Please used another !!!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  }
+    // setUser(user);
+    // history.push("/");
   };
   const getMeHandler = async () => {
     const { data } = await getMe();
@@ -103,9 +116,14 @@ console.log(data.data.data);
     }
   };
 
-  const forgotHandler = (user) => {
-    ("email sent!!!!");
+  const forgotHandler = async (email) => {
+   const data= await  forgotPassword(email)
+    if(data.data.status==='success')
+    toast.success("Email successfully sent Please check your mail");
+   else{
+    toast.error(data.data.message);
     history.push("/");
+   }
   };
   const addToCratHandler = (user) => {
     history.push("/cart");
@@ -115,6 +133,27 @@ console.log(data.data.data);
     setRelatedProd(items);
     history.push("/showProductDetail");
   };
+  const resetPasswordHandler=async (values)=>{
+    const {password,confirmPassword,token}=values;
+    console.log(values);
+    try {
+      await resetPassword({password,confirmPassword },token);
+      toast.success(" Password Reset Successfully !!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      setTimeout(() => {
+        toast.success(" Login with New Password !!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+         history.push("/login");
+      }, 1500);
+    } catch (error) {
+      console.log(error);
+      toast.error("Invalid token !!!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  }
   return (
     <UserContext.Provider value={{ user: user }}>
       <ProductDetailContext.Provider
@@ -166,6 +205,7 @@ console.log(data.data.data);
                     <Signup onSignUp={signUpHandler} {...props} />
                   )}
                 />
+
                 <Route exact path="/payment" render={(props) => <Payment />} />
                 <Route
                   exact
@@ -177,6 +217,13 @@ console.log(data.data.data);
                   path="/login"
                   render={(props) => (
                     <Login onLogin={loginHandler} {...props} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/resetPassword/:token"
+                  render={(props) => (
+                    <ResetPassword onResetPassword={resetPasswordHandler} {...props} />
                   )}
                 />
                 <Route

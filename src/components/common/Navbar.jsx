@@ -9,23 +9,25 @@ import { CollectionContext } from "../contexts/CollectionContext";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { productData } from "../data";
+import SearchElement from "./SearchElement";
 
 export default function Navbar(props) {
   const { coll, setCollectionHandler } = useContext(CollectionContext);
   const { user } = useContext(UserContext);
-  const [searchText, setSearchText] = useState();
+  const [searchText, setSearchText] = useState("");
   const [items, setItems] = useState([]);
-  const searchInput = useRef("");
+  console.log(productData);
   useEffect(() => {
     getRelatedItemsHandler();
 
     if (!searchText) setItems([]);
   }, [searchText]);
-  const onTextChangeHandler = () => {
-    setSearchText(searchInput.current.value);
+  const onTextChangeHandler = (e) => {
+    setSearchText(e.target.value);
+    console.log(items);
   };
   const getRelatedItemsHandler = () => {
-    setItems(productData.filter((prod) => prod.title.includes(searchText)));
+    setItems(props.products.filter((prod) => prod.title.includes(searchText)));
   };
 
   const onClickHandlers = (coll) => {
@@ -48,7 +50,7 @@ export default function Navbar(props) {
       }
     }
 
-    return () => {};
+    return () => { };
   }, []);
   return (
     <header>
@@ -69,6 +71,7 @@ export default function Navbar(props) {
                   <i className="fad fa-bars"></i>
                 </button>
                 <button
+
                   className="sidemenu-toggle-btn"
                   type="button"
                   data-bs-toggle="offcanvas"
@@ -120,8 +123,10 @@ export default function Navbar(props) {
                     <i className="bold-500 fal fa-search icon-color"></i>
                   </span>
                   <input
+                    value={searchText}
                     className="form-control"
                     type="text"
+                    onChange={(e) => onTextChangeHandler(e)}
                     placeholder="Search"
                   />
                 </div>
@@ -188,6 +193,8 @@ export default function Navbar(props) {
                   <i className="bold-500 fal fa-search icon-color"></i>
                 </span>
                 <input
+                  value={searchText}
+                  onChange={(e) => onTextChangeHandler(e)}
                   className="form-control"
                   type="text"
                   placeholder="Search"
@@ -223,7 +230,7 @@ export default function Navbar(props) {
                             return (
                               <li key={subCate._id}>
                                 <Link
-                                  onClick={() => onClickHandlers(subCate.name)}
+                                  onClick={() => onClickHandlers(`${cate.category}/${subCate.name}`)}
                                   to={`showProduct`}
                                   style={{ textDecoration: "none" }}
                                   className="text-dark fw-light"
@@ -240,112 +247,6 @@ export default function Navbar(props) {
                 );
               })}
 
-              {/* <li className="nav-item"><a className="nav-link" href="#">Times Goods</a>
-                                <div className="navbar-menu">
-                                    <div className="navbar-menu-list1">
-                                        <h4 className="navbar-menu-heading">Branded Goods</h4>
-                                        <ul className="navbar-menu-list">
-                                            <li><a href="#">Accessories</a></li>
-                                            <li><a href="#">Drinkware</a></li>
-                                            <li><a href="#">Maps</a></li>
-                                            <li><a href="#">Puzzles & Games</a></li>
-                                            <li><a href="#">Stationary</a></li>
-                                        </ul>
-                                    </div>
-                                    <div className="navbar-menu-list2">
-                                        <h4 className="navbar-menu-heading">Branding Clothing</h4>
-                                        <ul className="navbar-menu-list">
-                                            <li><a href="#">Men's</a></li>
-                                            <li><a href="#">Women's</a></li>
-                                            <li><a href="#">Babies & Kids</a></li>
-                                        </ul>
-                                    </div>
-                                    <div className="navbar-menu-list2">
-                                        <h4 className="navbar-menu-heading">Collections</h4>
-                                        <div className="d-flex">
-                                            <ul className="navbar-menu-list">
-                                                <li><a href="#">Cooking</a></li>
-                                                <li><a href="#">The 1619 Project</a></li>
-                                                <li><a href="#">Early Edition</a></li>
-                                                <li><a href="#">Local Edition</a></li>
-                                                <li><a href="#">Modern Love</a></li>
-                                                <li><a href="#">"The Daily"</a></li>
-                                            </ul>
-                                            <div className="ms-5">
-                                                <ul className="navbar-menu-list">
-                                                    <li><a href="#">"The Truth"</a></li>
-                                                    <li><a href="#">Crossword Gifts</a></li>
-                                                    <li><a href="#">Travel Gifts</a></li>
-                                                    <li><a href="#">Women's Rights</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="nav-item"><a className="nav-link" href="#">Wall Art</a>
-                                <div className="navbar-menu">
-                                    <div className="navbar-menu-list1">
-                                        <h4 className="navbar-menu-heading">Photography</h4>
-                                        <div className="d-flex">
-                                            <ul className="navbar-menu-list">
-                                                <li><a href="#">Best Sellers</a></li>
-                                                <li><a href="#">Historical</a></li>
-                                                <li><a href="#">New York</a></li>
-                                                <li><a href="#">Aerial</a></li>
-                                                <li><a href="#">Politics</a></li>
-                                                <li><a href="#">Space</a></li>
-                                            </ul>
-                                            <div className="ms-4">
-                                                <ul className="navbar-menu-list">
-                                                    <li><a href="#">Sports</a></li>
-                                                    <li><a href="#">Travel</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="navbar-menu-list2">
-                                        <h4 className="navbar-menu-heading">Prints</h4>
-                                        <ul className="navbar-menu-list">
-                                            <li><a href="#">Illustrations</a></li>
-                                            <li><a href="#">Maps</a></li>
-                                            <li><a href="#">Posters</a></li>
-                                        </ul>
-                                    </div>
-                                    <div className="navbar-menu-list2">
-                                        <h4 className="navbar-menu-heading">Personalized</h4>
-                                        <ul className="navbar-menu-list">
-                                            <li><a href="#">Front Page Reprint</a></li>
-                                            <li><a href="#">Inside Page Reprint</a></li>
-                                            <li><a href="#">Crossword Puzzle Reprint</a></li>
-                                            <li><a href="#">Choose Any Times Photo</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="nav-item"><a className="nav-link" href="#">Books</a>
-                                <div className="navbar-menu">
-                                    <div className="navbar-menu-list1">
-                                        <h4 className="navbar-menu-heading">Categories</h4>
-                                        <ul className="navbar-menu-list">
-                                            <li><a href="#">Crosswords</a></li>
-                                            <li><a href="#">Travel</a></li>
-                                            <li><a href="#">Books From The Times</a></li>
-                                        </ul>
-                                    </div>
-                                    <div className="navbar-menu-list2">
-                                        <h4 className="navbar-menu-heading">Personalized</h4>
-                                        <ul className="navbar-menu-list">
-                                            <li><a href="#">Ultimate Birthday Book</a></li>
-                                            <li><a href="#">Custom Birthday Book</a></li>
-                                            <li><a href="#">History Books</a></li>
-                                            <li><a href="#">Sports History Books</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="nav-item"><a className="nav-link" href="#">Special Sections</a></li>
-                             */}
               <li className="nav-item">
                 <Link
                   onClick={() => onClickHandlers("Sale")}
@@ -366,6 +267,8 @@ export default function Navbar(props) {
           </div>
         </div>
       </nav>
+      <SearchElement items={items} />
+
       {/* <!-- Side Menu --> */}
       <div
         className="offcanvas offcanvas-start"
@@ -375,126 +278,17 @@ export default function Navbar(props) {
       >
         <div className="sidemenu-header">
           <div className="position-relative">
-            <input className="form-control " type="text" placeholder="SEARCH" />
+            <input className="form-control "
+              type="text" placeholder="SEARCH"
+              value={searchText}
+              onChange={(e) => onTextChangeHandler(e)}
+            />
             <i className="fal fa-search"></i>
           </div>
         </div>
+        <SearchElement items={items}/>
         <div className="offcanvas-body">
           <ul className="sidemenu-list">
-            {/* <li><a href="#">Best Sellers</a></li> */}
-            {/* <li>
-                            <div className="sidemenu-dropdown-box">
-                                <a href="#sidemenu-dropdown1" className="collapsed sidebar-dropdown-btn" data-bs-toggle="collapse">Personalized</a>
-                                <div className="collapse" id="sidemenu-dropdown1">
-                                    <ul className="sidemenu-sublist">
-                                        <li className="sidemenu-sublist-mainlink"><a href="#">View All Personalized</a></li>
-                                        <li><a href="#" className="sidemenu-sublist-heading">Personalized Books</a></li>
-                                        <li><a href="#">Ultimate Birthday Book</a></li>
-                                        <li><a href="#">Custom Birthday Book</a></li>
-                                        <li><a href="#">Special Day Book</a></li>
-                                        <li><a href="#">Anniversary Book</a></li>
-                                        <li><a href="#">Sports History Books</a></li>
-                                    </ul>
-                                    <ul className="sidemenu-sublist">
-                                        <li><a href="#" className="sidemenu-sublist-heading">Custom Reprints</a></li>
-                                        <li><a href="#">Front Page Reprint</a></li>
-                                        <li><a href="#">Inside Page Reprint</a></li>
-                                        <li><a href="#">Front Page Puzzle</a></li>
-                                        <li><a href="#">Crossword Puzzle Reprint</a></li>
-                                        <li><a href="#">Custom Photo Reprint</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="sidemenu-dropdown-box">
-                                <a href="#sidemenu-dropdown2" className="collapsed sidebar-dropdown-btn" data-bs-toggle="collapse">Times Goods</a>
-                                <div className="collapse" id="sidemenu-dropdown2">
-                                    <ul className="sidemenu-sublist">
-                                        <li className="sidemenu-sublist-mainlink"><a href="#">View All Times Goods</a></li>
-                                        <li><a href="#" className="sidemenu-sublist-heading">Branded Goods</a></li>
-                                        <li><a href="#">Accessories</a></li>
-                                        <li><a href="#">Drinkware</a></li>
-                                        <li><a href="#">Maps</a></li>
-                                        <li><a href="#">Puzzles & Games</a></li>
-                                        <li><a href="#">Stationary</a></li>
-                                    </ul>
-                                    <ul className="sidemenu-sublist">
-                                        <li><a href="#" className="sidemenu-sublist-heading">Branded Clothing</a></li>
-                                        <li><a href="#">Men's</a></li>
-                                        <li><a href="#">Women's</a></li>
-                                        <li><a href="#">Babies & Kids</a></li>
-                                    </ul>
-                                    <ul className="sidemenu-sublist">
-                                        <li><a href="#" className="sidemenu-sublist-heading">Collection</a></li>
-                                        <li><a href="#">Cooking</a></li>
-                                        <li><a href="#">The 1619 Project</a></li>
-                                        <li><a href="#">Early Edition</a></li>
-                                        <li><a href="#">Local Edition</a></li>
-                                        <li><a href="#">Modern Love</a></li>
-                                        <li><a href="#">"The Daily"</a></li>
-                                        <li><a href="#">"The Truth"</a></li>
-                                        <li><a href="#">Crossword Gifts</a></li>
-                                        <li><a href="#">Travel Gifts</a></li>
-                                        <li><a href="#">Women's Rights</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="sidemenu-dropdown-box">
-                                <a href="#sidemenu-dropdown3" className="collapsed sidebar-dropdown-btn" data-bs-toggle="collapse">Wall Art</a>
-                                <div className="collapse" id="sidemenu-dropdown3">
-                                    <ul className="sidemenu-sublist">
-                                        <li className="sidemenu-sublist-mainlink"><a href="#">View All Wall Art</a></li>
-                                        <li><a href="#" className="sidemenu-sublist-heading">Photography</a></li>
-                                        <li><a href="#">Best Sellers</a></li>
-                                        <li><a href="#">Historical</a></li>
-                                        <li><a href="#">New York</a></li>
-                                        <li><a href="#">Aerial</a></li>
-                                        <li><a href="#">Politics</a></li>
-                                        <li><a href="#">Space</a></li>
-                                        <li><a href="#">Sports</a></li>
-                                        <li><a href="#">Travel</a></li>
-                                    </ul>
-                                    <ul className="sidemenu-sublist">
-                                        <li><a href="#" className="sidemenu-sublist-heading">Prints</a></li>
-                                        <li><a href="#">Illustrations</a></li>
-                                        <li><a href="#">Maps</a></li>
-                                        <li><a href="#">Posters</a></li>
-                                    </ul>
-                                    <ul className="sidemenu-sublist">
-                                        <li><a href="#" className="sidemenu-sublist-heading">Personalized</a></li>
-                                        <li><a href="#">Front Page Reprint</a></li>
-                                        <li><a href="#">Inside Page Reprint</a></li>
-                                        <li><a href="#">Crossword Puzzle Reprint</a></li>
-                                        <li><a href="#">Choose Any Times Photo</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="sidemenu-dropdown-box">
-                                <a href="#sidemenu-dropdown4" className="collapsed sidebar-dropdown-btn" data-bs-toggle="collapse">Books</a>
-                                <div className="collapse" id="sidemenu-dropdown4">
-                                    <ul className="sidemenu-sublist">
-                                        <li className="sidemenu-sublist-mainlink"><a href="#">View All Books</a></li>
-                                        <li><a href="#" className="sidemenu-sublist-heading">Categories</a></li>
-                                        <li><a href="#">Crosswords</a></li>
-                                        <li><a href="#">Travel</a></li>
-                                        <li><a href="#">Books From The Times</a></li>
-                                    </ul>
-                                    <ul className="sidemenu-sublist">
-                                        <li><a href="#" className="sidemenu-sublist-heading">Personalized</a></li>
-                                        <li><a href="#">Ultimate Birthday Book</a></li>
-                                        <li><a href="#">Custom Birthday Book</a></li>
-                                        <li><a href="#">History Books</a></li>
-                                        <li><a href="#">Sports History Books</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="#">Special Sections</a></li> */}
 
             <li className="nav-item">
               <Link
@@ -523,18 +317,12 @@ export default function Navbar(props) {
                         id={`sidemenu-dropdown-${index}`}
                       >
                         <ul className="sidemenu-sublist">
-                          {/* <li className="sidemenu-sublist-mainlink"><a href="#">View All Times Goods</a></li>
-                                                <li><a href="#" className="sidemenu-sublist-heading">Branded Goods</a></li>
-                                                <li><a href="#">Accessories</a></li>
-                                                <li><a href="#">Drinkware</a></li>
-                                                <li><a href="#">Maps</a></li>
-                                                <li><a href="#">Puzzles & Games</a></li>
-                                                <li><a href="#">Stationary</a></li> */}
+
                           {cate.subCategories?.map((subCate) => {
                             return (
                               <li key={subCate._id}>
                                 <Link
-                                  onClick={() => onClickHandlers(subCate.name)}
+                                  onClick={() => onClickHandlers(`${cate.category}/${subCate.name}`)}
                                   to={`showProduct`}
                                   style={{ textDecoration: "none" }}
                                   className="text-dark fw-light"
@@ -545,43 +333,10 @@ export default function Navbar(props) {
                             );
                           })}
                         </ul>
-                        {/* <ul className="sidemenu-sublist">
-                                                <li><a href="#" className="sidemenu-sublist-heading">Branded Clothing</a></li>
-                                                <li><a href="#">Men's</a></li>
-                                                <li><a href="#">Women's</a></li>
-                                                <li><a href="#">Babies & Kids</a></li>
-                                            </ul>
-                                            <ul className="sidemenu-sublist">
-                                                <li><a href="#" className="sidemenu-sublist-heading">Collection</a></li>
-                                                <li><a href="#">Cooking</a></li>
-                                                <li><a href="#">The 1619 Project</a></li>
-                                                <li><a href="#">Early Edition</a></li>
-                                                <li><a href="#">Local Edition</a></li>
-                                                <li><a href="#">Modern Love</a></li>
-                                                <li><a href="#">"The Daily"</a></li>
-                                                <li><a href="#">"The Truth"</a></li>
-                                                <li><a href="#">Crossword Gifts</a></li>
-                                                <li><a href="#">Travel Gifts</a></li>
-                                                <li><a href="#">Women's Rights</a></li>
-                                            </ul> */}
+
                       </div>
                     </div>
                   </li>
-
-                  {/* gggggggggggggggggg */}
-                  {/* <li key={cate._id} className="nav-item"><Link onClick={() => onClickHandlers(cate.category)} className="nav-link" to={`showProduct`}>{cate.category}</Link>
-                                    <div className="navbar-menu">
-                                        <div className="navbar-menu-list1">
-                                             <h4 className="navbar-menu-heading">Personalized Books</h4>
-                                            <ul className="navbar-menu-list">
-                                                {cate.subCategories?.map(subCate => {
-                                                    return <li key={subCate._id} ><Link onClick={() => onClickHandlers(subCate.name)} to={`showProduct`} style={{ textDecoration: 'none' }} className="text-dark fw-light">{subCate.name}</Link></li>
-                                                })}
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                </li> */}
                 </>
               );
             })}

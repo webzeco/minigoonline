@@ -3,6 +3,9 @@ const url =`${process.env.REACT_APP_URL}/api/v1/product`;
 export function getAllProducts() {
     return http.get(`${url}/allProducts`);
 }
+export function getProductsWithCategories({category,subcategory}) {
+    return http.get(`${url}/products/${category}/${subcategory}`);
+}
 export function confirmTransaction(id) {
     return http.patch(`${url}/${id}`, {
         status:true

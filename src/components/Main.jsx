@@ -31,7 +31,7 @@ import ResetPassword from "./ResetPassword";
 const Main = () => {
   const history = useHistory();
   const [user, setUser] = useState();
-  const [collection, setColl] = useState("");
+  const [collection, setColl] = useState({});
   const [items, setItems] = useState([]);
   const [product, setProduct] = useState();
   const [relatedProd, setRelatedProd] = useState();
@@ -44,7 +44,7 @@ const Main = () => {
     getAllProductHandler();
     getMeHandler();
     // alert("JSON.stringify(categories)");
-    return () => {};
+    return () => { };
   }, []);
   const orderHandler = (order) => {
     setOrder(order);
@@ -52,8 +52,7 @@ const Main = () => {
   const removeCartItem = (e) => {
     setCartData(cartData.filter((data) => data.id != e.target.id));
   };
-  useEffect(() => {}, [cartData]);
-
+  useEffect(() => { }, [cartData]);
   const handleCartData = (data) => {
     let id = cartData.length + 1;
     data.id = id;
@@ -61,7 +60,25 @@ const Main = () => {
     setCartData([...cartData, data]);
   };
   const setCollectionHandler = (coll) => {
-    setColl(coll);
+    let cate;
+    let subCate;
+    let desc;
+    if(coll.includes('/')){
+       cate = coll.split('/')[0];
+       subCate = coll.split('/')[1];
+      let indexCate=categories.findIndex((c)=>c.category===cate);
+      let indexSub=categories[indexCate]?.subCategories?.findIndex((s)=>s.name===subCate);
+      console.log({indexCate,indexSub});
+      desc=categories[indexCate]?.subCategories[indexSub]?.description;
+      
+    }else if (coll==='Best Sellers') {
+      subCate="Best Sellers"
+      desc="Best Sellers description"
+    }else{
+      subCate="Sale"
+      desc="sale description"
+    }
+    setColl({category:cate, subcategory:subCate,description:desc});
   };
   const loginHandler = async (user) => {
     try {
@@ -80,23 +97,23 @@ const Main = () => {
   };
   const getAllCategoriesHandler = async () => {
     const data = await getAllCategories();
-console.log(data.data.data);
+    console.log(data.data.data);
     setCategories(data.data.data);
   };
-  const signUpHandler =async  (user) => {
-   try {
-    const { data } = await signup(user);
-    localStorage.setItem("jwt", data.token);
-    toast.success("sign up in successfully !!!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
-    // history.push('/');
-    window.location = "/";
-  } catch (error) {
-    toast.error("Username or Email already existed Please used another !!!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
-  }
+  const signUpHandler = async (user) => {
+    try {
+      const { data } = await signup(user);
+      localStorage.setItem("jwt", data.token);
+      toast.success("sign up in successfully !!!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      // history.push('/');
+      window.location = "/";
+    } catch (error) {
+      toast.error("Username or Email already existed Please used another !!!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
     // setUser(user);
     // history.push("/");
   };
@@ -117,13 +134,13 @@ console.log(data.data.data);
   };
 
   const forgotHandler = async (email) => {
-   const data= await  forgotPassword(email)
-    if(data.data.status==='success')
-    toast.success("Email successfully sent Please check your mail");
-   else{
-    toast.error(data.data.message);
-    history.push("/");
-   }
+    const data = await forgotPassword(email)
+    if (data.data.status === 'success')
+      toast.success("Email successfully sent Please check your mail");
+    else {
+      toast.error(data.data.message);
+      history.push("/");
+    }
   };
   const addToCratHandler = (user) => {
     history.push("/cart");
@@ -133,11 +150,11 @@ console.log(data.data.data);
     setRelatedProd(items);
     history.push("/showProductDetail");
   };
-  const resetPasswordHandler=async (values)=>{
-    const {password,confirmPassword,token}=values;
+  const resetPasswordHandler = async (values) => {
+    const { password, confirmPassword, token } = values;
     console.log(values);
     try {
-      await resetPassword({password,confirmPassword },token);
+      await resetPassword({ password, confirmPassword }, token);
       toast.success(" Password Reset Successfully !!", {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -145,7 +162,7 @@ console.log(data.data.data);
         toast.success(" Login with New Password !!", {
           position: toast.POSITION.TOP_CENTER,
         });
-         history.push("/login");
+        history.push("/login");
       }, 1500);
     } catch (error) {
       console.log(error);
@@ -169,6 +186,7 @@ console.log(data.data.data);
               <Navbar
                 categories={categories}
                 cartProductNumber={cartData.length}
+                products={products}
               />
               {/* <hr /> */}
               <Switch>
@@ -182,7 +200,7 @@ console.log(data.data.data);
                   exact
                   path="/showProduct"
                   render={(props) => (
-                    <ShowComponents productData={products} {...props} />
+                    <ShowComponents products={products} {...props} />
                   )}
                 />
                 <Route

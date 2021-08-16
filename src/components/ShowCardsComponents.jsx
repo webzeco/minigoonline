@@ -73,13 +73,8 @@ alert('hello')
           <li className="breadcrumb-item lookb">
             <a href="/">Home</a>
           </li>
-<<<<<<< HEAD
-          <li className="breadcrumb-item lookb">
-            <a href="/">{coll}</a>
-=======
           <li className="breadcrumb-item look">
             <a href="/">{coll?.subcategory}</a>
->>>>>>> 4c129be8d2d2ddfa550996ad061a523bfca9cd34
           </li>
         </ol>
         <div className="row justify-content-center">

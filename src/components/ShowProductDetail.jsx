@@ -92,12 +92,12 @@ export default class ShowProductDetail extends Component {
           <nav>
             <ol className="breadcrumb  px-5 pt-4">
               <li className="breadcrumb-item  look">
-                <a className="text-dark font-weight-bold message_look" href="#">
+                <a className="font-weight-bold message_lookb" href="#">
                   Home
                 </a>
               </li>
               <li className="breadcrumb-item text-black look">
-                <a className="text-dark message_look" href="#">
+                <a className=" message_lookb" href="#">
                   {product.title}
                 </a>
               </li>
@@ -105,11 +105,13 @@ export default class ShowProductDetail extends Component {
           </nav>
 
           <div className="row justify-content-center ">
-            <div className="col-md-6 w-40">
+            <div className="col-lg-6 col-md-12">
+              {/* caroausel start */}
+              
               <div
                 id="carouselExampleIndicators"
                 className="carousel slide"
-                style={{ background: "#ffff" }}
+                style={{ background: "#fff" }}
                 data-bs-ride="carousel"
               >
                 <div className="carousel-indicators">
@@ -151,7 +153,7 @@ export default class ShowProductDetail extends Component {
                       </div>
                     );
                   })}
-                 
+          
                 </div>
                 <button
                   className="carousel-control-prev"
@@ -180,10 +182,10 @@ export default class ShowProductDetail extends Component {
               </div>
               {/* caroausel end */}
             </div>
-            <div className="col-md-6 back px-5">
+            <div className="col-lg-6 col-md-12 back px-5" >
               <div className="product pt-2">
                 <div className=" align-items-center w-75">
-                  <div className="h5 text-uppercase pro_title_h5">
+                  <div className="h5 text-uppercase pro_title_h_5">
                     {product.title}
                   </div>
                   <div className="h5 text-uppercase pro_price_h5">

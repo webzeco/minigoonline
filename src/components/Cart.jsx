@@ -106,10 +106,10 @@ const Cart = (props) => {
 
   return (
     <>
-      <div className="container pt-5 mt-3 pb-5 ">
+      <div className="container mt-2 pb-5 ">
         <div className="row justify-content-center">
           <div className="col-12">
-            <h1 className="shop-cart-h1 fw-bold mt-4 pt-5">Shopping Cart</h1>
+            <h1 className="shop-cart-h1 fw-bold mt-1">Shopping Cart</h1>
           </div>
         </div>
         <div className="ho mt-2 w-100"></div>
@@ -184,9 +184,13 @@ const Cart = (props) => {
               </button>
             </div>
 
+            <h6 className="fw-bold mt-2">Choose the Bucket of your own choice</h6>
+
             {baskets?.map((basket) => {
               return (
+                
                 <>
+                
                   <Basket
                     id={basket._id}
                     image={basket.image}

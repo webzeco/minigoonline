@@ -38,15 +38,15 @@
   font-family: "Montserrat";
 }
 
-.pro_title_h5 {
+.pro_title_h_5 {
   font-size: 22px !important;
   font-weight: bold !important;
-  color: #333333;
+  color: #e61523 !important;
   font-family: "Montserrat";
 }
 
 .pro_price_h5 {
-  font-size: 18px !;
+  font-size: 18px !important;
 
   color: #363636;
   font-family: "Montserrat";
@@ -57,18 +57,17 @@
   font-size: 12px;
 }
 
-.breadcrumb > .look a {
-  color: #fff !important;
-  text-decoration: none;
-  font-size: 12px;
-}
-
 .re_look {
   color: #363636;
   text-decoration: underline;
   font-size: 12px;
 }
-
+.breadcrumb > .look a {
+  color: #e61523;
+  text-decoration: none;
+  font-size: 12px;
+  font-family: "Montserrat";
+}
 .few_dis {
   font-size: 14px;
   color: #333333;
@@ -81,7 +80,7 @@
   font-family: "Montserrat";
 }
 .over_look {
-  color: #333333;
+  color: #e61523 !important;
   font-family: "Montserrat";
 }
 .code_dis {

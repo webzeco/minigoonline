@@ -9,12 +9,12 @@
 .pro_title_h5 {
   font-size: 30px !important;
   font-weight: bold !important;
-  color: #363636;
+  color: #e61523 !important;
   font-family: "Montserrat";
 }
 
 .re_look {
-  color: #363636;
+  color: #e61523 !important;
   text-decoration: underline;
   font-size: 14px;
   font-family: "Montserrat";
@@ -22,7 +22,7 @@
 }
 
 .ov_look {
-  color: #363636 !important;
+  color: #e61523 !important;
   font-size: 22px;
   font-family: "Montserrat";
   font-weight: bold;
@@ -30,7 +30,7 @@
 .order_p {
   font-family: "Montserrat";
   font-size: 16px;
-  color: #333333;
+  color: #e61523 !important;
 }
 
 .pro_spec {
@@ -39,7 +39,7 @@
 }
 
 .about {
-  color: #333333;
+  color: #e61523 !important;
   font-size: 13px;
 }
 

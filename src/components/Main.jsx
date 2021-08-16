@@ -80,7 +80,7 @@ const Main = () => {
   };
   const getAllCategoriesHandler = async () => {
     const data = await getAllCategories();
-
+console.log(data.data.data);
     setCategories(data.data.data);
   };
   const signUpHandler = (user) => {
@@ -131,7 +131,6 @@ const Main = () => {
                 categories={categories}
                 cartProductNumber={cartData.length}
               />
-
               {/* <hr /> */}
               <Switch>
                 {/* <Route path="/showProduct"   component={ ShowComponents} /> */}

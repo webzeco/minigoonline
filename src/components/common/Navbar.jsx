@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { productData } from "../data";
 
-export default function Navbar(props, { categories }) {
+export default function Navbar(props) {
   const { coll, setCollectionHandler } = useContext(CollectionContext);
   const { user } = useContext(UserContext);
   const [searchText, setSearchText] = useState();
@@ -205,7 +205,7 @@ export default function Navbar(props, { categories }) {
                   Best Sellers
                 </Link>
               </li>
-              {categories?.map((cate) => {
+              {props?.categories?.map((cate) => {
                 return (
                   <li key={cate._id} className="nav-item">
                     <Link
@@ -505,7 +505,7 @@ export default function Navbar(props, { categories }) {
                 Best Sellers
               </Link>
             </li>
-            {categories?.map((cate, index) => {
+            {props?.categories?.map((cate, index) => {
               return (
                 <>
                   <li>

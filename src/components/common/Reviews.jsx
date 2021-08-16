@@ -245,19 +245,23 @@
 //    */}
 import React from "react";
 import ProductList from "./showProductList";
+
 import ReactStars from "react-rating-stars-component";
 
 import "./style/review.css";
 export default function Reviews({ reviews }) {
+  const activeReviews=reviews.filter(r=>r.favorite);
   return (
+    <div>
+      <h4 className="text-danger text-center">Our Customer's Reviews</h4>
     <div
       id="carouselExampleFade"
       class="carousel slide carousel-fade"
       data-bs-ride="carousel"
     >
       <div class="carousel-inner">
-        {reviews &&
-          reviews.map((rev, index, array) => {
+        {activeReviews &&
+          activeReviews.map((rev, index, array) => {
             if (array.length < index + 3) return null;
             return (
               <div
@@ -335,6 +339,7 @@ export default function Reviews({ reviews }) {
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+    </div>
     </div>
   );
 }

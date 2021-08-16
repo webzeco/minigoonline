@@ -2,12 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { OrderContext } from "./contexts/OrderContext";
 import "./style/cart.css";
-
 const Cart = (props) => {
   const { order, orderHandler } = useContext(OrderContext);
   const history = useHistory();
   const [Data, setData] = useState([]); //This will have all products Data and Prices
-  const [Total, setTotal] = useState(0); //This will have total price
+  const [Total, setTotal] = useState(0);
+    const [checkout, setCheckout] = useState(true);
+     //This will have total price
+  //This will have total price
+const handleCheckout=()=>{
+  setCheckout(checkout?false:true)
+}
 
   //This function will update the totalPrice after every change in prices will check if bucket is checked or not
   const updateTotalPrice = () => {
@@ -85,11 +90,12 @@ const Cart = (props) => {
 
   //Checkout buttons enable disable handler
   const handleAgreement = (e) => {
+    handleCheckout();
     if (e.target.checked) {
-      document.getElementById("Checkoutbtn").disabled = false;
+      // document.getElementById("Checkoutbtn").disabled = false;
       document.getElementById("CheckoutAsGuestbtn").disabled = false;
     } else {
-      document.getElementById("Checkoutbtn").disabled = true;
+      // document.getElementById("Checkoutbtn").disabled = true;
       document.getElementById("CheckoutAsGuestbtn").disabled = true;
     }
   };
@@ -195,7 +201,7 @@ const Cart = (props) => {
                 id="Checkoutbtn"
                 onClick={checkedOutHandler}
                 className="btn btn-danger mb-3 mt-2 message_look fw-bold"
-                // disabled
+                disabled={checkout}
               >
                 CheckOut
               </button>

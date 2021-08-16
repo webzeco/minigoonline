@@ -1,3 +1,4 @@
+import { Link } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
 import { ProductDetailContext } from "../contexts/ProductDetailContext";
 import "./style/productCard.css";
@@ -19,27 +20,36 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
   const onradioBtnChange = (e) => {
     setImage(e.target.value);
   };
+  const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+};
   const onClicked = (prod) => {
     productDetailHandler(prod);
+    scrollToTop();
+    console.log("clicked");
   };
 
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3">
       <div className="card hid_border ">
+      <Link onClick={() => onClicked(product)}>
+
         <img
           alt="item img"
           src={`${process.env.REACT_APP_URL}/img/${image}`}
-          onClick={() => onClicked(product)}
           onMouseEnter={() => changeImgEnter()}
-          onMouseLeave={() => {
-            changeImgLeave();
-          }}
+          onMouseLeave={() => changeImgLeave()}
+          // onClick={() => onClicked(product)}
           className="img-fluid img_back_col text-center mb-2 p-3"
         />
-        <h6 className="card-title fw-bold " onClick={() => onClicked(product)}>
+        <h6 className="card-title fw-bold ">
           {title}
         </h6>
-        <span className="card-text">${price}</span>
+        </Link>
+        <span className="card-text">Rs.{price}</span>
         <div className="radio-buttons">
           {colorImg.map((colorbtn) => {
             return (

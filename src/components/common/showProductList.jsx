@@ -7,13 +7,13 @@ const ProductList = ({ pageDataList }) => {
     <>
       <div className="row">
         {pageDataList &&
-          pageDataList.map((product, index) => {
+          pageDataList?.map((product, index) => {
             const { images, title, price } = product;
             const colorImg = [];
             // variants adjusted to colorImg array by  map method
-            product.variants.map((variant) => {
+            product?.variants?.map((variant) => {
               if (variant.selectedOption === "Color") {
-                variant.tags.map((tag) => {
+                variant?.tags?.map((tag) => {
                   let colorData = {};
                   colorData.color = tag.text;
                   colorData.img = tag.img;

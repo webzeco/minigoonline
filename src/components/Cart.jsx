@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { getAllBaskets } from "../services/basketService";
+import Basket from "./common/Basket";
 import { OrderContext } from "./contexts/OrderContext";
 import "./style/cart.css";
 const Cart = (props) => {
@@ -7,6 +9,7 @@ const Cart = (props) => {
   const history = useHistory();
   const [Data, setData] = useState([]); //This will have all products Data and Prices
   const [Total, setTotal] = useState(0);
+  const [baskets, setBaskets] = useState([]);
     const [checkout, setCheckout] = useState(true);
      //This will have total price
   //This will have total price
@@ -78,6 +81,7 @@ const handleCheckout=()=>{
       return assignValues(data);
     });
     setData(tempArr);
+  getBasketsHandlers();
   }, []);
 
   useEffect(() => {
@@ -87,7 +91,12 @@ const handleCheckout=()=>{
     });
     setData(tempArr);
   }, [props.cartData]);
-
+const getBasketsHandlers=async ()=>{
+const {data}=await getAllBaskets();
+// alert(JSON.stringify(data.data))
+console.log({data:data.data});
+setBaskets(data.data);
+}
   //Checkout buttons enable disable handler
   const handleAgreement = (e) => {
     handleCheckout();
@@ -151,6 +160,7 @@ const handleCheckout=()=>{
                   ></textarea>
                 </div>
                 <div className="col-lg-12">
+                  
                   {Data.map((obj) => {
                     return (
                       <>
@@ -214,6 +224,9 @@ const handleCheckout=()=>{
                 CheckOut As Guest
               </button>
             </div>
+          {baskets?.map(basket=>{
+            return <Basket image={basket.image} price={basket.price}/>
+          })}
           </div>
         </div>
       </div>

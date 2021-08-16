@@ -9,7 +9,6 @@ export default function Search() {
   const searchInput = useRef("");
   useEffect(() => {
     getRelatedItemsHandler();
-
     if (!searchText) setItems([]);
   }, [searchText]);
   const onTextChangeHandler = () => {

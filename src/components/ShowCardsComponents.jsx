@@ -4,30 +4,49 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import ProductList from "./common/showProductList";
 import { CollectionContext } from "./contexts/CollectionContext";
+import $ from "jquery";
 import Pagination from "./common/Pagination";
 import { paginate } from "../utils/paginate";
 import { filterByPrice } from "../utils/filter";
 import { sortBy } from "../utils/sort";
-export default function ShowComponents({ productData }) {
+import { getProductsWithCategories } from "../services/productServices";
+export default function ShowComponents({ products }) {
+  const [productData, setProductData] = useState([]);
   const { coll, setCollectionHandler } = useContext(CollectionContext);
-  const [page, setPage] = useState({
-    currentPage: 1,
-    itemsCount: productData.length,
-    pageSize: 8,
-  });
-  const [price, setPrice] = useState("Price");
-  const [sort, setSort] = useState("Sort");
-  const [data, setData] = useState();
-  const [totalPageItems, setTotalPageItems] = useState(productData.length);
-
-  useEffect(() => {
-    let pageDataList = filterByPrice(productData, price);
+  const [cate, setCate] = useState({ category: coll.category, subcategory: coll.subcategory });
+  const getProductsWithCategoryHandler = async () => {
+    const { data } = await getProductsWithCategories({ category: coll.category, subcategory: coll.subcategory })
+    let pageDataList = filterByPrice(data.data, price);
     pageDataList = sortBy(pageDataList, sort);
     setTotalPageItems(pageDataList.length);
     pageDataList = paginate(pageDataList, page.currentPage, page.pageSize);
     setData(pageDataList);
-    return () => {};
+  };
+const handler=()=>{
+alert('hello')
+}
+
+  // getProductsWithCategoryHandler();
+  // Stationary/Books
+  const [page, setPage] = useState({
+    currentPage: 1,
+    itemsCount: productData.length,
+    pageSize: 2,
+  });
+  const [price, setPrice] = useState("Price");
+  const [sort, setSort] = useState("Sort");
+  const [data, setData] = useState();
+  const [totalPageItems, setTotalPageItems] = useState(productData?.length);
+  useEffect(() => {
+    $('#myCate').change(function () { 
+      alert('test'); 
+  });
+  }, [])
+  useEffect(() => {
+    getProductsWithCategoryHandler();
+    return () => { };
   }, [page, price, sort]);
+
 
   const changePageHandler = (c_page) => {
     const newPage = { ...page };
@@ -45,7 +64,7 @@ export default function ShowComponents({ productData }) {
   const handleSortSelect = (e) => {
     setSort(e);
   };
-  
+
   return (
     <div>
       {/* <!-- ======= bann area ======= --> */}
@@ -54,19 +73,30 @@ export default function ShowComponents({ productData }) {
           <li className="breadcrumb-item lookb">
             <a href="/">Home</a>
           </li>
+<<<<<<< HEAD
           <li className="breadcrumb-item lookb">
             <a href="/">{coll}</a>
+=======
+          <li className="breadcrumb-item look">
+            <a href="/">{coll?.subcategory}</a>
+>>>>>>> 4c129be8d2d2ddfa550996ad061a523bfca9cd34
           </li>
         </ol>
         <div className="row justify-content-center">
           <div className="col-auto w-50">
             <div className="info text-center">
-              <span className="h2 bann_title fw-bold text-center">{coll}</span>
+              {/* <span className="h2 bann_title fw-bold text-center">{coll?.subcategory}</span> */}
+              <input className="h2 bann_title fw-bold text-center" style={{
+                background: "transparent",
+                border: "none",
+                
+                fontSize:"30px"
+              }}
+              id="myCate"
+              type="text" value={coll?.subcategory} onInput={()=>handler()} />
               <br></br>
               <span className="h7 bann_discription justify-content-center ">
-                Take The Times wherever you go. Stand out in a crowd and look.
-                Well read with our umbrellas, totes and baseball caps displaying
-                our classic, gothic nameplate or logo.
+                {coll?.description}
               </span>
             </div>
           </div>
@@ -145,7 +175,7 @@ export default function ShowComponents({ productData }) {
 
       <div className="container pt-5">
         <div className="row ">
-          <ProductList pageDataList={data} />
+          {data && <ProductList pageDataList={data} />}
         </div>
       </div>
       {/* <!-- ======= product display in cards ends ======= -->  */}

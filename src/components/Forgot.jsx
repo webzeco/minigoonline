@@ -22,7 +22,8 @@ export default function Forgot({onForgot}) {
         }}
         validationSchema={forgotSchema}
         onSubmit={(values) => {
-          onForgot(values);
+          // console.log(values );
+          onForgot(values.email);
         }}
       >
         {({ errors, touched }) => (

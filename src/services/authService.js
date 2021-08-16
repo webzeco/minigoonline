@@ -11,6 +11,13 @@ export const login=(user)=> {
         }
     );
 };
+export const signup=(user)=> {
+    return http.post(`${url}/signUp`,
+        {
+        user
+        }
+    );
+};
 
 export const forgotPassword=(email)=> {
     return http.post(`${url}/forgotPassword`,
@@ -24,7 +31,7 @@ export const resetPassword=(data,token)=> {
     return http.patch(`${url}/resetPassword/${token}`,
         {
             password: data.password,
-            passwordConfirm:data.passwordConfirm
+            passwordConfirm:data.confirmPassword
         }
     );
 };

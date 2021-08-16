@@ -10,45 +10,35 @@ const Cart = (props) => {
   const [Data, setData] = useState([]); //This will have all products Data and Prices
   const [Total, setTotal] = useState(0);
   const [baskets, setBaskets] = useState([]);
-    const [checkout, setCheckout] = useState(true);
-     //This will have total price
+  const [checkout, setCheckout] = useState(true);
+  const [buckerPrice, setBucketPrice] = useState(0);
   //This will have total price
-const handleCheckout=()=>{
-  setCheckout(checkout?false:true)
-}
+  //This will have total price
+  const handleCheckout = () => {
+    setCheckout(checkout ? false : true);
+  };
 
   //This function will update the totalPrice after every change in prices will check if bucket is checked or not
   const updateTotalPrice = () => {
     let sum = 0;
     setData(
       Data.map((data) => {
-        if (!data.addBucket) {
-          data.totalProductPrice = data.basePrice * data.quantity;
-          data.productPrice = data.basePrice * data.quantity;
-        } else {
-          data.totalProductPrice =
-            data.basePrice * data.quantity + data.product.bucketPrice;
-          data.productPrice = data.basePrice * data.quantity;
-        }
+        data.totalProductPrice = data.basePrice * data.quantity;
+        data.productPrice = data.basePrice * data.quantity;
         sum += data.totalProductPrice;
         return data;
       })
     );
-    setTotal(sum);
+    setTotal(sum + buckerPrice);
   };
 
   //This is handle change in bucket
-  const handleBucketChange = (e) => {
-    setData(
-      Data.map((data) => {
-        if (data.product.id == e.target.id) {
-          data.addBucket = e.target.checked;
-        }
-        return data;
-      })
-    );
-    updateTotalPrice();
+  const handleBucketChange = (event) => {
+    setBucketPrice(parseInt(event.target.value));
   };
+  useEffect(() => {
+    updateTotalPrice();
+  }, [buckerPrice]);
 
   //This will handle Change in qunatity and update Data Array
   const handleQuantityChanged = (e) => {
@@ -68,7 +58,7 @@ const handleCheckout=()=>{
     const temp = {};
     temp.product = cartData;
     temp.quantity = cartData.quantity;
-    temp.addBucket = false;
+    temp.bucketPrice = 0;
     temp.basePrice = cartData.price;
     temp.productPrice = temp.basePrice * temp.quantity; //This is for price shown for each product  quantity
     temp.totalProductPrice = temp.basePrice * temp.quantity; //This is for whole producl quantiy*basePrice+bucketPrice
@@ -81,7 +71,7 @@ const handleCheckout=()=>{
       return assignValues(data);
     });
     setData(tempArr);
-  getBasketsHandlers();
+    getBasketsHandlers();
   }, []);
 
   useEffect(() => {
@@ -91,12 +81,12 @@ const handleCheckout=()=>{
     });
     setData(tempArr);
   }, [props.cartData]);
-const getBasketsHandlers=async ()=>{
-const {data}=await getAllBaskets();
-// alert(JSON.stringify(data.data))
-console.log({data:data.data});
-setBaskets(data.data);
-}
+  const getBasketsHandlers = async () => {
+    const { data } = await getAllBaskets();
+    // alert(JSON.stringify(data.data))
+    console.log({ data: data.data });
+    setBaskets(data.data);
+  };
   //Checkout buttons enable disable handler
   const handleAgreement = (e) => {
     handleCheckout();
@@ -159,37 +149,6 @@ setBaskets(data.data);
                     placeholder="Write a Meassage..."
                   ></textarea>
                 </div>
-                <div className="col-lg-12">
-                  
-                  {Data.map((obj) => {
-                    return (
-                      <>
-                        <div className="d-flex">
-                          <img
-                            src="https://banner2.cleanpng.com/20180402/kpq/kisspng-shopping-cart-royalty-free-clip-art-shopping-basket-5ac267268e7582.8242265715226898305835.jpg"
-                            height="25px"
-                            width="25px"
-                            className="m-2"
-                            alt="basket img"
-                          />
-                          <input
-                            id={obj.product.id}
-                            type="checkbox"
-                            className="mt-3"
-                            onChange={handleBucketChange}
-                          />
-                          <label
-                            className="px-1 mt-2 message_look"
-                            for={obj.product.id}
-                          >
-                            Do you want bucket for product {obj.product.title}{" "}
-                            at price Rs.{obj.product.bucketPrice}
-                          </label>
-                        </div>
-                      </>
-                    );
-                  })}
-                </div>
               </div>
             </div>
             <div className="col-lg-5 col-md-12 mt-4">
@@ -224,9 +183,19 @@ setBaskets(data.data);
                 CheckOut As Guest
               </button>
             </div>
-          {baskets?.map(basket=>{
-            return <Basket image={basket.image} price={basket.price}/>
-          })}
+
+            {baskets?.map((basket) => {
+              return (
+                <>
+                  <Basket
+                    id={basket._id}
+                    image={basket.image}
+                    price={basket.price}
+                    selected={handleBucketChange}
+                  />
+                </>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -289,26 +258,3 @@ const ShowCartProduct = (props) => {
   );
 };
 export default Cart;
-// customWriting: ""
-// date: null
-// estimatedProcessingTime: undefined
-// price: 30
-// selectedVariants: Array(2)
-// 0:
-// selectedVariant: "SM"
-// variantType: "Size"
-// __proto__: Object
-// 1:
-// selectedVariant: "Cyan / Aqua"
-// variantType: "Color"
-///////////////////////////////////////
-// data.id = id
-// data.quantity = 1;
-// temp.price = product.price;
-// temp.title = product.title;
-// temp.img = product.images[0];
-// temp.estimatedProcessingTime = product.estimatedProcessingTime;
-// temp.selectedVariants = this.state.selectedVariants;
-// temp.customWriting = this.state.customWriting;
-// temp.date = this.state.customDate;
-// temp.bucketPrice = product.bucketPrice;

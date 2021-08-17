@@ -3,7 +3,17 @@
 /*Banner*/
 
 .ho {
-  border-bottom: 1px solid #363636;
+  border-bottom: 1px solid #363636 !important;
+}
+.vl {
+  border-left: 1px solid gray;
+  height: 100%;
+}
+.d9_look {
+  font-size: 14px !important;
+  font-weight: bold !important;
+  color: #e61523 !important;
+  font-family: "Montserrat";
 }
 
 .pro_title_h5 {

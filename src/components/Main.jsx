@@ -28,6 +28,7 @@ import Payment from "./Payment";
 import ShippingInfo from "./ShippingInfo";
 import { OrderContext } from "./contexts/OrderContext";
 import ResetPassword from "./ResetPassword";
+import AddAddress from "./AddAddress";
 const Main = () => {
   const history = useHistory();
   const [user, setUser] = useState();
@@ -255,6 +256,12 @@ const Main = () => {
                   path="/account"
                   render={(props) => (
                     <Account onForgot={forgotHandler} {...props} />
+                  )}
+                />
+                 <Route
+                  path="/addAddress"
+                  render={(props) => (
+                    <AddAddress onForgot={forgotHandler} {...props} />
                   )}
                 />
                 <Route

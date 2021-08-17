@@ -33,7 +33,9 @@ export default function Navbar(props) {
   const onClickHandlers = (coll) => {
     setCollectionHandler(coll);
   };
-
+const clearSearch=()=>{
+  setSearchText("");
+}
   useEffect(() => {
     window.onscroll = function () {
       myFunction();
@@ -267,8 +269,7 @@ export default function Navbar(props) {
           </div>
         </div>
       </nav>
-      <SearchElement items={items} />
-
+      <SearchElement clearSearch={clearSearch} items={items} />
       {/* <!-- Side Menu --> */}
       <div
         className="offcanvas offcanvas-start"

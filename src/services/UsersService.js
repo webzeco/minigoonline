@@ -17,6 +17,11 @@ export function deleteUser(name){
         name
     });
 }
+export function addAddress(data,id){
+    return http.patch(`${url}/addAddress/${id}`, {
+        data
+    });
+}
 export  function  getMe() {
     return  http.get(`${url}/me`);
 }
@@ -29,7 +34,7 @@ export  function  updatePassword(data) {
     return  http.patch(`${url}/updateMyPassword`,data);
 }
 const AllServices = {
-    addUser,
+    addAddress,
     getAllUsers,
     getMe,
     updateMe,

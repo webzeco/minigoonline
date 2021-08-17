@@ -1,5 +1,21 @@
-import React from 'react';
-export default function SearchElement({items}) {
+import { Link } from '@material-ui/core';
+import React, { useContext } from 'react';
+import { ProductDetailContext } from '../contexts/ProductDetailContext';
+export default function SearchElement({items,clearSearch}) {
+  const { productDetailHandler } = useContext(ProductDetailContext);
+  const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+};
+  const onClicked = (prod) => {
+    productDetailHandler(prod);
+    scrollToTop();
+    clearSearch();
+    console.log("clicked");
+  };
+
     return (
         <div>
     {items.map((item,index)=>{
@@ -8,8 +24,8 @@ export default function SearchElement({items}) {
         key={index}
         className="list-group-item w-25"
       >
-        <a
-          href="/"
+        <Link
+          onClick={()=>onClicked(item)}
           className="list-group-item list-group-item-action list_look"
         >
           <div className="d-flex justify-content-between">
@@ -23,7 +39,7 @@ export default function SearchElement({items}) {
             <p className="pro_title_look">{item.title}</p>
             <small className="fw-bold mt-4">From Rs.{item.price}</small>
           </div>
-        </a>
+        </Link>
       </li>
     })}
         </div>

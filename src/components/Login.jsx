@@ -62,11 +62,9 @@ export default function Login({ onLogin }) {
                 type="submit"
                 className="btn text-uppercase w-100 creat_btn message_look fw-bold "
               >
-                {/* <a href="/">SIGN IN</a> */}
                 SIGN IN
               </button>
             </div>
-
             <Link className="creat_look text-center fw-bold mb-4" to="/signup">
               <h5 className=" mb-2 mt-5 creat_look fw-bold "> CREAT ACCOUNT</h5>
             </Link>

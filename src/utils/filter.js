@@ -1,13 +1,9 @@
 export function filterByPrice(items, price) {
-  if (price !== "Price") {
-    if (price === "Less than $50") {
-      return items.filter((pr) => {
-        if (pr.price < 50)  return pr;
-      });
-    } else {
-      return items.filter((pr) => {
-        if (pr.price >= 50 && pr.price < 100) return pr;
-      });
-    }
-  } else return items;
+  if (price === "All") return items;
+  if (price === "Less than Rs.500") return items.filter((pr) => pr.price < 500);
+  if (price === "Rs.500-Rs.1000")
+    return items.filter((pr) => pr.price >= 500 && pr.price <= 1000);
+  if (price === "Greater then Rs.1000")
+    return items.filter((pr) => pr.price > 1000);
+  return items;
 }

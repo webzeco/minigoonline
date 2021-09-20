@@ -13,7 +13,7 @@ export default function SearchElement({items,clearSearch}) {
     productDetailHandler(prod);
     scrollToTop();
     clearSearch();
-    console.log("clicked");
+    // console.log("clicked");
   };
 
     return (

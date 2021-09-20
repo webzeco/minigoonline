@@ -30,14 +30,13 @@ export  function  updateMe(data) {
     return  http.patch(`${url}/updateMe`,data);
 }
 
-export  function  updatePassword(data) {
-    return  http.patch(`${url}/updateMyPassword`,data);
-}
+
 const AllServices = {
     addAddress,
     getAllUsers,
     getMe,
-    updateMe,
-    updatePassword
+    
+    updateMe
+    
 }
 export default AllServices;

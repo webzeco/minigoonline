@@ -1,86 +1,43 @@
 import { useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Footer from "./common/Footer";
-import Header from "./common/Header";
 import NotFound from "./common/NotFound";
 import Home from "./Home";
-import { CollectionContext } from "./contexts/CollectionContext";
-import { UserContext } from "./contexts/UserContext";
-
-import ShowProductDetail from "./ShowProductDetail";
-import ShowComponents from "./ShowCardsComponents";
+import ProductDetail from "./ProductDetail";
+import Products from "./Products";
 import Signup from "./Signup";
 import Cart from "./Cart";
-import { productData } from "./data";
 import Login from "./Login";
 import Forgot from "./Forgot";
 import Account from "./Account";
 import { ProductDetailContext } from "./contexts/ProductDetailContext";
-import { retry } from "async";
-import { forgotPassword, login, resetPassword, signup } from "../services/authService";
+import {
+  forgotPassword,
+  login,
+  resetPassword,
+  signup,
+} from "../services/authService";
 import { toast, ToastContainer } from "react-toastify";
 import Navbar from "./common/Navbar";
-import { getAllCategories } from "../services/categoryService";
-import { getMe } from "../services/UsersService";
-import { deleteProduct, getAllProducts } from "../services/productServices";
 import Payment from "./Payment";
 import ShippingInfo from "./ShippingInfo";
-import { OrderContext } from "./contexts/OrderContext";
 import ResetPassword from "./ResetPassword";
 import AddAddress from "./AddAddress";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllProductsSelector,
+  loadProducts,
+} from "../storemini/reducers/products";
 const Main = () => {
   const history = useHistory();
-  const [user, setUser] = useState();
-  const [collection, setColl] = useState({});
-  const [items, setItems] = useState([]);
   const [product, setProduct] = useState();
-  const [relatedProd, setRelatedProd] = useState();
-  const [cartData, setCartData] = useState([]);
-  const [categories, setCategories] = useState();
-  const [products, setProducts] = useState([]);
-  const [order, setOrder] = useState({});
+  const dispatch = useDispatch();
+  const products = useSelector(getAllProductsSelector);
   useEffect(() => {
-    getAllCategoriesHandler();
-    getAllProductHandler();
-    getMeHandler();
-    // alert("JSON.stringify(categories)");
-    return () => { };
+    dispatch(loadProducts());
   }, []);
-  const orderHandler = (order) => {
-    setOrder(order);
-  };
-  const removeCartItem = (e) => {
-    setCartData(cartData.filter((data) => data.id != e.target.id));
-  };
-  useEffect(() => { }, [cartData]);
-  const handleCartData = (data) => {
-    let id = cartData.length + 1;
-    data.id = id;
-    data.quantity = 1;
-    setCartData([...cartData, data]);
-  };
-  const setCollectionHandler = (coll) => {
-    let cate;
-    let subCate;
-    let desc;
-    if(coll.includes('/')){
-       cate = coll.split('/')[0];
-       subCate = coll.split('/')[1];
-      let indexCate=categories.findIndex((c)=>c.category===cate);
-      let indexSub=categories[indexCate]?.subCategories?.findIndex((s)=>s.name===subCate);
-      console.log({indexCate,indexSub});
-      desc=categories[indexCate]?.subCategories[indexSub]?.description;
-      
-    }else if (coll==='Best Sellers') {
-      subCate="Best Sellers"
-      desc="Best Sellers description"
-    }else{
-      subCate="Sale"
-      desc="sale description"
-    }
-    setColl({category:cate, subcategory:subCate,description:desc});
-  };
+
   const loginHandler = async (user) => {
     try {
       const { data } = await login(user);
@@ -88,7 +45,6 @@ const Main = () => {
       toast.success("logged in successfully !!!", {
         position: toast.POSITION.TOP_CENTER,
       });
-      // history.push('/');
       window.location = "/";
     } catch (error) {
       toast.error("Incorrect username or password", {
@@ -96,11 +52,7 @@ const Main = () => {
       });
     }
   };
-  const getAllCategoriesHandler = async () => {
-    const data = await getAllCategories();
-    console.log(data.data.data);
-    setCategories(data.data.data);
-  };
+
   const signUpHandler = async (user) => {
     try {
       const { data } = await signup(user);
@@ -108,52 +60,31 @@ const Main = () => {
       toast.success("sign up in successfully !!!", {
         position: toast.POSITION.TOP_CENTER,
       });
-      // history.push('/');
       window.location = "/";
     } catch (error) {
       toast.error("Username or Email already existed Please used another !!!", {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-    // setUser(user);
-    // history.push("/");
-  };
-  const getMeHandler = async () => {
-    const { data } = await getMe();
-
-    setUser(data.data);
-  };
-  const getAllProductHandler = async () => {
-    try {
-      const { data } = await getAllProducts();
-      setProducts(data.data);
-    } catch (error) {
-      toast.error("something went wrong to get all products", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    }
   };
 
   const forgotHandler = async (email) => {
-    const data = await forgotPassword(email)
-    if (data.data.status === 'success')
+    const data = await forgotPassword(email);
+    if (data.data.status === "success")
       toast.success("Email successfully sent Please check your mail");
     else {
       toast.error(data.data.message);
       history.push("/");
     }
   };
-  const addToCratHandler = (user) => {
-    history.push("/cart");
-  };
+
   const productDetailHandler = (prod) => {
     setProduct(prod);
-    setRelatedProd(items);
-    history.push("/showProductDetail");
+    history.push("/ProductDetail");
   };
   const resetPasswordHandler = async (values) => {
     const { password, confirmPassword, token } = values;
-    console.log(values);
+    // console.log(values);
     try {
       await resetPassword({ password, confirmPassword }, token);
       toast.success(" Password Reset Successfully !!", {
@@ -171,116 +102,79 @@ const Main = () => {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-  }
+  };
   return (
-    <UserContext.Provider value={{ user: user }}>
-      <ProductDetailContext.Provider
-        value={{ product, relatedProd, productDetailHandler }}
-      >
-        <CollectionContext.Provider
-          value={{ coll: collection, setCollectionHandler }}
-        >
-          <OrderContext.Provider value={{ order, orderHandler }}>
-            <div>
-              <ToastContainer style={{ width: "322px" }} />
-              {/* <Header /> */}
-              <Navbar
-                categories={categories}
-                cartProductNumber={cartData.length}
-                products={products}
-              />
-              {/* <hr /> */}
-              <Switch>
-                {/* <Route path="/showProduct"   component={ ShowComponents} /> */}
-                <Route
-                  exact
-                  path="/"
-                  render={(props) => <Home bestSells={products} {...props} />}
-                />
-                <Route
-                  exact
-                  path="/showProduct"
-                  render={(props) => (
-                    <ShowComponents products={products} {...props} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/showProductDetail"
-                  render={(props) => (
-                    <ShowProductDetail
-                      cartData={cartData}
-                      addToCratHandler={addToCratHandler}
-                      sendCartData={handleCartData}
-                      product={product}
-                      {...props}
-                    />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/signup"
-                  render={(props) => (
-                    <Signup onSignUp={signUpHandler} {...props} />
-                  )}
-                />
+    <ProductDetailContext.Provider value={{ product, productDetailHandler }}>
+      <div>
+        <ToastContainer style={{ width: "322px" }} />
+        <Navbar products={products} />
+        <Switch>
+          <Route
+            exact
+            path="/" //home page
+            render={(props) => <Home {...props} />}
+          />
+          <Route
+            exact
+            path="/products" // products with categories
+            render={(props) => <Products {...props} />}
+          />
+          <Route
+            exact
+            path="/ProductDetail" // single product with detail
+            render={(props) => <ProductDetail product={product} {...props} />}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={(props) => <Signup onSignUp={signUpHandler} {...props} />}
+          />
 
-                <Route exact path="/payment" render={(props) => <Payment />} />
-                <Route
-                  exact
-                  path="/shipping"
-                  render={(props) => <ShippingInfo />}
-                />
-                <Route
-                  exact
-                  path="/login"
-                  render={(props) => (
-                    <Login onLogin={loginHandler} {...props} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/resetPassword/:token"
-                  render={(props) => (
-                    <ResetPassword onResetPassword={resetPasswordHandler} {...props} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/forgot"
-                  render={(props) => (
-                    <Forgot onForgot={forgotHandler} {...props} />
-                  )}
-                />
-                <Route
-                  path="/account"
-                  render={(props) => (
-                    <Account onForgot={forgotHandler} {...props} />
-                  )}
-                />
-                 <Route
-                  path="/addAddress"
-                  render={(props) => (
-                    <AddAddress onForgot={forgotHandler} {...props} />
-                  )}
-                />
-                <Route
-                  path="/cart"
-                  render={(props) => (
-                    <Cart
-                      removeItem={(e) => removeCartItem(e)}
-                      cartData={cartData}
-                    />
-                  )}
-                />
-                <Route component={NotFound} />
-              </Switch>
-              <Footer />
-            </div>
-          </OrderContext.Provider>
-        </CollectionContext.Provider>
-      </ProductDetailContext.Provider>
-    </UserContext.Provider>
+          <Route exact path="/payment" render={(props) => <Payment />} />
+          <Route
+            exact
+            path="/shipping" //shipping detail getting here
+            render={(props) => <ShippingInfo />}
+          />
+          <Route
+            exact
+            path="/login"
+            render={(props) => <Login onLogin={loginHandler} {...props} />}
+          />
+          <Route
+            exact
+            path="/resetPassword/:token"
+            render={(props) => (
+              <ResetPassword
+                onResetPassword={resetPasswordHandler}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/forgot"
+            render={(props) => <Forgot onForgot={forgotHandler} {...props} />}
+          />
+          <Route
+            path="/account" //show account info , all order from this account
+            render={(props) => <Account onForgot={forgotHandler} {...props} />}
+          />
+          <Route
+            path="/addAddress" //  all addresses  and new add addresses
+            render={(props) => (
+              <AddAddress onForgot={forgotHandler} {...props} />
+            )}
+          />
+          <Route
+            path="/cart" // cart details
+            render={(props) => <Cart />}
+          />
+          <Route component={NotFound} />
+        </Switch>
+        <Footer />
+      </div>
+    </ProductDetailContext.Provider>
   );
 };
 

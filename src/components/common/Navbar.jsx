@@ -1,38 +1,41 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style/navbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "jquery/dist/jquery.min.js";
-import $ from "jquery";
-import { CollectionContext } from "../contexts/CollectionContext";
 import { Link } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
-import { productData } from "../data";
 import SearchElement from "./SearchElement";
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector  } from "react-redux";
+import {  addCategoryProducts } from "../../storemini/reducers/products";
+import { getAllCategoriesSelector, loadCategories, setCategory } from "../../storemini/reducers/categories";
+import { getUserSelector, loadUser } from "../../storemini/reducers/user";
+import { getNumberOfCartItems } from "../../storemini/reducers/cart";
 
 export default function Navbar(props) {
-  const { coll, setCollectionHandler } = useContext(CollectionContext);
-  const { user } = useContext(UserContext);
+  const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
   const [items, setItems] = useState([]);
-  console.log(productData);
-  useEffect(() => {
+  
+  const allCategories = useSelector(getAllCategoriesSelector);
+  const  user  = useSelector(getUserSelector);
+  const numberOfCartItems=useSelector(getNumberOfCartItems);
+  const history=useHistory();
+useEffect(() => {
     getRelatedItemsHandler();
-
+    dispatch(loadCategories());
+    dispatch(loadUser());
     if (!searchText) setItems([]);
   }, [searchText]);
+
   const onTextChangeHandler = (e) => {
     setSearchText(e.target.value);
-    console.log(items);
   };
   const getRelatedItemsHandler = () => {
     setItems(props.products.filter((prod) => prod.title.includes(searchText)));
   };
 
-  const onClickHandlers = (coll) => {
-    setCollectionHandler(coll);
-  };
 const clearSearch=()=>{
   setSearchText("");
 }
@@ -51,15 +54,20 @@ const clearSearch=()=>{
         header.classList.remove("stick-head");
       }
     }
-
-    return () => { };
   }, []);
+
+const setCategoryProducts=(category,sub,cateObj)=>{
+  dispatch(addCategoryProducts(`${category}/${sub}`));
+  dispatch(setCategory(cateObj));
+  history.push("/products");
+};
+  
+  
   return (
     <header>
       {/* <!-- On Small Screen --> */}
       <div className="top-header res-top-header py-1 d-none" id="sticky-header">
         <div className="container">
-          {/* toggle side bar */}
           <div className="d-flex align-items-center justify-content-between">
             <div className="top-header-leftarea">
               <div className="d-flex">
@@ -175,7 +183,7 @@ const clearSearch=()=>{
                 <i className="fal fa-shopping-cart"></i>
                 <span className="d-none d-md-inline-block ">Cart</span>
                 <span className="cart-counter icon-color">
-                  {props.cartProductNumber}
+                  {numberOfCartItems}
                 </span>
               </Link>
             </div>
@@ -207,21 +215,25 @@ const clearSearch=()=>{
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <Link
-                  onClick={() => onClickHandlers("Best Sellers")}
+                  // onClick={() => onClickHandlers("Best Sellers")}
+                  onClick={() => setCategoryProducts("bestSellers","",
+                  {
+                  name:"Best sellers",
+                description:"Best seller Products available here"}
+                )}
                   className="nav-link"
-                  to={`showProduct`}
                 >
                   Best Sellers
                 </Link>
               </li>
-              {props?.categories?.map((cate) => {
+              {allCategories?.map((cate) => {
                 return (
                   <li key={cate._id} className="nav-item">
                     <Link
-                      onClick={() => onClickHandlers(cate.category)}
+                      // onClick={() => onClickHandlers(cate.category)}
                       className="nav-link"
-                      to={`showProduct`}
-                    >
+                      // to={`showProduct/${collection.category}/${collection.subcategory}/${collection.description}`}
+                      >
                       {cate.category}
                     </Link>
                     <div className="navbar-menu">
@@ -232,8 +244,7 @@ const clearSearch=()=>{
                             return (
                               <li key={subCate._id}>
                                 <Link
-                                  onClick={() => onClickHandlers(`${cate.category}/${subCate.name}`)}
-                                  to={`showProduct`}
+                                  onClick={() => setCategoryProducts(cate.category,subCate.name,subCate)}
                                   style={{ textDecoration: "none" }}
                                   className="text-dark fw-light"
                                 >
@@ -251,9 +262,10 @@ const clearSearch=()=>{
 
               <li className="nav-item">
                 <Link
-                  onClick={() => onClickHandlers("Sale")}
+                  onClick={() => setCategoryProducts("sale","",{
+                    name:"Sale",
+                description:"Sale Products "})}
                   className="nav-link"
-                  to={`showProduct`}
                 >
                   Sale
                 </Link>
@@ -263,7 +275,7 @@ const clearSearch=()=>{
               <Link to="/cart" className="top-cart">
                 <i className="bold-500 fal fa-shopping-cart"></i>
                 Cart
-                <span className="cart-counter">{props.cartProductNumber}</span>
+                <span className="cart-counter">{numberOfCartItems}</span>
               </Link>
             </div>
           </div>
@@ -293,21 +305,24 @@ const clearSearch=()=>{
 
             <li className="nav-item">
               <Link
-                onClick={() => onClickHandlers("Best Sellers")}
+                // onClick={() => onClickHandlers("Best Sellers")}
                 className="nav-link"
-                to={`showProduct`}
+                onClick={() => setCategoryProducts("bestSellers")}
+                // to={`showProduct`}
               >
                 Best Sellers
               </Link>
             </li>
-            {props?.categories?.map((cate, index) => {
+            {allCategories?.map((cate, index) => {
+              // console.log("data");
+
               return (
                 <>
                   <li>
                     <div className="sidemenu-dropdown-box">
                       <Link
-                        to={`#sidemenu-dropdown-${index}`}
-                        onClick={() => onClickHandlers(cate.category)}
+                        // to={`#sidemenu-dropdown-${index}`}
+                        // onClick={() => onClickHandlers(cate.category)}
                         className="collapsed sidebar-dropdown-btn"
                         data-bs-toggle="collapse"
                       >
@@ -318,13 +333,11 @@ const clearSearch=()=>{
                         id={`sidemenu-dropdown-${index}`}
                       >
                         <ul className="sidemenu-sublist">
-
                           {cate.subCategories?.map((subCate) => {
                             return (
                               <li key={subCate._id}>
                                 <Link
-                                  onClick={() => onClickHandlers(`${cate.category}/${subCate.name}`)}
-                                  to={`showProduct`}
+                                  onClick={() => setCategoryProducts(cate.category,subCate.name,subCate)}
                                   style={{ textDecoration: "none" }}
                                   className="text-dark fw-light"
                                 >
@@ -380,25 +393,24 @@ const clearSearch=()=>{
   );
 }
 
-{
-  /* <div className="dropdown">
-<a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown link
-</a>
-<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a className="dropdown-item" href="#">Action</a></li>
-    <li><a className="dropdown-item" href="#">Another action</a></li>
-    <li><a className="dropdown-item" href="#">Something else here</a></li>
-</ul>
-</div>
-<div className="dropdown">
-<a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"  aria-expanded="false">
-    Dropdown link
-</a>
-<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a className="dropdown-item" href="#">Action</a></li>
-    <li><a className="dropdown-item" href="#">Another action</a></li>
-    <li><a className="dropdown-item" href="#">Something else here</a></li>
-</ul>
-</div> */
-}
+ // This is for description handler
+  //  const setCollectionHandler = (coll) => {
+  //   let cate;
+  //   let subCate;
+  //   let desc;
+  //   if(coll.includes('/')){
+  //      cate = coll.split('/')[0];
+  //      subCate = coll.split('/')[1];
+  //     let indexCate=categories.findIndex((c)=>c.category===cate);
+  //     let indexSub=categories[indexCate]?.subCategories?.findIndex((s)=>s.name===subCate);
+  //     // console.log({indexCate,indexSub});
+  //     desc=categories[indexCate]?.subCategories[indexSub]?.description; 
+  //   }else if (coll==='Best Sellers') {
+  //     subCate="Best Sellers"
+  //     desc="Best Sellers description"
+  //   }else{
+  //     subCate="Sale"
+  //     desc="sale description"
+  //   }
+  //   setColl({category:cate, subcategory:subCate,description:desc});
+  // };

@@ -4,7 +4,6 @@ export function getAllBaskets() {
     return http.get(`${url}/getBaskets`);
 }
 
-
 const AllServices = {
     getAllBaskets
 }

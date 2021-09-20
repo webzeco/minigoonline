@@ -29,14 +29,13 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
   const onClicked = (prod) => {
     productDetailHandler(prod);
     scrollToTop();
-    console.log("clicked");
+    // console.log("clicked");
   };
 
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3">
       <div className="card hid_border ">
       <Link onClick={() => onClicked(product)}>
-
         <img
           alt="item img"
           src={`${process.env.REACT_APP_URL}/img/${image}`}
@@ -51,9 +50,9 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
         </Link>
         <span className="card-text">Rs.{price}</span>
         <div className="radio-buttons">
-          {colorImg.map((colorbtn) => {
+          {colorImg.map((colorbtn,index) => {
             return (
-              <label className="radio round_btn_look ">
+              <label key={index} className="radio round_btn_look ">
                 <button
                   className="round-button"
                   name="colorsBtn"

@@ -3,15 +3,19 @@ import ReactDOM from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import reactDom from "react-dom";
-import ProductList from "./showProductList";
+import ProductList from "./ProductList";
 export default function ControlledCarousel({ productData, title }) {
-  const first = productData.slice(0, 4);
-  const second = productData.slice(4, 8);
+  let first;
+  let second;
+  if (productData) {
+   first = productData.slice(0, 4);
+   second = productData.slice(4, 8);
+  }
   // const third=productData.slice(8,12);
 
   return (
     <section>
-      <div class="container pt-5 ">
+     { productData&&<div class="container pt-5 ">
         <div class="row h-100">
           <div class="col-lg-7 mx-auto text-center mb-6">
             {/* <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3 ">Shop Best Sellers</h5> */}
@@ -77,7 +81,7 @@ export default function ControlledCarousel({ productData, title }) {
           </div>
         </div>
       </div>
-    </section>
+   } </section>
   );
 }
 

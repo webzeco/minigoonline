@@ -163,11 +163,11 @@ const data=navMenuData.filter(coll=>coll.collection===collection);
     {collection &&data[0] && (
       <div  className="bg-light" >
       <ul  className="parent d-flex justify-content-center  p-4 w-100 menu">
-        {data[0].menu.map(list=>(
-          <ul  className="child   text-bold list-unstyled p-3">
+        {data[0].menu.map((list,index)=>(
+          <ul key={index}  className="child   text-bold list-unstyled p-3">
           <Link style={{textDecoration: 'none'}}  className="fw-bold text-info  list-group list-group-flush">{list.title}</Link>
             {list.items.map((e,index)=>{
-              return <li ><Link onClick={()=>onClickHandlers(e)} to={`showProduct`} style={{textDecoration: 'none'}} className="text-dark fw-light">{e}</Link></li>
+              return <li key={index} ><Link onClick={()=>onClickHandlers(e)} to={`showProduct`} style={{textDecoration: 'none'}} className="text-dark fw-light">{e}</Link></li>
             })}
         </ul>)
         )}

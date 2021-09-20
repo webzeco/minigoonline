@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import "./style/login.css";
 import { toast } from "react-toastify";
 import { addAddress } from "../services/UsersService";
-import { UserContext } from "./contexts/UserContext";
+import { useSelector } from "react-redux";
+import { getUserSelector } from "../storemini/reducers/user";
 const addressSchema = Yup.object().shape({
   firstName: Yup.string().required("Required").label("First Name"),
   lastName: Yup.string().required("Required").label("Last Name"),
@@ -18,11 +19,17 @@ const addressSchema = Yup.object().shape({
   contactNo: Yup.string().required("Required").label("contactNo"),
 });
 export default function AddAddress() {
-  const { user } = useContext(UserContext);
+  const  user  = useSelector(getUserSelector);
+  const scrollToAddAddress = () => {
+    window.scrollTo({
+        top: 358,
+        behavior: "smooth",
+    });
+};
   const addAddressHandler = async (values) => {
+    
     try {
       const { data } = await addAddress(values, user._id);
-      console.log(data);
       toast.success("Address Successfully !!!");
     } catch (error) {
       toast.error("Please enter Correct Info !");
@@ -61,7 +68,8 @@ export default function AddAddress() {
           </div>
           <div class=" col-lg-6 cart mt-4 align-items-center text-center">
             <button
-              type="submit"
+              type="button"
+              onClick={scrollToAddAddress}
               class="btn text-uppercase w-75 align-items-center creat_btn "
             >
               Add a New Address

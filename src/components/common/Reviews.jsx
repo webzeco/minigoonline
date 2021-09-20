@@ -1,5 +1,5 @@
 // import React from 'react'
-// import ProductList from './showProductList';
+// import ProductList from './ProductList';
 // import ReactStars from "react-rating-stars-component";
 
 // import './style/review.css';
@@ -244,12 +244,12 @@
 //   </section>
 //    */}
 import React from "react";
-import ProductList from "./showProductList";
+import ProductList from "./ProductList";
 
 import ReactStars from "react-rating-stars-component";
 
 import "./style/review.css";
-export default function Reviews({ reviews }) {
+export default function Review({ reviews }) {
   const activeReviews=reviews.filter(r=>r.favorite);
   return (
     <div>
@@ -265,6 +265,7 @@ export default function Reviews({ reviews }) {
             if (array.length < index + 3) return null;
             return (
               <div
+              key={index}
                 class={`carousel-item ${
                   index === 0 ? "active" : ""
                 } justify-content-center text-center m-5`}

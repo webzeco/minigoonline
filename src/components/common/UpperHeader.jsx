@@ -5,9 +5,10 @@ import { productData } from "../data";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
+import { useSelector } from "react-redux";
+import { getUserSelector } from "../../storemini/reducers/user";
 export default function Search() {
-  const { user } = useContext(UserContext);
+  const  user  = useSelector(getUserSelector);
   const [searchText, setSearchText] = useState();
   const [items, setItems] = useState([]);
   const searchInput = useRef("");
@@ -91,6 +92,7 @@ export default function Search() {
                     height="40px"
                     width="40px"
                     className="img-fluid"
+                    alt='img here'
                   />
                   <p className="pro_title_look">{prod.title}</p>
                   <small className="fw-bold mt-4">From $30.00</small>

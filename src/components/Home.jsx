@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import HomeCategory from "./common/HomeCategory";
 import HomeContent from "./common/HomeContent";
 import HomeGift from "./common/HomeGift";
 import ControlledCarousel from "./common/Carousel";
-import Reviews from "./common/Reviews";
-import { getAllReviews } from "../services/reviewServices";
+import Review from "./common/Reviews";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProductsSelector, loadProducts } from "../storemini/reducers/products";
+import { getAllReviewsSelector, loadReviews } from "../storemini/reducers/reviews";
+import { loadUser } from "../storemini/reducers/user";
 
-const Home = ({ bestSells }) => {
-  const [reviews, setReviews] = useState([]);
+const Home = () => {
 
-  const getAllReviewsHandler = async () => {
-    const { data } = await getAllReviews();
-    // console.log(data.data);
-    setReviews(data.data);
-  };
+  const dispatch = useDispatch();
+  const products = useSelector(getAllProductsSelector);
+  const reviews = useSelector(getAllReviewsSelector);
+
   useEffect(() => {
-    getAllReviewsHandler();
-    return () => {};
+      dispatch(loadProducts());
+      dispatch(loadReviews());
+      dispatch(loadUser());
   }, []);
   return (
     <div>
       <HomeContent />
       <HomeCategory />
       <HomeGift />
-      <ControlledCarousel productData={bestSells} title={"Shop Best Sellers"} />
-      <Reviews reviews={reviews} />
+      <ControlledCarousel productData={products} title={"Shop Best Sellers"} />
+      <Review reviews={reviews} />
     </div>
   );
 };

@@ -50,10 +50,20 @@ export const jwtClear=()=> {
     window.location = "/login";
 }
 
+export const updatePassword=(data)=> {
+    return http.patch(`${url}/updatePassword`,
+        {
+            passwordCurrent:data.currentPassword,
+            password: data.newPassword,
+            passwordConfirm:data.passwordConfirm
+        }
+    );
+};
 const allOnes={
     isLogin,
     login,
     jwtClear,
-    forgotPassword
+    forgotPassword,
+    updatePassword
 }
 export default allOnes;

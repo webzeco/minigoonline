@@ -5,6 +5,4 @@ export function paginate(items, pageNumber, pageSize) {
   return data;
 }
 
-// _.find(data,product=>{
-//     return product.price<40
-// });
+

@@ -9,16 +9,18 @@ export default  class Variants extends Component {
     }
     handleSelect(select) {
       const newSelected = this.props.selectedVariants;
+      console.log({newSelected});
+      console.log({select});
       let indexT = 0;
       newSelected.map((variant, index) => {
         if (variant.variantType === select.selectedOption) {
           indexT = index;
         }
       });
-      newSelected[indexT].selectedVariant = select.selectedVariant;
-      newSelected[indexT].image = select.image;
+      newSelected[indexT].variantType = select.selectedOption;
+      newSelected[indexT].tag = select.tag;
       // console.log({select});
-      this.props.setSelected(newSelected,select.image);
+      this.props.setSelected(newSelected,select.tag.img);
     }
     render() {
       return (

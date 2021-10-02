@@ -17,9 +17,12 @@ export default class ShowNonColorVariant extends Component {
           const select = {};
           select.selectedOption = this.props.variant.selectedOption;
           select.selectedVariant = this.state.choosedVariantType;
-          const index=this.props.variant.tags.findIndex(tag=>tag.text===this.state.choosedVariant)
-          select.image=this.props.variant.tags[index].img;
-          select.id=this.props.variant.tags[index]._id;
+          const index=this.props.variant.tags.findIndex(tag=>tag.text===e.target.value)
+          console.log(e.target.value,this.props.variant.tags[index]);
+          select.tag=this.props.variant.tags[index];
+          // select.image=this.props.variant.tags[index]?.img;
+          // select.id=this.props.variant.tags[index]?._id;
+          // select.qty=this.props.variant.tags[index]?.qty;
           this.props.setSelectedOption(select);
         }
       );

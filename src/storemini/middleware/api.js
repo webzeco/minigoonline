@@ -1,16 +1,12 @@
 import axios from "axios";
-import { Redirect, useHistory } from "react-router";
 import { toast } from "react-toastify";
 import * as actions from "../api";
 
 const api =
-  ({ dispatch }) =>
-  (next) =>
-  async (action) => {
+  ({ dispatch }) =>(next) => async (action) => {
     if (action.type !== actions.apiCallBegan.type) return next(action);
-    const { url, method, data, onStart, onSuccess, onError, message } =
+    const { url, method, data, onStart, onSuccess, onError, message,errorMessage} =
       action.payload;
-    console.log({ name: action.payload });
     if (onStart) dispatch({ type: onStart });
     next(action);
     try {
@@ -41,12 +37,13 @@ const api =
       if (method === "post"){
         toast.success(message, { position: "top-center", closeOnClick: true });
         window.scrollTo(0, 0);
-      }     
+      };  
        console.log(response.data.data);
       dispatch(actions.apiCallSuccess(response.data.data)); //apiCallSuccess created in actions by action creator
       if (onSuccess) dispatch({ type: onSuccess, payload: response.data.data });
     } catch (error) {
-      toast.error("Operation Failed !!!", { position: "top-center", closeOnClick: true });
+      if(errorMessage)
+      toast.error(errorMessage, { position: "top-center", closeOnClick: true });
       dispatch(actions.apiCallFailed(error.message));
       if (onError) dispatch({ type: onError, payload: error.message });
     }

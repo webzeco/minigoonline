@@ -61,13 +61,13 @@ export const addOrder = (order,payment,user) =>(dispatch, getState) =>{
     url:`${url}/addOrder`,
     method: 'post',
     data: {order,payment,user},
-    message:"Order added successfully !!! check your mail for further detail!!!",
+    successMessage:"Order added successfully !!! check your mail for further detail!!!",
+    errorMessage:'Order not added Something went Wrong',
     onSuccess: orderAdded.type,
     onError: ordersRequestFailed.type,
   }));
 };
   
-
 // Selector
 export const getOrdersByUserSelector = createSelector(
   (state) => state.entities.orders.list,

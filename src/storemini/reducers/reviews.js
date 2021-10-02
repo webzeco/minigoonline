@@ -75,7 +75,9 @@ export const addReview = (review) =>(dispatch, getState) =>{
     url:"review/addReview",
     method: 'post',
     data: review,
-    message:"Thanks Your Review added successfully !!!",
+    successMessage:"Thanks Your Review added successfully !!!",
+    errorMessage:' Review not added Something went Wrong',
+
     onSuccess: reviewAdded.type,
     onError: reviewsRequestFailed.type,
   }));

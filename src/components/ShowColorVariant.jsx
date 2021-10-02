@@ -19,8 +19,9 @@ export default class ShowColorVariant extends Component {
           select.selectedOption = this.props.variant.selectedOption;
           select.selectedVariant = this.state.choosedVariant;
           const index=this.props.variant.tags.findIndex(tag=>tag.text===this.state.choosedVariant)
-          select.image=this.props.variant.tags[index].img;
-          select.id=this.props.variant.tags[index]._id;
+          console.log(e.target.value,this.props.variant);
+          select.tag=this.props.variant.tags[index];
+          // select.id=this.props.variant.tags[index]._id;
           this.props.setSelectedOption(select);
         }
       );

@@ -81,7 +81,8 @@ export const addCategory = (category) =>(dispatch, getState) =>{
     url:"category/addCategory",
     method: 'post',
     data: category,
-    message:"Thanks Your category added successfully !!!",
+    successMessage:"Thanks Your category added successfully !!!",
+    errorMessage:' cate not added Something went Wrong',
     onSuccess: categoryAdded.type,
     onError: categoriesRequestFailed.type,
   }));

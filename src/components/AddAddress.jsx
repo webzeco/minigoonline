@@ -19,15 +19,15 @@ const addressSchema = Yup.object().shape({
   contactNo: Yup.string().required("Required").label("contactNo"),
 });
 export default function AddAddress() {
-  const  user  = useSelector(getUserSelector);
+  const user = useSelector(getUserSelector);
   const scrollToAddAddress = () => {
     window.scrollTo({
-        top: 358,
-        behavior: "smooth",
+      top: 358,
+      behavior: "smooth",
     });
-};
+  };
   const addAddressHandler = async (values) => {
-    
+
     try {
       const { data } = await addAddress(values, user._id);
       toast.success("Address Successfully !!!");

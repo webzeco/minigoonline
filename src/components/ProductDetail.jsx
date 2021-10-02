@@ -18,7 +18,7 @@ class ProductDetail extends Component {
       selectedVariants: [],
       customWriting: "",
       customDate: null,
-      variantImage:""
+      variantImage: ""
     };
     this.handleSelected = this.handleSelected.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -31,13 +31,13 @@ class ProductDetail extends Component {
       temp.variantType = variant.selectedOption;
       if (temp.variantType === "Color") {
         temp.selectedVariant = variant.tags[0].text;
-        temp.id=variant.tags[0]._id;
-        temp.image=variant.tags[0].img;
-        this.setState({variantImage:variant.tags[0].img})
+        temp.id = variant.tags[0]._id;
+        temp.image = variant.tags[0].img;
+        this.setState({ variantImage: variant.tags[0].img })
       } else {
         temp.selectedVariant = variant.tags[0].text;
-        temp.id=variant.tags[0]._id;
-        temp.image=variant.tags[0].img;
+        temp.id = variant.tags[0]._id;
+        temp.image = variant.tags[0].img;
       }
       return temp;
     });
@@ -46,11 +46,11 @@ class ProductDetail extends Component {
     });
   }
 
-  handleSelected(selected,img) {
+  handleSelected(selected, img) {
     this.setState({ selectedVariants: selected }, () => {
       console.log(this.state.selectedVariants);
     });
-    this.setState({variantImage:img})
+    this.setState({ variantImage: img })
   }
   calculateDiscountPrice(price, discount) {
     let discountedPrice = (price * discount) / 100;
@@ -138,21 +138,21 @@ class ProductDetail extends Component {
                     <div className="carousel-inner">
                       {/* {product.images.map((image, index) => {
                         return ( */}
-                          <div
-                            // key={index}
-                            // className={`carousel-item ${
-                            //   index === 0 ? "active" : ""
-                            // }`}
-                            className='carousel-item active'
-                          >
-                            <img
-                              src={`${process.env.REACT_APP_URL}/img/${this.state.variantImage}`}
-                              className="d-block w-100"
-                              height="400"
-                              alt="..."
-                            />
-                          </div>
-                        );
+                      <div
+                        // key={index}
+                        // className={`carousel-item ${
+                        //   index === 0 ? "active" : ""
+                        // }`}
+                        className='carousel-item active'
+                      >
+                        <img
+                          src={`${process.env.REACT_APP_URL}/img/${this.state.variantImage}`}
+                          className="d-block w-100"
+                          height="400"
+                          alt="..."
+                        />
+                      </div>
+                      );
                       {/* }) */}
                       {/* } */}
                     </div>
@@ -191,7 +191,7 @@ class ProductDetail extends Component {
                       </div>
                       <div className="h5  pro_price_h5">
                         {product.discount === 0 ? (
-                         `Rs.${product.price}`
+                          `Rs.${product.price}`
                         ) : (
                           <>
                             {product.price} is discounted for{" "}
@@ -211,8 +211,8 @@ class ProductDetail extends Component {
                       {/* Variants Start */}
                       <Variants
                         selectedVariants={this.state.selectedVariants}
-                        setSelected={(selected,img) =>
-                          this.handleSelected(selected,img)
+                        setSelected={(selected, img) =>
+                          this.handleSelected(selected, img)
                         }
                         variants={product.variants}
                       />
@@ -223,7 +223,7 @@ class ProductDetail extends Component {
                         customWriting={product.customWriting}
                       />
                       {!product.sellOutofStock &&
-                      product.availableQuantity < 10 ? (
+                        product.availableQuantity < 10 ? (
                         <div className="fst-italic few_dis pt-5">
                           Only few left
                         </div>
@@ -312,7 +312,7 @@ const mapStateToProps = (state) => ({
   products: state.entities.products.list,
   loading: state.entities.products.loading,
   category: state.entities.products.category,
-  cartItems:state.entities.cart.list
+  cartItems: state.entities.cart.list
 });
 const mapDispatchToProps = (dispatch) => ({
   loadProducts: () => dispatch(loadProducts()),

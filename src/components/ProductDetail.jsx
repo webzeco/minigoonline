@@ -31,13 +31,13 @@ class ProductDetail extends Component {
       temp.variantType = variant.selectedOption;
       if (temp.variantType === "Color") {
         temp.selectedVariant = variant.tags[0].text;
-        temp.id=variant.tags[0]._id;
-        temp.image=variant.tags[0].img;
-        this.setState({variantImage:variant.tags[0].img})
+        temp.tag=variant.tags[0];
+        // temp.image=variant.tags[0].img;
+        this.setState({variantImage:temp.tag.img})
       } else {
         temp.selectedVariant = variant.tags[0].text;
-        temp.id=variant.tags[0]._id;
-        temp.image=variant.tags[0].img;
+        temp.tag=variant.tags[0];
+        // temp.image=variant.tags[0].img;
       }
       return temp;
     });
@@ -46,10 +46,8 @@ class ProductDetail extends Component {
     });
   }
 
-  handleSelected(selected,img) {
-    this.setState({ selectedVariants: selected }, () => {
-      console.log(this.state.selectedVariants);
-    });
+ async handleSelected(selected,img) {
+   await this.setState({ selectedVariants: selected });
     this.setState({variantImage:img})
   }
   calculateDiscountPrice(price, discount) {
@@ -306,6 +304,7 @@ class ProductDetail extends Component {
       </>
     );
   }
+
 }
 
 const mapStateToProps = (state) => ({

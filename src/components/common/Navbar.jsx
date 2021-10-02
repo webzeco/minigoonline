@@ -6,10 +6,14 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "jquery/dist/jquery.min.js";
 import { Link } from "react-router-dom";
 import SearchElement from "./SearchElement";
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector  } from "react-redux";
-import {  addCategoryProducts } from "../../storemini/reducers/products";
-import { getAllCategoriesSelector, loadCategories, setCategory } from "../../storemini/reducers/categories";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addCategoryProducts } from "../../storemini/reducers/products";
+import {
+  getAllCategoriesSelector,
+  loadCategories,
+  setCategory,
+} from "../../storemini/reducers/categories";
 import { getUserSelector, loadUser } from "../../storemini/reducers/user";
 import { getNumberOfCartItems } from "../../storemini/reducers/cart";
 
@@ -17,15 +21,18 @@ export default function Navbar(props) {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
   const [items, setItems] = useState([]);
-  
+
   const allCategories = useSelector(getAllCategoriesSelector);
-  const  user  = useSelector(getUserSelector);
-  const numberOfCartItems=useSelector(getNumberOfCartItems);
-  const history=useHistory();
-useEffect(() => {
+  const user = useSelector(getUserSelector);
+  const numberOfCartItems = useSelector(getNumberOfCartItems);
+
+  const history = useHistory();
+  useEffect(() => {
     getRelatedItemsHandler();
     dispatch(loadCategories());
     dispatch(loadUser());
+    // alert(JSON.stringify(user));
+    console.log(JSON.stringify(user));
     if (!searchText) setItems([]);
   }, [searchText]);
 
@@ -36,9 +43,9 @@ useEffect(() => {
     setItems(props.products.filter((prod) => prod.title.includes(searchText)));
   };
 
-const clearSearch=()=>{
-  setSearchText("");
-}
+  const clearSearch = () => {
+    setSearchText("");
+  };
   useEffect(() => {
     window.onscroll = function () {
       myFunction();
@@ -56,15 +63,15 @@ const clearSearch=()=>{
     }
   }, []);
 
-const setCategoryProducts=(category,sub,cateObj)=>{
-  dispatch(addCategoryProducts(`${category}/${sub}`));
-  dispatch(setCategory(cateObj));
-  history.push("/products");
-};
-  
-  
+  const setCategoryProducts = (category, sub, cateObj) => {
+    dispatch(addCategoryProducts(`${category}/${sub}`));
+    dispatch(setCategory(cateObj));
+    history.push("/products");
+  };
+
   return (
     <header>
+      {console.log({ user })}
       {/* <!-- On Small Screen --> */}
       <div className="top-header res-top-header py-1 d-none" id="sticky-header">
         <div className="container">
@@ -81,7 +88,6 @@ const setCategoryProducts=(category,sub,cateObj)=>{
                   <i className="fad fa-bars"></i>
                 </button>
                 <button
-
                   className="sidemenu-toggle-btn"
                   type="button"
                   data-bs-toggle="offcanvas"
@@ -162,13 +168,7 @@ const setCategoryProducts=(category,sub,cateObj)=>{
             </div>
 
             <div className="top-header-rightarea ">
-              {!user && (
-                <Link to="/login">
-                  <i className="fal fa-user"></i>
-                  <span className="d-none d-md-inline-block ">Sign In</span>
-                </Link>
-              )}
-              {user && (
+              {user?.name ? (
                 <Link to="/account">
                   <i className="fal fa-user"></i>
                   {user && (
@@ -177,8 +177,12 @@ const setCategoryProducts=(category,sub,cateObj)=>{
                     </span>
                   )}
                 </Link>
+              ) : (
+                <Link to="/login">
+                  <i className="fal fa-user"></i>
+                  <span className="d-none d-md-inline-block ">Sign In</span>
+                </Link>
               )}
-
               <Link to="/cart" className="top-cart ms-md-5 ms-2">
                 <i className="fal fa-shopping-cart"></i>
                 <span className="d-none d-md-inline-block ">Cart</span>
@@ -216,11 +220,12 @@ const setCategoryProducts=(category,sub,cateObj)=>{
               <li className="nav-item">
                 <Link
                   // onClick={() => onClickHandlers("Best Sellers")}
-                  onClick={() => setCategoryProducts("bestSellers","",
-                  {
-                  name:"Best sellers",
-                description:"Best seller Products available here"}
-                )}
+                  onClick={() =>
+                    setCategoryProducts("bestSellers", "", {
+                      name: "Best sellers",
+                      description: "Best seller Products available here",
+                    })
+                  }
                   className="nav-link"
                 >
                   Best Sellers
@@ -232,8 +237,8 @@ const setCategoryProducts=(category,sub,cateObj)=>{
                     <Link
                       // onClick={() => onClickHandlers(cate.category)}
                       className="nav-link"
-                      // to={`showProduct/${collection.category}/${collection.subcategory}/${collection.description}`}
-                      >
+                    // to={`showProduct/${collection.category}/${collection.subcategory}/${collection.description}`}
+                    >
                       {cate.category}
                     </Link>
                     <div className="navbar-menu">
@@ -244,7 +249,13 @@ const setCategoryProducts=(category,sub,cateObj)=>{
                             return (
                               <li key={subCate._id}>
                                 <Link
-                                  onClick={() => setCategoryProducts(cate.category,subCate.name,subCate)}
+                                  onClick={() =>
+                                    setCategoryProducts(
+                                      cate.category,
+                                      subCate.name,
+                                      subCate
+                                    )
+                                  }
                                   style={{ textDecoration: "none" }}
                                   className="text-dark fw-light"
                                 >
@@ -262,9 +273,12 @@ const setCategoryProducts=(category,sub,cateObj)=>{
 
               <li className="nav-item">
                 <Link
-                  onClick={() => setCategoryProducts("sale","",{
-                    name:"Sale",
-                description:"Sale Products "})}
+                  onClick={() =>
+                    setCategoryProducts("sale", "", {
+                      name: "Sale",
+                      description: "Sale Products ",
+                    })
+                  }
                   className="nav-link"
                 >
                   Sale
@@ -291,24 +305,25 @@ const setCategoryProducts=(category,sub,cateObj)=>{
       >
         <div className="sidemenu-header">
           <div className="position-relative">
-            <input className="form-control "
-              type="text" placeholder="SEARCH"
+            <input
+              className="form-control "
+              type="text"
+              placeholder="SEARCH"
               value={searchText}
               onChange={(e) => onTextChangeHandler(e)}
             />
             <i className="fal fa-search"></i>
           </div>
         </div>
-        <SearchElement items={items}/>
+        <SearchElement items={items} />
         <div className="offcanvas-body">
           <ul className="sidemenu-list">
-
             <li className="nav-item">
               <Link
                 // onClick={() => onClickHandlers("Best Sellers")}
                 className="nav-link"
                 onClick={() => setCategoryProducts("bestSellers")}
-                // to={`showProduct`}
+              // to={`showProduct`}
               >
                 Best Sellers
               </Link>
@@ -337,7 +352,13 @@ const setCategoryProducts=(category,sub,cateObj)=>{
                             return (
                               <li key={subCate._id}>
                                 <Link
-                                  onClick={() => setCategoryProducts(cate.category,subCate.name,subCate)}
+                                  onClick={() =>
+                                    setCategoryProducts(
+                                      cate.category,
+                                      subCate.name,
+                                      subCate
+                                    )
+                                  }
                                   style={{ textDecoration: "none" }}
                                   className="text-dark fw-light"
                                 >
@@ -347,7 +368,6 @@ const setCategoryProducts=(category,sub,cateObj)=>{
                             );
                           })}
                         </ul>
-
                       </div>
                     </div>
                   </li>
@@ -393,24 +413,24 @@ const setCategoryProducts=(category,sub,cateObj)=>{
   );
 }
 
- // This is for description handler
-  //  const setCollectionHandler = (coll) => {
-  //   let cate;
-  //   let subCate;
-  //   let desc;
-  //   if(coll.includes('/')){
-  //      cate = coll.split('/')[0];
-  //      subCate = coll.split('/')[1];
-  //     let indexCate=categories.findIndex((c)=>c.category===cate);
-  //     let indexSub=categories[indexCate]?.subCategories?.findIndex((s)=>s.name===subCate);
-  //     // console.log({indexCate,indexSub});
-  //     desc=categories[indexCate]?.subCategories[indexSub]?.description; 
-  //   }else if (coll==='Best Sellers') {
-  //     subCate="Best Sellers"
-  //     desc="Best Sellers description"
-  //   }else{
-  //     subCate="Sale"
-  //     desc="sale description"
-  //   }
-  //   setColl({category:cate, subcategory:subCate,description:desc});
-  // };
+// This is for description handler
+//  const setCollectionHandler = (coll) => {
+//   let cate;
+//   let subCate;
+//   let desc;
+//   if(coll.includes('/')){
+//      cate = coll.split('/')[0];
+//      subCate = coll.split('/')[1];
+//     let indexCate=categories.findIndex((c)=>c.category===cate);
+//     let indexSub=categories[indexCate]?.subCategories?.findIndex((s)=>s.name===subCate);
+//     // console.log({indexCate,indexSub});
+//     desc=categories[indexCate]?.subCategories[indexSub]?.description;
+//   }else if (coll==='Best Sellers') {
+//     subCate="Best Sellers"
+//     desc="Best Sellers description"
+//   }else{
+//     subCate="Sale"
+//     desc="sale description"
+//   }
+//   setColl({category:cate, subcategory:subCate,description:desc});
+// };

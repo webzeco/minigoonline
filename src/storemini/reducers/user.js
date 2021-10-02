@@ -35,9 +35,9 @@ export default slice.reducer;
 // Action Creators
 
 export const loadUser = () => (dispatch, getState) => {
-  // const { lastFetch } = getState().entities.user;
-  // const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
-  // if (diffInMinutes < 10) return;
+  const { lastFetch } = getState().entities.user;
+  const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
+  if (diffInMinutes < 10) return;
   dispatch(
     apiCallBegan({
       url: "user/me",
@@ -68,7 +68,8 @@ export const addUserAddress = (user, payment) => (dispatch, getState) => {
       url: "user/addAddress",
       method: "post",
       data: { user, payment },
-      message: "Your Address added successfully !!!",
+      successMessage: "Your Address added successfully !!!",
+      errorMessage:'Order not added Something went Wrong',
       onSuccess: userAddressAdded.type,
       onError: userRequestFailed.type,
     })

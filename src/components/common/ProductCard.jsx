@@ -5,7 +5,7 @@ import "./style/productCard.css";
 const ProductCard = ({ images, title, price, colorImg, product }) => {
   const { productDetailHandler } = useContext(ProductDetailContext);
   const [image, setImage] = useState(images[0]);
-  useEffect(() => {}, [image]);
+  useEffect(() => { }, [image]);
 
   const changeImgEnter = () => {
     if (images.length > 1) {
@@ -22,10 +22,10 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
   };
   const scrollToTop = () => {
     window.scrollTo({
-        top: 0,
-        behavior: "smooth",
+      top: 0,
+      behavior: "smooth",
     });
-};
+  };
   const onClicked = (prod) => {
     productDetailHandler(prod);
     scrollToTop();
@@ -34,35 +34,39 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
 
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3">
-      <div className="card hid_border ">
-      <Link onClick={() => onClicked(product)}>
-        <img
-          alt="item img"
-          src={`${process.env.REACT_APP_URL}/img/${image}`}
-          onMouseEnter={() => changeImgEnter()}
-          onMouseLeave={() => changeImgLeave()}
-          // onClick={() => onClicked(product)}
-          className="img-fluid img_back_col text-center mb-2 p-3"
-        />
-        <h6 className="card-title fw-bold ">
-          {title}
-        </h6>
-        </Link>
-        <span className="card-text">Rs.{price}</span>
-        <div className="radio-buttons">
-          {colorImg.map((colorbtn,index) => {
-            return (
-              <label key={index} className="radio round_btn_look ">
-                <button
-                  className="round-button"
-                  name="colorsBtn"
-                  value={colorbtn.img}
-                  onClick={(e) => onradioBtnChange(e)}
-                  style={{ backgroundColor: colorbtn.color }}
-                />
-              </label>
-            );
-          })}
+      <div class="img__wrapper">
+        <img src="http://www.savoy-sharm.com/media-room/images/hi-res/king-bed-room-accommodation-savoy-luxury-5-stars-accommodation-sharm-el-sheikh.jpg" alt="" />
+        <p class="sold_out" >Sold out</p>
+        <div className="card hid_border ">
+          <Link onClick={() => onClicked(product)}>
+            <img
+              alt="item img"
+              src={`${process.env.REACT_APP_URL}/img/${image}`}
+              onMouseEnter={() => changeImgEnter()}
+              onMouseLeave={() => changeImgLeave()}
+              // onClick={() => onClicked(product)}
+              className="img-fluid img_back_col text-center mb-2 p-3"
+            />
+            <h6 className="card-title fw-bold ">
+              {title}
+            </h6>
+          </Link>
+          <span className="card-text">Rs.{price}</span>
+          <div className="radio-buttons">
+            {colorImg.map((colorbtn, index) => {
+              return (
+                <label key={index} className="radio round_btn_look ">
+                  <button
+                    className="round-button"
+                    name="colorsBtn"
+                    value={colorbtn.img}
+                    onClick={(e) => onradioBtnChange(e)}
+                    style={{ backgroundColor: colorbtn.color }}
+                  />
+                </label>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

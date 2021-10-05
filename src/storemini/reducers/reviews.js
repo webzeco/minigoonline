@@ -1,13 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import moment from 'moment';
-import { createSelector } from 'reselect';
-import { apiCallBegan } from '../api';
+import { createSlice } from "@reduxjs/toolkit";
+import moment from "moment";
+import { createSelector } from "reselect";
+import { apiCallBegan } from "../api";
 
 const slice = createSlice({
-  name: 'reviews',
+  name: "reviews",
   initialState: {
     list: [],
-    productReviews:[],
+    productReviews: [],
     loading: false,
     lastFetch: null,
   },
@@ -27,7 +27,9 @@ const slice = createSlice({
       reviews.list.push(action.payload);
     },
     productReviewsAdded: (reviews, action) => {
-      reviews.productReviews=reviews.list.filter(rev=>rev.product._id===action.payload);
+      reviews.productReviews = reviews.list.filter(
+        (rev) => rev.product._id === action.payload
+      );
     },
   },
 });
@@ -37,7 +39,7 @@ const {
   reviewAdded,
   reviewsRequested,
   reviewsRequestFailed,
- productReviewsAdded
+  productReviewsAdded,
 } = slice.actions;
 export default slice.reducer;
 
@@ -45,11 +47,11 @@ export default slice.reducer;
 
 export const loadReviews = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.reviews;
-  const diffInMinutes = moment().diff(moment(lastFetch), 'minutes');
+  const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
   if (diffInMinutes < 10) return;
   dispatch(
     apiCallBegan({
-      url:"review/allReviews",
+      url: "review/allReviews",
       onStart: reviewsRequested.type,
       onSuccess: reviewsReceived.type,
       onError: reviewsRequestFailed.type,
@@ -58,11 +60,11 @@ export const loadReviews = () => (dispatch, getState) => {
 };
 export const getAllReviews = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.reviews;
-  const diffInMinutes = moment().diff(moment(lastFetch), 'minutes');
+  const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
   if (diffInMinutes < 10) return;
   dispatch(
     apiCallBegan({
-      url:"review/allReviews",
+      url: "review/allReviews",
       onStart: reviewsRequested.type,
       onSuccess: reviewsReceived.type,
       onError: reviewsRequestFailed.type,
@@ -70,21 +72,21 @@ export const getAllReviews = () => (dispatch, getState) => {
   );
 };
 
-export const addReview = (review) =>(dispatch, getState) =>{
-  dispatch(apiCallBegan({
-    url:"review/addReview",
-    method: 'post',
-    data: review,
-    successMessage:"Thanks Your Review added successfully !!!",
-    errorMessage:' Review not added Something went Wrong',
+export const addReview = (review) => (dispatch, getState) => {
+  dispatch(
+    apiCallBegan({
+      url: "review/addReview",
+      method: "post",
+      data: review,
+      successMessage: "Thanks Your Review added successfully !!!",
+      errorMessage: " Review not added Something went Wrong",
+      onSuccess: reviewAdded.type,
+      onError: reviewsRequestFailed.type,
+    })
+  );
+};
 
-    onSuccess: reviewAdded.type,
-    onError: reviewsRequestFailed.type,
-  }));
-}
-  
-
-export const addProductsReviews = (id) =>(dispatch, getState) =>{
+export const addProductsReviews = (id) => (dispatch, getState) => {
   dispatch(productReviewsAdded(id));
 };
 // export const resolvereview = (id) =>
@@ -98,10 +100,10 @@ export const addProductsReviews = (id) =>(dispatch, getState) =>{
 // Selector
 export const getAllReviewsSelector = createSelector(
   (state) => state.entities.reviews.list,
-  (list) => list 
+  (list) => list
 );
 
 export const getProductReviewsSelector = createSelector(
   (state) => state.entities.reviews.productsReviews,
-  (list) => list 
+  (list) => list
 );

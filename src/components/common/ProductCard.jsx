@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { ProductDetailContext } from "../contexts/ProductDetailContext";
 import "./style/productCard.css";
 const ProductCard = ({ images, title, price, colorImg, product }) => {
+
   const { productDetailHandler } = useContext(ProductDetailContext);
   const [image, setImage] = useState(images[0]);
   useEffect(() => { }, [image]);
@@ -33,7 +34,7 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
   };
 
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3">
+    <div className="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3" style={{ position: "inherit" }} >
       <div class="img__wrapper">
         <img src="http://www.savoy-sharm.com/media-room/images/hi-res/king-bed-room-accommodation-savoy-luxury-5-stars-accommodation-sharm-el-sheikh.jpg" alt="" />
         <p class="sold_out" >Sold out</p>

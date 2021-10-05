@@ -11,6 +11,7 @@ import Variants from "./common/Variants";
 import Overview from "./Overview";
 import AddReview from "./AddReview";
 import { addItem } from "../storemini/reducers/cart";
+
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +19,7 @@ class ProductDetail extends Component {
       selectedVariants: [],
       customWriting: "",
       customDate: null,
-      variantImage:""
+      variantImage: ""
     };
     this.handleSelected = this.handleSelected.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -31,12 +32,12 @@ class ProductDetail extends Component {
       temp.variantType = variant.selectedOption;
       if (temp.variantType === "Color") {
         temp.selectedVariant = variant.tags[0].text;
-        temp.tag=variant.tags[0];
+        temp.tag = variant.tags[0];
         // temp.image=variant.tags[0].img;
-        this.setState({variantImage:temp.tag.img})
+        this.setState({ variantImage: temp.tag.img })
       } else {
         temp.selectedVariant = variant.tags[0].text;
-        temp.tag=variant.tags[0];
+        temp.tag = variant.tags[0];
         // temp.image=variant.tags[0].img;
       }
       return temp;
@@ -46,9 +47,9 @@ class ProductDetail extends Component {
     });
   }
 
- async handleSelected(selected,img) {
-   await this.setState({ selectedVariants: selected });
-    this.setState({variantImage:img})
+  async handleSelected(selected, img) {
+    await this.setState({ selectedVariants: selected });
+    this.setState({ variantImage: img })
   }
   calculateDiscountPrice(price, discount) {
     let discountedPrice = (price * discount) / 100;
@@ -91,7 +92,7 @@ class ProductDetail extends Component {
         {product && (
           <div className="mt-5">
             {/* <!-- =======Product display in Banner area ======= --> */}
-            <div className="container-fluid banner">
+            <div className="container-fluid banner_pd">
               <nav>
                 <ol className="breadcrumb  px-5 pt-4">
                   <li className="breadcrumb-item  look">
@@ -102,8 +103,10 @@ class ProductDetail extends Component {
                   </li>
                 </ol>
               </nav>
+            </div>
+            <div className="container-fluid">
               <div className="row justify-content-center ">
-                <div className="col-lg-6 col-md-12">
+                <div className="col-lg-6 col-md-12 col-sm-12">
                   {/* carousel start */}
                   <div
                     id="carouselExampleIndicators"
@@ -134,54 +137,26 @@ class ProductDetail extends Component {
                       ></button>
                     </div>
                     <div className="carousel-inner">
-                      {/* {product.images.map((image, index) => {
-                        return ( */}
-                          <div
-                            // key={index}
-                            // className={`carousel-item ${
-                            //   index === 0 ? "active" : ""
-                            // }`}
-                            className='carousel-item active'
-                          >
-                            <img
-                              src={`${process.env.REACT_APP_URL}/img/${this.state.variantImage}`}
-                              className="d-block w-100"
-                              height="400"
-                              alt="..."
-                            />
-                          </div>
-                        );
-                      {/* }) */}
-                      {/* } */}
+                      <div
+                        // key={index}
+                        // className={`carousel-item ${
+                        //   index === 0 ? "active" : ""
+                        // }`}
+                        className='carousel-item active'
+                      >
+                        <img
+                          src={`${process.env.REACT_APP_URL}/img/${this.state.variantImage}`}
+                          className="d-block w-100 cara_pic"
+                          height="400"
+                          alt="..."
+                        />
+                      </div>
+                      );
                     </div>
-                    {/* <button
-                      className="carousel-control-prev"
-                      type="button"
-                      data-bs-target="#carouselExampleIndicators"
-                      data-bs-slide="prev"
-                    >
-                      <span
-                        className="carousel-control-prev-icon"
-                        aria-hidden="true"
-                      ></span>
-                      <span className="visually-hidden">Previous</span>
-                    </button> */}
-                    {/* <button
-                      className="carousel-control-next"
-                      type="button"
-                      data-bs-target="#carouselExampleIndicators"
-                      data-bs-slide="next"
-                    >
-                      <span
-                        className="carousel-control-next-icon"
-                        aria-hidden="true"
-                      ></span>
-                      <span className="visually-hidden">Next</span>
-                    </button> */}
                   </div>
                   {/* caroausel end */}
                 </div>
-                <div className="col-lg-6 col-md-12 back px-5">
+                <div className="col-lg-6 col-md-12 px-5">
                   <div className="product pt-2">
                     <div className=" align-items-center w-75">
                       <div className="h5 text-uppercase pro_title_h_5">
@@ -189,7 +164,7 @@ class ProductDetail extends Component {
                       </div>
                       <div className="h5  pro_price_h5">
                         {product.discount === 0 ? (
-                         `Rs.${product.price}`
+                          `Rs.${product.price}`
                         ) : (
                           <>
                             {product.price} is discounted for{" "}
@@ -200,17 +175,19 @@ class ProductDetail extends Component {
                           </>
                         )}
                       </div>
+
                       <div className="d-flex align-items-center">
                         {/* Reviews Component */}
                         <Reviews reviews={product.reviews} />
+
                       </div>
 
                       <div className="ho mt-2 "></div>
                       {/* Variants Start */}
                       <Variants
                         selectedVariants={this.state.selectedVariants}
-                        setSelected={(selected,img) =>
-                          this.handleSelected(selected,img)
+                        setSelected={(selected, img) =>
+                          this.handleSelected(selected, img)
                         }
                         variants={product.variants}
                       />
@@ -221,7 +198,7 @@ class ProductDetail extends Component {
                         customWriting={product.customWriting}
                       />
                       {!product.sellOutofStock &&
-                      product.availableQuantity < 10 ? (
+                        product.availableQuantity < 10 ? (
                         <div className="fst-italic few_dis pt-5">
                           Only few left
                         </div>
@@ -311,7 +288,7 @@ const mapStateToProps = (state) => ({
   products: state.entities.products.list,
   loading: state.entities.products.loading,
   category: state.entities.products.category,
-  cartItems:state.entities.cart.list
+  cartItems: state.entities.cart.list
 });
 const mapDispatchToProps = (dispatch) => ({
   loadProducts: () => dispatch(loadProducts()),

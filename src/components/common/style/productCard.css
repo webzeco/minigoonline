@@ -11,6 +11,14 @@
 .card {
   /* z-index: -1; */
 }
+.badge_best {
+  position: absolute;
+  left: 150px;
+  text-align: center;
+  background-color: #769799;
+  font-size: 14px !important;
+}
+
 .hid_border {
   border: hidden !important;
 }
@@ -36,4 +44,6 @@
   font-family: "Montserrat";
 }
 
-body {background: #333}
+body {
+  background: #333;
+}

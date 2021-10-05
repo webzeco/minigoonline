@@ -3,11 +3,16 @@
 
 /*Banner*/
 
-.banner {
+.banner_pd {
   background-color: #f5f5f5;
   font-family: "Montserrat";
   color: #333333;
   height: auto;
+}
+@media screen and (max-width: 450px) {
+  .cara_pic {
+    height: 250px;
+  }
 }
 
 .vl {

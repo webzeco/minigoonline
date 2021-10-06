@@ -34,13 +34,10 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
   };
 
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3" style={{ position: "inherit" }} >
+    <div className="col-lg-3 col-md-4 col-sm-6 pt-3 px-3" style={{ position: "inherit", width: '300px' }} >
       <div class="img__wrapper">
-
-
         <div className="card hid_border ">
           <Link onClick={() => onClicked(product)}>
-
             <span class="badge badge-lg mt-3 badge_best">Best Saller</span>
             <img
               alt="item img"
@@ -57,17 +54,16 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
           <span className="card-text">Rs.{price}</span>
           <div className="radio-buttons">
             {colorImg.map((colorbtn, index) => {
-              return (
-                <label key={index} className="radio round_btn_look ">
-                  <button
-                    className="round-button"
-                    name="colorsBtn"
-                    value={colorbtn.img}
-                    onClick={(e) => onradioBtnChange(e)}
-                    style={{ backgroundColor: colorbtn.color }}
-                  />
-                </label>
-              );
+              return <label key={index} className="radio round_btn_look ">
+                <button
+                  className="round-button"
+                  name="colorsBtn"
+                  value={colorbtn.img}
+                  onClick={(e) => onradioBtnChange(e)}
+                  style={{ backgroundColor: colorbtn.color }}
+                />
+              </label>
+
             })}
           </div>
         </div>

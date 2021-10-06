@@ -8,6 +8,7 @@ import ControlledCarousel from "./common/Carousel";
 import { connect } from "react-redux";
 import { loadProducts } from "../storemini/reducers/products";
 import Variants from "./common/Variants";
+import Review from "./common/Reviews";
 import Overview from "./Overview";
 import AddReview from "./AddReview";
 import { addItem } from "../storemini/reducers/cart";
@@ -151,7 +152,7 @@ class ProductDetail extends Component {
                           alt="..."
                         />
                       </div>
-                      );
+
                     </div>
                   </div>
                   {/* caroausel end */}
@@ -178,8 +179,8 @@ class ProductDetail extends Component {
 
                       <div className="d-flex align-items-center">
                         {/* Reviews Component */}
-                        <Reviews reviews={product.reviews} />
 
+                        {/* <Reviews reviews={product.reviews} /> */}
                       </div>
 
                       <div className="ho mt-2 "></div>
@@ -272,7 +273,7 @@ class ProductDetail extends Component {
                 title={""}
               />
             </div>
-            <Reviews reviews={this.prreviews} />
+            <Review reviews={product.reviews} />
             {/* <!-- =======  customer Review ======= --> */}
             <AddReview reviews={product.reviews} {...this.props} />
             {/* <!-- =======  Customer Review ====== --> */}
@@ -328,50 +329,50 @@ const Customization = (props) => {
   );
 };
 
-const Reviews = (props) => {
-  function avergeRating() {
-    let sum = 0;
-    props?.reviews?.map((review) => {
-      sum += review.rating;
-    });
-    return Math.ceil(sum / props.reviews?.length);
-  }
-  function fakeArray(length) {
-    const fakearr = [];
-    for (var i = 0; i < length; i++) {
-      fakearr.push("fake");
-    }
-    return fakearr;
-  }
+// const Reviews = (props) => {
+//   function avergeRating() {
+//     let sum = 0;
+//     props?.reviews?.map((review) => {
+//       sum += review.rating;
+//     });
+//     return Math.ceil(sum / props.reviews?.length);
+//   }
+//   function fakeArray(length) {
+//     const fakearr = [];
+//     for (var i = 0; i < length; i++) {
+//       fakearr.push("fake");
+//     }
+//     return fakearr;
+//   }
 
-  return (
-    <>
-      <ul className="list-inline mb-2 me-3 small">
-        {/* {
-                    fakeArray(avergeRating()).map(
-                        () => <li className="list-inline-item m-0"><i className="fas fa-star small text-warning"></i></li>
-                    )
-                }
-                {
-                    fakeArray(5 - avergeRating()).map(
-                        () => <li className="list-inline-item m-0"><i className="fas fa-star small text-muted"></i></li>
-                    )
-                } */}
-        <ReactStars
-          edit={false}
-          count={5}
-          size={24}
-          value={avergeRating()}
-          activeColor="#ffd700"
-        />
-      </ul>
-      <Link to="#">
-        <p className="mb-2 re_look">{props.reviews?.length} REVIEWS</p>
-      </Link>
-      <div className="vl mb-1 mx-4"></div>
-      {/* <a href="#write-review">
-        <p className=" mb-2 re_look"> WRITE A REVIEW</p>
-      </a> */}
-    </>
-  );
-};
+//   return (
+//     <>
+//       <ul className="list-inline mb-2 me-3 small">
+//         {/* {
+//                     fakeArray(avergeRating()).map(
+//                         () => <li className="list-inline-item m-0"><i className="fas fa-star small text-warning"></i></li>
+//                     )
+//                 }
+//                 {
+//                     fakeArray(5 - avergeRating()).map(
+//                         () => <li className="list-inline-item m-0"><i className="fas fa-star small text-muted"></i></li>
+//                     )
+//                 } */}
+//         <ReactStars
+//           edit={false}
+//           count={5}
+//           size={24}
+//           value={avergeRating()}
+//           activeColor="#ffd700"
+//         />
+//       </ul>
+//       <Link to="#">
+//         <p className="mb-2 re_look">{props.reviews?.length} REVIEWS</p>
+//       </Link>
+//       <div className="vl mb-1 mx-4"></div>
+//       {/* <a href="#write-review">
+//         <p className=" mb-2 re_look"> WRITE A REVIEW</p>
+//       </a> */}
+//     </>
+//   );
+// };

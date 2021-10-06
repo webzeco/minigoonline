@@ -102,7 +102,7 @@ export default function Navbar(props) {
             <div className="top-header-logo text-center">
               <a href="#">
                 <img
-                  src="assets/images/logo-2.png"
+                  src={`${process.env.REACT_APP_URL}/img/footer_logo.png`}
                   className="w-100"
                   alt="img"
                 />

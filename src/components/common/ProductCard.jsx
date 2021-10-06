@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { ProductDetailContext } from "../contexts/ProductDetailContext";
 import "./style/productCard.css";
 const ProductCard = ({ images, title, price, colorImg, product }) => {
+
   const { productDetailHandler } = useContext(ProductDetailContext);
   const [image, setImage] = useState(images[0]);
   useEffect(() => { }, [image]);
@@ -33,14 +34,16 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
   };
 
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 pt-3 pb-3">
+    <div className="col-lg-3 col-md-4 col-sm-6 pt-3 px-3" style={{ position: "inherit", width: '300px' }} >
       <div class="img__wrapper">
-
-
         <div className="card hid_border ">
           <Link onClick={() => onClicked(product)}>
+<<<<<<< HEAD
 
             <span class="badge badge-lg mt-2 badge_best">Best Saller</span>
+=======
+            <span class="badge badge-lg mt-3 badge_best">Best Saller</span>
+>>>>>>> ed45a717878a1c83abf6072016e631335576890f
             <img
               alt="item img"
               src={`${process.env.REACT_APP_URL}/img/${image}`}
@@ -56,17 +59,16 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
           <span className="card-text">Rs.{price}</span>
           <div className="radio-buttons">
             {colorImg.map((colorbtn, index) => {
-              return (
-                <label key={index} className="radio round_btn_look ">
-                  <button
-                    className="round-button"
-                    name="colorsBtn"
-                    value={colorbtn.img}
-                    onClick={(e) => onradioBtnChange(e)}
-                    style={{ backgroundColor: colorbtn.color }}
-                  />
-                </label>
-              );
+              return <label key={index} className="radio round_btn_look ">
+                <button
+                  className="round-button"
+                  name="colorsBtn"
+                  value={colorbtn.img}
+                  onClick={(e) => onradioBtnChange(e)}
+                  style={{ backgroundColor: colorbtn.color }}
+                />
+              </label>
+
             })}
           </div>
         </div>

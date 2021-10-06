@@ -16,9 +16,9 @@ const Home = () => {
   const reviews = useSelector(getAllReviewsSelector);
 
   useEffect(() => {
-      dispatch(loadProducts());
-      dispatch(loadReviews());
-      dispatch(loadUser());
+    dispatch(loadProducts());
+    dispatch(loadReviews());
+    dispatch(loadUser());
   }, []);
   return (
     <div>
@@ -26,7 +26,7 @@ const Home = () => {
       <HomeCategory />
       <HomeGift />
       <ControlledCarousel productData={products} title={"Shop Best Sellers"} />
-      <Review reviews={reviews} />
+      <Review reviews={reviews} type="favorite" />
     </div>
   );
 };

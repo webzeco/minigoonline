@@ -44,6 +44,10 @@ a:hover {
   color: red !important;
   text-decoration: none;
 }
+.oo {
+  position: relative;
+  z-index: 99;
+}
 .nav-hidden-items .form-control {
   border: none;
   border-radius: 0;
@@ -275,6 +279,7 @@ input[type="text"] {
     border-bottom: 1px solid #00000028;
   }
 }
+
 /* {
     "mode":"full","isactive": false;
   } */

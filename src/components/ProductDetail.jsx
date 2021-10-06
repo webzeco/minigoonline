@@ -106,7 +106,7 @@ class ProductDetail extends Component {
             </div>
             <div className="container-fluid">
               <div className="row justify-content-center ">
-                <div className="col-lg-6 col-md-12 col-sm-12">
+                <div className="col-lg-6 col-md-6 col-sm-12">
                   {/* carousel start */}
                   <div
                     id="carouselExampleIndicators"
@@ -151,12 +151,12 @@ class ProductDetail extends Component {
                           alt="..."
                         />
                       </div>
-                      );
+
                     </div>
                   </div>
                   {/* caroausel end */}
                 </div>
-                <div className="col-lg-6 col-md-12 px-5">
+                <div className="col-lg-6 col-md-6 px-5">
                   <div className="product pt-2">
                     <div className=" align-items-center w-75">
                       <div className="h5 text-uppercase pro_title_h_5">

@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategoryProducts } from "../../storemini/reducers/products";
 import {
+
   getAllCategoriesSelector,
   loadCategories,
   setCategory,
@@ -196,7 +197,7 @@ export default function Navbar(props) {
       </div>
       {/* <!-- Navbar --> */}
       <nav
-        className="navbar navbar-expand-md navbar-light d-none d-lg-block"
+        className="navbar navbar-expand-md navbar-light d-none d-lg-block oo"
         id="sticky-nav"
       >
         <div className="container">

@@ -40,7 +40,7 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
         <div className="card hid_border ">
           <Link onClick={() => onClicked(product)}>
 
-            <span class="badge badge-lg mt-3 badge_best">Best Saller</span>
+            <span class="badge badge-lg mt-2 badge_best">Best Saller</span>
             <img
               alt="item img"
               src={`${process.env.REACT_APP_URL}/img/${image}`}

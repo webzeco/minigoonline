@@ -27,66 +27,71 @@ export default function Review({ reviews, type }) {
     }
   };
   return (
-    <div className='text-center m-3  align-items-center' >
-      <h4 className="text-danger text-center">Our Customer's Reviews</h4>
-
-      <Carousel
-        swipeable={true}
-        draggable={true}
-        showDots={false}
-        responsive={responsive}
-        ssr={true} // means to render carousel on server-side.
-        infinite={true}
-        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-        // autoPlay={true}
-        autoPlaySpeed={100}
-        keyBoardControl={true}
-        customTransition="all .5"
-        transitionDuration={500}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet"]}
-        // deviceType={this.props.deviceType}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-      >
-        {selectedReviews?.map(review => (
-          <div>
-            <div class="card card_back_col p-3 mx-2 Card_h_w">
-              <div class="d-flex align-items-center mt-1 ">
-                <ReactStars value={review?.rating} />
+    <div class="container mb-5">
+      <div class="row h-100">
+        <div class="text-center mb-3">
+          <h4 className="shop_best_seller_h4 text-center pb-4">Our Customer's Reviews</h4>
+        </div>
+        <div className="px-4">
+          <Carousel
+            swipeable={true}
+            draggable={true}
+            showDots={false}
+            responsive={responsive}
+            ssr={true} // means to render carousel on server-side.
+            infinite={true}
+            // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+            // autoPlay={true}
+            autoPlaySpeed={100}
+            keyBoardControl={true}
+            customTransition="all .5"
+            transitionDuration={500}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={["tablet"]}
+            // deviceType={this.props.deviceType}
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+          >
+            {selectedReviews?.map(review => (
+              <div>
+                <div class="card card_back_col p-3 mx-2 Card_h_w">
+                  <div class="d-flex align-items-center mt-1 ">
+                    <ReactStars value={review?.rating} />
+                  </div>
+                  <div class="fw-bold r_title_look mb-2">
+                    {review?.reviewTitle}
+                  </div>
+                  <div class="fw-bold r_name_look mb-3  ">
+                    {review?.name}
+                  </div>
+                  <p class=" re_dis_look overflow-auto">
+                    {review?.feedback}
+                  </p>
+                </div>
               </div>
-              <div class="fw-bold r_title_look mb-2">
-                {review?.reviewTitle}
+            ))}
+            {selectedReviews?.map(review => (
+              <div>
+                <div class="card card_back_col p-3 mx-2 Card_h_w">
+                  <div class="d-flex align-items-center mt-1">
+                    <ReactStars value={review?.rating} />
+                  </div>
+                  <div class="fw-bold r_title_look mb-2">
+                    {review?.reviewTitle}
+                  </div>
+                  <div class="fw-bold r_name_look mb-3  ">
+                    {review?.name}
+                  </div>
+                  <p class=" re_dis_look overflow-auto">
+                    {review?.feedback}
+                  </p>
+                </div>
               </div>
-              <div class="fw-bold r_name_look mb-3  ">
-                {review?.name}
-              </div>
-              <p class=" re_dis_look overflow-auto">
-                {review?.feedback}
-              </p>
-            </div>
-          </div>
-        ))}
-        {selectedReviews?.map(review => (
-          <div>
-            <div class="card card_back_col p-3 mx-2 Card_h_w">
-              <div class="d-flex align-items-center mt-1">
-                <ReactStars value={review?.rating} />
-              </div>
-              <div class="fw-bold r_title_look mb-2">
-                {review?.reviewTitle}
-              </div>
-              <div class="fw-bold r_name_look mb-3  ">
-                {review?.name}
-              </div>
-              <p class=" re_dis_look overflow-auto">
-                {review?.feedback}
-              </p>
-            </div>
-          </div>
-        ))}
-      </Carousel>
-    </div>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+    </div >
 
   );
 }

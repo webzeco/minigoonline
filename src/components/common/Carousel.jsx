@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import "./style/carauosel.css";
 import ProductCard from "./ProductCard";
 import ProductList from "./ProductList";
 export default function ControlledCarousel({ productData, title }) {
@@ -26,66 +27,69 @@ export default function ControlledCarousel({ productData, title }) {
     }
   };
   return (
-    <section>
-      <div class="pt-5">
+    <>
+      <div class="container mt-5 mb-5">
         <div class="row h-100">
           <div class="text-center mb-3">
-            <h4 className="text-danger text-center pb-4">Shop Best Sellers</h4>
+            <h4 className="shop_best_seller_h4 text-center pb-4">Shop Best Sellers</h4>
           </div>
-          <Carousel
-            swipeable={true}
-            draggable={true}
-            showDots={false}
-            responsive={responsive}
-            ssr={true} // means to render carousel on server-side.
-            infinite={true}
-            // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-            // autoPlay={true}
-            autoPlaySpeed={100}
-            keyBoardControl={true}
-            customTransition="all .5"
-            transitionDuration={500}
-            containerClass="carousel-container"
-            removeArrowOnDeviceType={["tablet"]}
-            // deviceType={this.props.deviceType}
-            dotListClass="custom-dot-list-style"
-            itemClass="carousel-item-padding-40-px"
-          >
-            {/* {selectedReviews?.map(review => (
+          <div className="px-4">
+
+            <Carousel
+              swipeable={true}
+              draggable={true}
+              showDots={false}
+              responsive={responsive}
+              ssr={true} // means to render carousel on server-side.
+              infinite={true}
+              // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+              // autoPlay={true}
+              autoPlaySpeed={100}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={["tablet"]}
+              // deviceType={this.props.deviceType}
+              dotListClass="custom-dot-list-style"
+              itemClass="carousel-item-padding-40-px"
+            >
+              {/* {selectedReviews?.map(review => (
           <div>
             </div>
         ))} */}
-            {productData?.map((product, index) => {
-              const { images, title, price } = product;
-              const colorImg = [];
-              // variants adjusted to colorImg array by  map method
-              product?.variants?.map((variant) => {
-                if (variant.selectedOption === "Color") {
-                  variant?.tags?.map((tag) => {
-                    let colorData = {};
-                    colorData.color = tag.text;
-                    colorData.img = tag.img;
-                    colorImg.push(colorData);
-                  });
-                }
-              });
+              {productData?.map((product, index) => {
+                const { images, title, price } = product;
+                const colorImg = [];
+                // variants adjusted to colorImg array by  map method
+                product?.variants?.map((variant) => {
+                  if (variant.selectedOption === "Color") {
+                    variant?.tags?.map((tag) => {
+                      let colorData = {};
+                      colorData.color = tag.text;
+                      colorData.img = tag.img;
+                      colorImg.push(colorData);
+                    });
+                  }
+                });
 
-              return (
-                <ProductCard
-                  product={product}
-                  key={index}
-                  images={images}
-                  title={title}
-                  price={price}
-                  colorImg={colorImg}
-                />
-              );
-            })}
+                return (
+                  <ProductCard
+                    product={product}
+                    key={index}
+                    images={images}
+                    title={title}
+                    price={price}
+                    colorImg={colorImg}
+                  />
+                );
+              })}
 
-          </Carousel>
+            </Carousel>
+          </div>
         </div>
       </div>
-    </section>
+    </>
   );
 }
 

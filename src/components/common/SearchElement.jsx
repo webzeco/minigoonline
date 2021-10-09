@@ -22,7 +22,7 @@ export default function SearchElement({ items, clearSearch, mobile = false }) {
         return <li
           style={{ width: mobile ? "100%" : "25%" }}
           key={index}
-          className={`list-group-item w-${mobile ? "100" : "25"}`}
+          className={`list-group-item w-${mobile ? "100" : "50"}`}
         >
           <Link
             onClick={() => onClicked(item)}

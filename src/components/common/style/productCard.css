@@ -8,12 +8,11 @@
   border: 0px solid white;
   border-radius: 50%;
 }
-.card {
-  /* z-index: -1; */
-}
+
 .badge_best {
   position: absolute;
-  left: 110px;
+  left: 190px;
+  bottom: 300px;
   text-align: center;
   background-color: #769799;
   font-size: 14px !important;

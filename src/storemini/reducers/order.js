@@ -30,12 +30,8 @@ const slice = createSlice({
   },
 });
 
-const {
-  ordersReceived,
-  ordersRequested,
-  orderAdded,
-  ordersRequestFailed,
-} = slice.actions;
+const { ordersReceived, ordersRequested, orderAdded, ordersRequestFailed } =
+  slice.actions;
 export default slice.reducer;
 
 // Action Creators
@@ -46,8 +42,8 @@ export const loadOrders = () => (dispatch, getState) => {
   // const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
   // if (diffInMinutes < 10) return;
   dispatch(
-    apiCallBegan({ 
-      url:`${url}/userOrders`,
+    apiCallBegan({
+      url: `${url}/userOrders`,
       onStart: ordersRequested.type,
       onSuccess: ordersReceived.type,
       onError: ordersRequestFailed.type,
@@ -55,19 +51,21 @@ export const loadOrders = () => (dispatch, getState) => {
   );
 };
 
-export const addOrder = (order,payment,user) =>(dispatch, getState) =>{
- 
-  dispatch(apiCallBegan({
-    url:`${url}/addOrder`,
-    method: 'post',
-    data: {order,payment,user},
-    successMessage:"Order added successfully !!! check your mail for further detail!!!",
-    errorMessage:'Order not added Something went Wrong',
-    onSuccess: orderAdded.type,
-    onError: ordersRequestFailed.type,
-  }));
+export const addOrder = (order, payment, user) => (dispatch, getState) => {
+  dispatch(
+    apiCallBegan({
+      url: `${url}/addOrder`,
+      method: "post",
+      data: { order, payment, user },
+      successMessage:
+        "Order added successfully !!! check your mail for further detail!!!",
+      errorMessage: "Order not added Something went Wrong",
+      onSuccess: orderAdded.type,
+      onError: ordersRequestFailed.type,
+    })
+  );
 };
-  
+
 // Selector
 export const getOrdersByUserSelector = createSelector(
   (state) => state.entities.orders.list,

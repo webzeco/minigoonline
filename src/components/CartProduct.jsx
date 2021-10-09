@@ -22,9 +22,9 @@ const CartProduct = (props) => {
                 {props.product.title}
               </div>
               {props.selectedVariants.map((variant, index) => {
-                console.log(variant,ntcjs.name(variant.selectedVariant ));
+                console.log(variant, ntcjs.name(variant.selectedVariant));
                 if (variant.variantType === 'Color') {
-                  return <div key={index}>{ntcjs.name(variant.selectedVariant )[1]}/</div>
+                  return <div key={index}>{ntcjs.name(variant.selectedVariant)[1]}/</div>
                 } else
                   return (
                     <div key={index}>{variant.selectedVariant}/</div>
@@ -36,7 +36,7 @@ const CartProduct = (props) => {
             </div>
             <div className="col-lg-5 col-md-6 col-xs-12 d-flex justify-content-between">
               <input
-                className="form-control mt-5 mb-5 w-25"
+                className="form-control mt-5 mb-5 w-50"
                 id={props.product.id}
                 type="number"
                 min={1}

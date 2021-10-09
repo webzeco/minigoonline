@@ -186,21 +186,21 @@
 //             </div>
 
 //             <div className="top-header-rightarea ">
-//               {user?.name ? (
-//                 <Link to="/account">
-//                   <i className="fal fa-user"></i>
-//                   {user && (
-//                     <span className="d-none d-md-inline-block">
-//                       {user.name}
-//                     </span>
-//                   )}
-//                 </Link>
-//               ) : (
-//                 <Link to="/login">
-//                   <i className="fal fa-user"></i>
-//                   <span className="d-none d-md-inline-block ">Sign In</span>
-//                 </Link>
-//               )}
+// {user?.name ? (
+//   <Link to="/account">
+//     <i className="fal fa-user"></i>
+//     {user && (
+//       <span className="d-none d-md-inline-block">
+//         {user.name}
+//       </span>
+//     )}
+//   </Link>
+// ) : (
+//   <Link to="/login">
+//     <i className="fal fa-user"></i>
+//     <span className="d-none d-md-inline-block ">Sign In</span>
+//   </Link>
+// )}
 //               <Link to="/cart" className="top-cart ms-md-5 ms-2">
 //                 <i className="fal fa-shopping-cart"></i>
 //                 <span className="d-none d-md-inline-block ">Cart</span>
@@ -239,12 +239,12 @@
 //               <li className="nav-item">
 //                 <Link
 //                   // onClick={() => onClickHandlers("Best Sellers")}
-//                   onClick={() =>
-//                     setCategoryProducts("bestSellers", "", {
-//                       name: "Best sellers",
-//                       description: "Best seller Products available here",
-//                     })
-//                   }
+// onClick={() =>
+//   setCategoryProducts("bestSellers", "", {
+//     name: "Best sellers",
+//     description: "Best seller Products available here",
+//   })
+// }
 //                   className="nav-link"
 //                 >
 //                   Best Sellers
@@ -292,12 +292,12 @@
 
 //               <li className="nav-item">
 //                 <Link
-//                   onClick={() =>
-//                     setCategoryProducts("sale", "", {
-//                       name: "Sale",
-//                       description: "Sale Products ",
-//                     })
-//                   }
+// onClick={() =>
+//   setCategoryProducts("sale", "", {
+//     name: "Sale",
+//     description: "Sale Products ",
+//   })
+// }
 //                   className="nav-link"
 //                 >
 //                   Sale
@@ -352,7 +352,6 @@
 //             </li>
 //             {allCategories?.map((cate, index) => {
 //               // console.log("data");
-
 //               return (
 //                 <>
 //                   <li>
@@ -460,16 +459,22 @@
 // ///////////////////////////////////////////////////////////////////
 import React, { useContext, useEffect, useState } from "react";
 import "./style/navbar.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "jquery/dist/jquery.min.js";
+import $ from "jquery";
+import { CollectionContext } from "../contexts/CollectionContext";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { productData } from "../data";
 import SearchElement from "./SearchElement";
 import { useDispatch, useSelector } from "react-redux";
-import { addCategoryProducts } from "../../storemini/reducers/products";
-import { getAllCategoriesSelector, loadCategories, setCategory } from "../../storemini/reducers/categories";
 import { getUserSelector, loadUser } from "../../storemini/reducers/user";
 import { getNumberOfCartItems } from "../../storemini/reducers/cart";
 import { useHistory } from 'react-router-dom'
+import { getAllCategoriesSelector, loadCategories, setCategory } from "../../storemini/reducers/categories";
+import { addCategoryProducts } from "../../storemini/reducers/products";
 export default function Navbar(props) {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
@@ -490,26 +495,28 @@ export default function Navbar(props) {
   }, [searchText]);
 
   useEffect(() => {
-    $("#closeSidebar").click(function () {
-      $(".offcanvas-start").removeClass("show");
-      $(".modal-backdrop").remove();
-      $('body').css("overflow", "");
-      $('body').css("padding-right", "0px");
-      $('body').css("overflow", "");
-      $('body').removeAttr("data-bs-padding-right");
-      $('body').removeAttr("data-bs-overflow");
-      $(".sidemenu-toggle-btn").click(function () {
-        document.querySelectorAll(".modal-backdrop").forEach((e, index) => {
-          e.remove();
-        });
-      });
-      $(".collapse_class").click(function (e) {
-        console.log('====================================');
-        console.log(e.target);
-        console.log('====================================');
-      });
+    // $("#closeSidebar").click(function () {
+    //   $(".offcanvas-start").removeClass("show");
+    //   $(".modal-backdrop").remove();
+    //   $('body').css("padding-right", "0px");
+    //   // $('body').css("overflow", "");
+    //   $('body').removeAttr("data-bs-padding-right");
+    //   $('body').removeAttr("data-bs-overflow");
+    // window.scroll(0, 0);
+    // $(".collapse_class").click(function (e) {
+    //   console.log('====================================');
+    //   console.log(e.target);
+    //   console.log('====================================');
+    // });
 
-    });
+    // });
+    // $(".sidemenu-toggle-btn").click(function () {
+    //   document.querySelectorAll(".modal-backdrop").forEach((e, index) => {
+    //     // if (index !== 0)
+    //     // e.remove();
+    //     console.log(e);
+    //   });
+    // });
   }, [])
   const onTextChangeHandler = (e) => {
     setSearchText(e.target.value);
@@ -539,15 +546,14 @@ export default function Navbar(props) {
   }, []);
 
   const setCategoryProducts = (category, sub, cateObj) => {
-    // dispatch(addCategoryProducts(`${category}/${sub}`));
+    dispatch(addCategoryProducts(`${category}/${sub}`));
     dispatch(setCategory(cateObj));
     history.push("/products");
   };
-
   return (
     <header>
       {/* <!-- On Small Screen --> */}
-      <div className="top-header res-top-header py-1 d-none" id="sticky-header">
+      <div className="top-header res-top-header py-1 d-none issue-class" id="sticky-header">
         <div className="container">
           {/* toggle side bar */}
           <div className="d-flex align-items-center justify-content-between">
@@ -644,7 +650,7 @@ export default function Navbar(props) {
             </div>
 
             <div className="top-header-rightarea ">
-              {!user && (
+              {/* {!user && (
                 <Link to="/login">
                   <i className="fal fa-user"></i>
                   <span className="d-none d-md-inline-block ">Sign In</span>
@@ -658,9 +664,22 @@ export default function Navbar(props) {
                       {user.name}
                     </span>
                   )}
+                </Link> */}
+              {user?.name ? (
+                <Link to="/account">
+                  <i className="fal fa-user"></i>
+                  {user && (
+                    <span className="d-none d-md-inline-block">
+                      {user.name}
+                    </span>
+                  )}
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <i className="fal fa-user"></i>
+                  <span className="d-none d-md-inline-block ">Sign In</span>
                 </Link>
               )}
-
               <Link to="/cart" className="top-cart ms-md-5 ms-2">
                 <i className="fal fa-shopping-cart"></i>
                 <span className="d-none d-md-inline-block ">Cart</span>
@@ -698,8 +717,14 @@ export default function Navbar(props) {
               <li className="nav-item">
                 <Link
                   // onClick={() => onClickHandlers("Best Sellers")}
+                  onClick={() =>
+                    setCategoryProducts("bestSellers", "", {
+                      name: "Best sellers",
+                      description: "Best seller Products available here",
+                    })
+                  }
                   className="nav-link"
-                  to={`showProduct`}
+                // to={`showProduct`}
                 >
                   Best Sellers
                 </Link>
@@ -710,7 +735,7 @@ export default function Navbar(props) {
                     <Link
                       // onClick={() => onClickHandlers(cate.category)}
                       className="nav-link"
-                      to={`showProduct`}
+                    // to={`showProduct`}
                     >
                       {cate.category}
                     </Link>
@@ -723,7 +748,14 @@ export default function Navbar(props) {
                               <li key={subCate._id}>
                                 <Link
                                   // onClick={() => onClickHandlers(`${cate.category}/${subCate.name}`)}
-                                  to={`showProduct`}
+                                  onClick={() =>
+                                    setCategoryProducts(
+                                      cate.category,
+                                      subCate.name,
+                                      subCate
+                                    )
+                                  }
+                                  // to={`showProduct`}
                                   style={{ textDecoration: "none" }}
                                   className="text-dark fw-light"
                                 >
@@ -742,8 +774,14 @@ export default function Navbar(props) {
               <li className="nav-item">
                 <Link
                   // onClick={() => onClickHandlers("Sale")}
+                  onClick={() =>
+                    setCategoryProducts("sale", "", {
+                      name: "Sale",
+                      description: "Sale Products ",
+                    })
+                  }
                   className="nav-link"
-                  to={`showProduct`}
+                // to={`showProduct`}
                 >
                   Sale
                 </Link>
@@ -753,7 +791,7 @@ export default function Navbar(props) {
               <Link to="/cart" className="top-cart">
                 <i className="bold-500 fal fa-shopping-cart"></i>
                 Cart
-                <span className="cart-counter">{props.cartProductNumber}</span>
+                <span className="cart-counter">{numberOfCartItems}</span>
               </Link>
             </div>
           </div>
@@ -767,7 +805,7 @@ export default function Navbar(props) {
         id="offcanvasWithBackdrop"
         aria-labelledby="offcanvasWithBackdropLabel"
       >
-        <i id="closeSidebar" class="fas fa-times  p-2 m-2"></i>
+        {/* <i id="closeSidebar" class="fas fa-times  p-2 m-2"></i> */}
         <div className="sidemenu-header">
           <div className="position-relative">
             <input className="form-control "
@@ -778,15 +816,20 @@ export default function Navbar(props) {
             <i className="fal fa-search"></i>
           </div>
         </div>
-        <SearchElement items={items} />
+        <SearchElement clearSearch={clearSearch} items={items} mobile={true} />
         <div className="offcanvas-body">
           <ul className="sidemenu-list">
-
             <li className="nav-item">
               <Link
                 // onClick={() => onClickHandlers("Best Sellers")}
+                onClick={() =>
+                  setCategoryProducts("bestSellers", "", {
+                    name: "Best sellers",
+                    description: "Best seller Products available here",
+                  })
+                }
                 className="nav-link"
-                to={`showProduct`}
+              // to={`showProduct`}
               >
                 Best Sellers
               </Link>
@@ -817,7 +860,16 @@ export default function Navbar(props) {
                               <li key={subCate._id}>
                                 <Link
                                   // onClick={() => onClickHandlers(`${cate.category}/${subCate.name}`)}
-                                  to={`showProduct`}
+                                  // onClick={() => onClickHandlers(`${cate.category}/${subCate.name}`)}
+                                  onClick={() =>
+                                    setCategoryProducts(
+                                      cate.category,
+                                      subCate.name,
+                                      subCate
+                                    )
+                                  }
+                                  // to={`showProduct`}
+                                  // to={`showProduct`}
                                   style={{ textDecoration: "none" }}
                                   className="text-dark fw-light"
                                 >
@@ -869,6 +921,8 @@ export default function Navbar(props) {
           </ul>
         </div>
       </div>
+
+
     </header>
   );
 }

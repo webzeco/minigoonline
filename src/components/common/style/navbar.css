@@ -279,6 +279,9 @@ input[type="text"] {
     border-bottom: 1px solid #00000028;
   }
 }
+.myHide {
+  display: none;
+}
 
 /* {
     "mode":"full","isactive": false;

@@ -460,25 +460,17 @@
 // ///////////////////////////////////////////////////////////////////
 import React, { useContext, useEffect, useState } from "react";
 import "./style/navbar.css";
-<<<<<<< HEAD
-=======
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "jquery/dist/jquery.min.js";
 import $ from "jquery";
 import { CollectionContext } from "../contexts/CollectionContext";
->>>>>>> 7aed88511ce63a1eabd66160904fcd4b23da0883
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { productData } from "../data";
 import SearchElement from "./SearchElement";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
-import { addCategoryProducts } from "../../storemini/reducers/products";
-import { getAllCategoriesSelector, loadCategories, setCategory } from "../../storemini/reducers/categories";
-=======
->>>>>>> 7aed88511ce63a1eabd66160904fcd4b23da0883
 import { getUserSelector, loadUser } from "../../storemini/reducers/user";
 import { getAllCategoriesSelector, loadCategories, setCategory } from "../../storemini/reducers/categories";
 import { getNumberOfCartItems } from "../../storemini/reducers/cart";

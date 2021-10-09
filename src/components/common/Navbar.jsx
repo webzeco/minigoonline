@@ -1,20 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style/navbar.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "bootstrap/dist/js/bootstrap.min.js";
-import "jquery/dist/jquery.min.js";
 import { Link } from "react-router-dom";
 import SearchElement from "./SearchElement";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategoryProducts } from "../../storemini/reducers/products";
-import {
-
-  getAllCategoriesSelector,
-  loadCategories,
-  setCategory,
-} from "../../storemini/reducers/categories";
+import { getAllCategoriesSelector, loadCategories, setCategory } from "../../storemini/reducers/categories";
 import { getUserSelector, loadUser } from "../../storemini/reducers/user";
 import { getNumberOfCartItems } from "../../storemini/reducers/cart";
 

@@ -38,12 +38,7 @@ const ProductCard = ({ images, title, price, colorImg, product }) => {
       <div class="img__wrapper">
         <div className="card hid_border ">
           <Link onClick={() => onClicked(product)}>
-<<<<<<< HEAD
-
-            <span class="badge badge-lg mt-2 badge_best">Best Saller</span>
-=======
             <span class="badge badge-lg mt-3 badge_best">Best Saller</span>
->>>>>>> ed45a717878a1c83abf6072016e631335576890f
             <img
               alt="item img"
               src={`${process.env.REACT_APP_URL}/img/${image}`}

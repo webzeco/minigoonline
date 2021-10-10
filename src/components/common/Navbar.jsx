@@ -495,28 +495,7 @@ export default function Navbar(props) {
   }, [searchText]);
 
   useEffect(() => {
-    // $("#closeSidebar").click(function () {
-    //   $(".offcanvas-start").removeClass("show");
-    //   $(".modal-backdrop").remove();
-    //   $('body').css("padding-right", "0px");
-    //   // $('body').css("overflow", "");
-    //   $('body').removeAttr("data-bs-padding-right");
-    //   $('body').removeAttr("data-bs-overflow");
-    // window.scroll(0, 0);
-    // $(".collapse_class").click(function (e) {
-    //   console.log('====================================');
-    //   console.log(e.target);
-    //   console.log('====================================');
-    // });
 
-    // });
-    // $(".sidemenu-toggle-btn").click(function () {
-    //   document.querySelectorAll(".modal-backdrop").forEach((e, index) => {
-    //     // if (index !== 0)
-    //     // e.remove();
-    //     console.log(e);
-    //   });
-    // });
   }, [])
   const onTextChangeHandler = (e) => {
     setSearchText(e.target.value);
@@ -583,7 +562,7 @@ export default function Navbar(props) {
             <div className="top-header-logo text-center">
               <a href="#">
                 <img
-                  src="assets/images/logo-2.png"
+                  src={`${process.env.REACT_APP_URL}/img/footer_logo.png`}
                   className="w-100"
                   alt="img"
                 />
@@ -593,7 +572,7 @@ export default function Navbar(props) {
               <a href="#">
                 <i className="fal fa-user"></i>
               </a>
-              <a href="#" className="top-cart ms-2">
+              <a href="/" className="top-cart ms-2">
                 <i className="fal fa-shopping-cart"></i>
                 <span className="cart-counter">0</span>
               </a>

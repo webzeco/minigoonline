@@ -48,19 +48,9 @@ export const loadUser = () => (dispatch, getState) => {
   );
 };
 
-// export const login = (data) => (dispatch, getState) => {
-//   dispatch(
-//     apiCallBegan({
-//       url: "user/addAddress",
-//       method: "post",
-//       data,
-//       message: "log in successfully !!!",
-//       onStart: userRequested.type,
-//       onSuccess: userReceived.type,
-//       onError: userRequestFailed.type,
-//     })
-//   );
-// };
+export const setUser = (data) => (dispatch, getState) => {
+  dispatch(userReceived(data));
+};
 
 export const addUserAddress = (user, payment) => (dispatch, getState) => {
   dispatch(
@@ -69,7 +59,7 @@ export const addUserAddress = (user, payment) => (dispatch, getState) => {
       method: "post",
       data: { user, payment },
       successMessage: "Your Address added successfully !!!",
-      errorMessage:'Order not added Something went Wrong',
+      errorMessage: "Order not added Something went Wrong",
       onSuccess: userAddressAdded.type,
       onError: userRequestFailed.type,
     })

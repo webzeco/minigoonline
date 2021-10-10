@@ -29,6 +29,7 @@ import {
   getAllProductsSelector,
   loadProducts,
 } from "../storemini/reducers/products";
+import { setUser } from "../storemini/reducers/user";
 const Main = () => {
   const history = useHistory();
   const [product, setProduct] = useState();
@@ -45,7 +46,8 @@ const Main = () => {
       toast.success("logged in successfully !!!", {
         position: toast.POSITION.TOP_CENTER,
       });
-      window.location = "/";
+      dispatch(setUser(data.user))
+      history.goBack();
     } catch (error) {
       toast.error("Incorrect username or password", {
         position: toast.POSITION.TOP_CENTER,
@@ -60,7 +62,9 @@ const Main = () => {
       toast.success("sign up in successfully !!!", {
         position: toast.POSITION.TOP_CENTER,
       });
-      window.location = "/";
+      // window.location = "/";
+      dispatch(setUser(data.user))
+      history.goBack();
     } catch (error) {
       toast.error("Username or Email already existed Please used another !!!", {
         position: toast.POSITION.TOP_CENTER,

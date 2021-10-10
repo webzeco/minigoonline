@@ -63,6 +63,15 @@ a:hover {
 .nav-hidden-items {
   display: none;
 }
+.modal-backdrop {
+  display: none;
+}
+
+.close-btn {
+  position: relative;
+  margin: 10px 0px 10px 210px;
+  font-size: large;
+}
 .sticky {
   position: fixed !important;
   /* background: red !important; */

@@ -23,7 +23,6 @@ export default function Account() {
     // history.push('/');
     window.location = "/";
   };
-
   useEffect(() => {
     dispatch(loadOrders());
   }, []);
@@ -94,7 +93,7 @@ export default function Account() {
                         <tr>
                           <th scope="col bold">#</th>
                           <th scope="col">createdAt</th>
-                          <th scope="col">Number Of Products</th>
+                          <th scope="col">Items</th>
                           <th scope="col">shipping charges</th>
                           <th scope="col">Status</th>
                           <th scope="col">Total</th>
@@ -102,16 +101,16 @@ export default function Account() {
                         </tr>
                       </thead>
                       <tbody>
-                        {orders.map((order, index) => {
+                        {orders?.map((order, index) => {
                           return (
                             <tr key={index}>
                               <td>{index++}</td>
                               <td>{order.createdAt.substring(0, 10)}</td>
-                              <td>{order.products.length}</td>
+                              <td>{order.products?.length}</td>
                               <td>{order.shipping.charges}</td>
                               <td> {order.status}</td>
                               <td>{order.total}</td>
-                              <td>{order.payment.charge.amount}</td>
+                              <td>{order.payment?.charge?.amount}</td>
                             </tr>
                           );
                         })}
@@ -126,9 +125,9 @@ export default function Account() {
               </div>
               <div className="col-lg-3 col-md-12 back">
                 <span className="fw-bold ov_look">Account Details </span>
-                <Link to="/addAddress" className="re_look fw-bold mb-4">
+                {/* <Link to="/addAddress" className="re_look fw-bold mb-4">
                   <p className=" mb-2 re_look"> View Addresses(1)</p>
-                </Link>
+                </Link> */}
                 {/* details */}
                 <div className="  mt-5 pb-5 font_fam w-100">
                   {/* <h3 className="submit-content fw-bold text-center mt-5">Detail  Account</h3> */}

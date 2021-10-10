@@ -6,10 +6,13 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { addShipping, getCart } from "../storemini/reducers/cart";
 import ntcjs from "ntcjs";
+import { getUserSelector } from "../storemini/reducers/user";
 export default function ShippingInfo() {
   const history = useHistory();
   const dispatch = useDispatch();
   const cart = useSelector(getCart);
+  const user = useSelector(getUserSelector);
+
 
   const [shippingCharges, setshippingCharges] = useState(100);
   const shippingSchema = Yup.object().shape({
@@ -94,12 +97,20 @@ export default function ShippingInfo() {
                       <h5>Contact Information</h5>
                     </div>
                     <div className="col-6 text-end ">
-                      <p>
-                        Alreay have a{" "}
-                        <a href="#" className="look_return">
-                          Login?
-                        </a>
-                      </p>
+                      {!user.name ? (
+                        <p>
+                          <p className='look_return'>Sign up or login and get 10% discount</p>
+                          Already have a
+                          <Link to="/login" className="mx-2 look_return">
+                            Login?
+                          </Link>
+                        </p>
+                      ) : (
+                        <p>
+                          <p className='look_return'>10% discount for you</p>
+                        </p>
+                      )}
+
                     </div>
                   </div>
                   <div className="col-lg-6 mb-3 ">

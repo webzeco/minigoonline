@@ -7,6 +7,8 @@ const api =
   (next) =>
   async (action) => {
     if (action.type !== actions.apiCallBegan.type) return next(action);
+    const token = localStorage.getItem("jwt");
+    if (token) axios.defaults.headers.common["x-token"] = token; // setting default header
     const {
       url,
       method,
@@ -18,6 +20,7 @@ const api =
       errorMessage,
     } = action.payload;
     if (onStart) dispatch({ type: onStart });
+
     next(action);
     try {
       let response;
